@@ -9,8 +9,13 @@ Riferimenti: piano di sviluppo (Fase 2, prova P2, e Fase 11) e FDD nella cartell
 ```
 scrippellapp-landing/
 ├── index.html              pagina principale
+├── privacy.html            informativa sulla privacy, anche per le botteghe
+├── termini.html            termini di servizio, con l'accordo art. 28 per lo spazio (#accordo)
+├── elimina-account.html    eliminazione di account e dati, richiesta da Google Play
+├── accessibilita.html
 ├── assets/
 │   ├── site.css            stili condivisi da tutte le pagine
+│   ├── scrippellapp-logo.svg   logo delle pagine interne, da MARCHIO/logo-completo
 │   └── fonts/              Plus Jakarta Sans, licenza in OFL.txt
 ├── favicon.ico, favicon.svg, favicon-32.png, apple-touch-icon.png,
 │   icon-192.png, icon-512.png, icon-maskable-512.png,
@@ -24,7 +29,9 @@ scrippellapp-landing/
 Da aggiungere, come nel piano di sviluppo:
 
 - Fase 2, prova P2: `.well-known/apple-app-site-association`, `.well-known/assetlinks.json`, `invito/index.html`, `staging/invito/index.html`.
-- Fase 11: `privacy.html`, `termini.html`, `elimina-account.html`, `accessibilita.html`, con i link nel piede di `index.html` e le voci in `sitemap.xml`.
+- Fase 11: link alle pagine legali dall'app (`config/legal.ts` come Memura).
+
+Le pagine legali sono bozze del 12 ottobre 2026, scritte dal FDD (cap. 15) e dai testi di Memura: prima di pubblicarle le rivede chi segue la parte legale. Ogni pagina ha la data in alto: quando cambia un testo si aggiornano la data e `sitemap.xml`. Il piede è uguale in tutte le pagine; nella pagina corrente il suo link ha `aria-current="page"`.
 
 ## Regole
 
