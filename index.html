@@ -44,6 +44,7 @@
         <li><a href="#come-funziona">Come funziona</a></li>
         <li><a href="#chi-consegna">Chi consegna</a></li>
         <li><a href="#attivita">Botteghe</a></li>
+        <li class="solo-largo"><a class="pulsante pulsante-piccolo" href="mailto:hello@scrippellapp.it?subject=Voglio%20provare%20Scrippellapp">Provala</a></li>
       </ul>
     </nav>
   </div>
@@ -83,8 +84,8 @@
         </g>
       </svg>
 
-      <div class="apertura-testo">
-        <div>
+      <div class="apertura-griglia">
+        <div class="apertura-testo">
           <h1 id="titolo">Le scrippelle del tuo matrimonio, casa per casa.</h1>
           <p class="sottotitolo">Voi friggete, Scrippellapp organizza il resto: le case da servire, i giri di paggetti e damigelle, le scrippelle già arrivate. E nessuno resta senza.</p>
           <div class="azioni">
@@ -96,68 +97,139 @@
             </p>
           </div>
         </div>
-        <p class="rito">A Mondragone, quando ci si sposa, la casa degli sposi diventa una piccola friggitoria. Lì le scrippelle si friggono, si spolverano di zucchero e cannella e si avvolgono nella carta bianca, insieme ai confetti. Poi, nelle due settimane prima delle nozze, paggetti e damigelle le portano a invitati, amici e vicini, una porta dopo l'altra.</p>
+        <!-- Esempio animato dei giri: il fotogramma qui sotto è quello fermo; lo script in fondo alla pagina lo fa andare avanti -->
+        <figure class="demo" data-demo data-totale="19" role="img" aria-label="Esempio di una distribuzione: dalla casa degli sposi partono i giri, a piedi tra i vicini e verso le zone più lontane, ognuno nel colore di chi consegna. A ogni consegna la casa si spunta e la spirale si colora.">
+          <div class="demo-schermo">
+        <svg class="mappa" viewBox="0 0 560 440" aria-hidden="true" focusable="false">
+        <defs><clipPath id="mappa-bordo"><rect width="560" height="440" rx="24"/></clipPath></defs>
+        <g clip-path="url(#mappa-bordo)">
+        <rect width="560" height="440" fill="#FFFFFF"/>
+        <path d="M-10 110C120 130 300 80 570 120" fill="none" stroke="#F3EDE3" stroke-width="14" stroke-linecap="round"/>
+        <path d="M-10 318C150 288 330 348 570 308" fill="none" stroke="#F3EDE3" stroke-width="14" stroke-linecap="round"/>
+        <path d="M150 -10C170 120 120 300 170 460" fill="none" stroke="#F3EDE3" stroke-width="14" stroke-linecap="round"/>
+        <path d="M410 -10C380 150 440 300 400 460" fill="none" stroke="#F3EDE3" stroke-width="14" stroke-linecap="round"/>
+        <path d="M-10 220L570 232" fill="none" stroke="#F3EDE3" stroke-width="14" stroke-linecap="round"/>
+        </g>
+        <circle cx="270" cy="214" r="108" fill="#F3E7D3" fill-opacity="0.55" stroke="#6F645A" stroke-width="1.5" stroke-dasharray="5 6"/>
+        <text x="270" y="342" text-anchor="middle" class="mappa-etichetta">a piedi</text>
+        <path class="giro" pathLength="1" d="M270.0 214.0C255.0 220.0 209.6 189.3 204.2 176.0C198.8 162.7 222.8 140.3 237.8 134.3C252.8 128.3 288.7 126.5 294.1 139.8C299.5 153.1 285.0 208.0 270.0 214.0Z" fill="none" stroke="#2A5DB0" stroke-width="3" stroke-linejoin="round" stroke-opacity="0.85"/>
+        <path class="giro" pathLength="1" d="M270.0 214.0C259.0 195.2 363.3 115.0 393.7 94.5C424.1 74.0 435.2 79.1 452.4 91.0C469.6 102.9 495.6 146.4 496.9 165.8C498.1 185.2 497.7 199.4 459.9 207.4C422.1 215.4 281.0 232.8 270.0 214.0Z" fill="none" stroke="#A3317E" stroke-width="3" stroke-linejoin="round" stroke-opacity="0.85"/>
+        <path class="giro" pathLength="1" d="M270.0 214.0C264.6 202.2 143.2 255.7 106.6 260.9C70.0 266.0 53.4 232.2 50.2 244.9C47.0 257.6 72.8 322.5 87.6 337.0C102.4 351.5 108.8 352.3 139.2 331.8C169.6 311.3 275.4 225.8 270.0 214.0Z" fill="none" stroke="#0E6F86" stroke-width="3" stroke-linejoin="round" stroke-opacity="0.85"/>
+        <path class="giro" pathLength="1" d="M270.0 214.0C259.8 213.7 334.6 326.6 340.1 357.8C345.6 389.0 292.8 400.8 303.0 401.1C313.2 401.4 406.6 390.9 401.1 359.7C395.6 328.5 280.2 214.3 270.0 214.0Z" fill="none" stroke="#9E480B" stroke-width="3" stroke-linejoin="round" stroke-opacity="0.85"/>
+        <g class="casa fatta" style="--c:#2A5DB0" data-giro="b" data-n="0" data-q="1" data-x="204.2" data-y="176.0">
+        <path class="casetta" d="M193.2 174.0L204.2 161.0L215.2 174.0L215.2 187.0L193.2 187.0Z" stroke="#2A5DB0" stroke-width="2.5" stroke-linejoin="round"/>
+        <path class="spunta" d="M199.0 179.4l3.6 3.6l6.4 -7.2" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <g class="casa fatta" style="--c:#2A5DB0" data-giro="b" data-n="2" data-q="2" data-x="237.8" data-y="134.3">
+        <path class="casetta" d="M226.8 132.3L237.8 119.3L248.8 132.3L248.8 145.3L226.8 145.3Z" stroke="#2A5DB0" stroke-width="2.5" stroke-linejoin="round"/>
+        <path class="spunta" d="M232.6 137.7l3.6 3.6l6.4 -7.2" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <g class="casa fatta" style="--c:#2A5DB0" data-giro="b" data-n="5" data-q="1" data-x="294.1" data-y="139.8">
+        <path class="casetta" d="M283.1 137.8L294.1 124.8L305.1 137.8L305.1 150.8L283.1 150.8Z" stroke="#2A5DB0" stroke-width="2.5" stroke-linejoin="round"/>
+        <path class="spunta" d="M288.9 143.2l3.6 3.6l6.4 -7.2" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <g class="casa fatta" style="--c:#A3317E" data-giro="m" data-n="1" data-q="2" data-x="393.7" data-y="94.5">
+        <path class="casetta" d="M382.7 92.5L393.7 79.5L404.7 92.5L404.7 105.5L382.7 105.5Z" stroke="#A3317E" stroke-width="2.5" stroke-linejoin="round"/>
+        <path class="spunta" d="M388.5 97.9l3.6 3.6l6.4 -7.2" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <g class="casa fatta" style="--c:#A3317E" data-giro="m" data-n="4" data-q="1" data-x="452.4" data-y="91.0">
+        <path class="casetta" d="M441.4 89.0L452.4 76.0L463.4 89.0L463.4 102.0L441.4 102.0Z" stroke="#A3317E" stroke-width="2.5" stroke-linejoin="round"/>
+        <path class="spunta" d="M447.2 94.4l3.6 3.6l6.4 -7.2" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <g class="casa" style="--c:#A3317E" data-giro="m" data-n="8" data-q="1" data-x="496.9" data-y="165.8">
+        <path class="casetta" d="M485.9 163.8L496.9 150.8L507.9 163.8L507.9 176.8L485.9 176.8Z" stroke="#A3317E" stroke-width="2.5" stroke-linejoin="round"/>
+        <path class="spunta" d="M491.7 169.2l3.6 3.6l6.4 -7.2" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <g class="casa" style="--c:#A3317E" data-giro="m" data-n="11" data-q="2" data-x="459.9" data-y="207.4">
+        <path class="casetta" d="M448.9 205.4L459.9 192.4L470.9 205.4L470.9 218.4L448.9 218.4Z" stroke="#A3317E" stroke-width="2.5" stroke-linejoin="round"/>
+        <path class="spunta" d="M454.7 210.8l3.6 3.6l6.4 -7.2" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <g class="casa fatta" style="--c:#0E6F86" data-giro="p" data-n="3" data-q="1" data-x="106.6" data-y="260.9">
+        <path class="casetta" d="M95.6 258.9L106.6 245.9L117.6 258.9L117.6 271.9L95.6 271.9Z" stroke="#0E6F86" stroke-width="2.5" stroke-linejoin="round"/>
+        <path class="spunta" d="M101.4 264.3l3.6 3.6l6.4 -7.2" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <g class="casa fatta" style="--c:#0E6F86" data-giro="p" data-n="7" data-q="1" data-x="50.2" data-y="244.9">
+        <path class="casetta" d="M39.2 242.9L50.2 229.9L61.2 242.9L61.2 255.9L39.2 255.9Z" stroke="#0E6F86" stroke-width="2.5" stroke-linejoin="round"/>
+        <path class="spunta" d="M45.0 248.3l3.6 3.6l6.4 -7.2" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <g class="casa" style="--c:#0E6F86" data-giro="p" data-n="10" data-q="2" data-x="87.6" data-y="337.0">
+        <path class="casetta" d="M76.6 335.0L87.6 322.0L98.6 335.0L98.6 348.0L76.6 348.0Z" stroke="#0E6F86" stroke-width="2.5" stroke-linejoin="round"/>
+        <path class="spunta" d="M82.4 340.4l3.6 3.6l6.4 -7.2" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <g class="casa" style="--c:#0E6F86" data-giro="p" data-n="13" data-q="1" data-x="139.2" data-y="331.8">
+        <path class="casetta" d="M128.2 329.8L139.2 316.8L150.2 329.8L150.2 342.8L128.2 342.8Z" stroke="#0E6F86" stroke-width="2.5" stroke-linejoin="round"/>
+        <path class="spunta" d="M134.0 335.2l3.6 3.6l6.4 -7.2" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <g class="casa fatta" style="--c:#9E480B" data-giro="a" data-n="6" data-q="2" data-x="340.1" data-y="357.8">
+        <path class="casetta" d="M329.1 355.8L340.1 342.8L351.1 355.8L351.1 368.8L329.1 368.8Z" stroke="#9E480B" stroke-width="2.5" stroke-linejoin="round"/>
+        <path class="spunta" d="M334.9 361.2l3.6 3.6l6.4 -7.2" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <g class="casa" style="--c:#9E480B" data-giro="a" data-n="9" data-q="1" data-x="303.0" data-y="401.1">
+        <path class="casetta" d="M292.0 399.1L303.0 386.1L314.0 399.1L314.0 412.1L292.0 412.1Z" stroke="#9E480B" stroke-width="2.5" stroke-linejoin="round"/>
+        <path class="spunta" d="M297.8 404.5l3.6 3.6l6.4 -7.2" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <g class="casa" style="--c:#9E480B" data-giro="a" data-n="12" data-q="1" data-x="401.1" data-y="359.7">
+        <path class="casetta" d="M390.1 357.7L401.1 344.7L412.1 357.7L412.1 370.7L390.1 370.7Z" stroke="#9E480B" stroke-width="2.5" stroke-linejoin="round"/>
+        <path class="spunta" d="M395.9 363.1l3.6 3.6l6.4 -7.2" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <circle cx="270" cy="214" r="30" fill="#FFFFFF" stroke="#E9E2D7" stroke-width="2"/>
+        <g transform="translate(250.38 194.00) scale(0.6920) translate(-21.6 -24.1)"><g transform="matrix(0.74 0 0 0.74 14 13)"><path d="M55.6 54.6C56 54.4 56.4 54.1 56.8 53.8C57.2 53.5 57.5 53.2 57.8 52.8C58.2 52.4 58.5 52 58.7 51.5C59 51.1 59.2 50.6 59.4 50.1C59.5 49.6 59.7 49 59.7 48.4C59.8 47.9 59.9 47.3 59.8 46.7C59.8 46.1 59.7 45.5 59.6 44.9C59.5 44.3 59.3 43.7 59.1 43.1C58.8 42.5 58.5 41.9 58.2 41.4C57.8 40.8 57.4 40.3 57 39.7C56.5 39.2 56 38.7 55.5 38.3C54.9 37.9 54.3 37.4 53.6 37.1C53 36.7 52.3 36.4 51.6 36.2C50.9 35.9 50.1 35.7 49.3 35.6C48.6 35.5 47.8 35.4 47 35.4C46.1 35.4 45.3 35.5 44.5 35.6C43.7 35.7 42.8 35.9 42 36.2C41.2 36.5 40.4 36.8 39.6 37.3C38.8 37.7 38.1 38.2 37.4 38.7C36.6 39.3 35.9 39.9 35.3 40.6C34.7 41.3 34.1 42 33.5 42.9C33 43.7 32.5 44.5 32.1 45.4C31.7 46.3 31.4 47.3 31.1 48.2C30.9 49.2 30.7 50.3 30.6 51.3C30.5 52.3 30.5 53.4 30.6 54.4C30.6 55.5 30.8 56.6 31 57.6C31.3 58.7 31.6 59.8 32 60.8C32.5 61.8 33 62.8 33.6 63.8C34.2 64.8 34.9 65.7 35.6 66.6C36.4 67.5 37.2 68.3 38.2 69.1C39.1 69.8 40.1 70.6 41.1 71.2C42.2 71.8 43.3 72.3 44.4 72.8C45.6 73.2 46.8 73.6 48 73.9C49.3 74.1 50.6 74.3 51.9 74.4C53.2 74.5 54.5 74.4 55.8 74.3C57.1 74.1 58.4 73.9 59.7 73.5C61 73.2 62.3 72.7 63.6 72.1C64.8 71.6 66 70.9 67.2 70.1C68.4 69.3 69.5 68.5 70.5 67.5C71.6 66.5 72.6 65.5 73.4 64.3C74.3 63.2 75.2 61.9 75.9 60.6C76.6 59.4 77.2 58 77.7 56.6C78.2 55.2 78.6 53.7 78.9 52.2C79.2 50.7 79.3 49.1 79.4 47.6C79.4 46 79.3 44.4 79.1 42.9C78.9 41.3 78.6 39.7 78.1 38.2C77.6 36.7 77 35.1 76.3 33.7C75.6 32.2 74.8 30.8 73.8 29.4C72.9 28.1 71.8 26.8 70.6 25.6C69.4 24.4 68.2 23.2 66.8 22.2C65.4 21.2 63.9 20.3 62.4 19.5C60.9 18.6 59.2 18 57.6 17.4C55.9 16.8 54.2 16.4 52.4 16.1C50.7 15.8 48.8 15.7 47 15.7C45.2 15.6 43.4 15.8 41.6 16.1C39.7 16.3 37.9 16.8 36.1 17.3C34.4 17.9 32.6 18.6 30.9 19.5C29.3 20.3 27.6 21.4 26.1 22.5C24.5 23.6 23 24.9 21.7 26.3C20.3 27.6 19 29.1 17.9 30.7C16.7 32.3 15.7 34.1 14.8 35.8C14 37.6 13.2 39.5 12.6 41.4C12.1 43.4 11.6 45.4 11.3 47.4C11.1 49.4 10.9 51.5 11 53.5C11 55.6 11.2 57.6 11.6 59.7C12 61.7 12.5 63.8 13.2 65.8C13.9 67.7 14.8 69.7 15.8 71.6C16.8 73.4 17.9 75.2 19.2 76.9C20.6 78.6 22 80.3 23.6 81.8C25.1 83.2 26.9 84.6 28.7 85.9C30.5 87.1 32.4 88.2 34.4 89.2C36.4 90.1 38.5 91 40.6 91.5C42.8 92.1 45.1 92.3 47.3 92.4C49.5 92.4 51.8 92.4 54 92.1C56.2 91.9 58.4 91.4 60.5 90.8C62.7 90.2 64.8 89.4 66.8 88.5C68.8 87.6 70.7 86.5 72.6 85.3C74.4 84.1 76.1 82.7 77.7 81.2C79.3 79.7 80.8 78.1 82.2 76.3C83.5 74.6 85.1 72 85.8 70.9C86.5 69.8 86.2 70.1 86.2 69.7C86.2 69.3 86.2 68.8 86 68.4C85.8 68.1 85.5 67.7 85.1 67.5C84.8 67.2 84.4 67.1 83.9 67.1C83.5 67 83.1 67.1 82.7 67.3C82.3 67.5 82.6 67.3 81.7 68.1C80.9 69 79.2 71 77.8 72.2C76.4 73.4 74.9 74.6 73.3 75.5C71.8 76.5 70.2 77.3 68.5 78C66.9 78.7 65.2 79.2 63.6 79.6C61.9 80 60.2 80.3 58.6 80.4C56.9 80.5 55.2 80.5 53.6 80.4C52 80.3 50.4 80 48.9 79.6C47.4 79.2 46 78.6 44.6 78.1C43.1 77.6 41.7 77.1 40.4 76.5C39.1 75.9 37.8 75.1 36.6 74.3C35.4 73.5 34.3 72.6 33.2 71.6C32.2 70.6 31.2 69.5 30.4 68.4C29.5 67.3 28.7 66.1 28.1 64.9C27.4 63.7 26.9 62.4 26.4 61.1C26 59.8 25.6 58.5 25.4 57.2C25.1 55.9 25 54.5 25 53.2C24.9 51.9 25 50.6 25.2 49.3C25.4 48 25.7 46.7 26 45.5C26.4 44.3 26.9 43.1 27.4 42C28 40.9 28.6 39.8 29.3 38.8C30 37.8 30.8 36.8 31.6 35.9C32.4 35 33.3 34.2 34.3 33.5C35.2 32.7 36.2 32.1 37.2 31.5C38.3 30.9 39.3 30.4 40.4 30C41.5 29.6 42.6 29.3 43.8 29.1C44.9 28.9 46 28.8 47.1 28.8C48.3 28.7 49.4 28.8 50.5 28.9C51.6 29.1 52.6 29.3 53.7 29.6C54.7 29.9 55.7 30.3 56.7 30.7C57.7 31.2 58.6 31.7 59.5 32.3C60.3 32.9 61.1 33.6 61.9 34.3C62.6 35 63.3 35.8 63.9 36.6C64.5 37.4 65.1 38.2 65.6 39.1C66 40 66.4 40.9 66.8 41.8C67.1 42.7 67.3 43.7 67.5 44.6C67.7 45.6 67.8 46.5 67.8 47.5C67.8 48.4 67.7 49.3 67.6 50.3C67.5 51.2 67.3 52.1 67 52.9C66.7 53.8 66.4 54.6 66 55.4C65.6 56.2 65.2 57 64.7 57.7C64.2 58.4 63.6 59.1 63 59.7C62.4 60.3 61.8 60.8 61.1 61.3C60.4 61.8 59.7 62.2 59 62.6C58.3 63 57.5 63.3 56.8 63.6C56 63.8 55.3 64 54.5 64.1C53.7 64.2 53 64.3 52.2 64.3C51.4 64.3 50.7 64.2 50 64.1C49.2 64 48.5 63.8 47.8 63.6C47.1 63.4 46.5 63.1 45.9 62.8C45.2 62.4 44.6 62.1 44.1 61.7C43.5 61.3 43 60.8 42.6 60.3C42.1 59.9 41.7 59.3 41.3 58.8C40.9 58.3 40.6 57.7 40.3 57.2C40.1 56.6 39.8 56 39.6 55.4C39.5 54.8 39.3 54.2 39.3 53.6C39.2 53.1 39.2 52.5 39.2 51.9C39.2 51.3 39.3 50.8 39.4 50.2C39.5 49.7 39.6 49.1 39.8 48.6C40 48.1 40.2 47.6 40.5 47.2C40.7 46.7 41 46.3 41.3 45.9C41.6 45.5 42 45.1 42.3 44.8C42.7 44.5 43.1 44.2 43.5 43.9C43.8 43.7 44.3 43.5 44.7 43.3C45.1 43.1 45.5 43 45.9 42.9C46.3 42.7 46.7 42.7 47.2 42.6C47.6 42.6 48 42.6 48.4 42.6C48.8 42.7 49.1 42.7 49.5 42.8C49.9 42.9 50.2 43 50.6 43.2C50.9 43.3 51.2 43.5 51.5 43.6C51.8 43.8 52 44 52.3 44.2C52.5 44.4 52.7 44.7 52.9 44.9C53.1 45.2 53.3 45.4 53.4 45.6C53.6 45.9 53.7 46.2 53.8 46.4C53.8 46.7 53.9 46.9 54 47.1C54 47.4 54 47.6 54 47.9C54 48.1 54 48.3 54 48.5C53.9 48.7 53.9 48.9 53.8 49.1C53.8 49.3 53.7 49.5 53.6 49.6C53.5 49.8 53.4 49.9 53.3 50C53.2 50.2 53.2 50.2 53 50.4C52.8 50.6 52.3 50.9 52.1 51.3C51.9 51.7 51.8 52.2 51.8 52.6C51.8 53 52 53.5 52.2 53.8C52.4 54.2 52.8 54.5 53.1 54.7C53.5 54.9 54 55 54.4 55C54.8 55 55.2 54.8 55.6 54.6Z" fill="#C9973F"/></g></g>
+        <text x="270" y="266" text-anchor="middle" class="mappa-etichetta mappa-forte">Casa degli sposi</text>
+        <g class="rider" data-giro="b" data-x0="226.0" data-y0="184.0" style="transform: translate(294.1px, 113.8px)">
+        <circle r="14" fill="#2A5DB0" stroke="#FFFFFF" stroke-width="3"/>
+        <text y="4.5" text-anchor="middle" class="mappa-iniziali">AL</text>
+        </g>
+        <g class="rider" data-giro="m" data-x0="314.0" data-y0="184.0" style="transform: translate(452.4px, 65.0px)">
+        <circle r="14" fill="#A3317E" stroke="#FFFFFF" stroke-width="3"/>
+        <text y="4.5" text-anchor="middle" class="mappa-iniziali">MR</text>
+        </g>
+        <g class="rider" data-giro="p" data-x0="224.0" data-y0="236.0" style="transform: translate(50.2px, 218.9px)">
+        <circle r="14" fill="#0E6F86" stroke="#FFFFFF" stroke-width="3"/>
+        <text y="4.5" text-anchor="middle" class="mappa-iniziali">GS</text>
+        </g>
+        <g class="rider" data-giro="a" data-x0="316.0" data-y0="236.0" style="transform: translate(340.1px, 331.8px)">
+        <circle r="14" fill="#9E480B" stroke="#FFFFFF" stroke-width="3"/>
+        <text y="4.5" text-anchor="middle" class="mappa-iniziali">CF</text>
+        </g>
+        </svg>
+            <div class="demo-stato">
+              <svg class="demo-spirale" viewBox="21.6 24.1 56.7 57.8" aria-hidden="true" focusable="false"><defs><mask id="demo-colata" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><g transform="matrix(0.74 0 0 0.74 14 13)"><path class="demo-colata" d="M53.8 53.0 L54.4 52.3 L55.6 51.0 L56.2 49.3 L56.6 47.0 L56.2 44.6 L55.4 42.9 L54.0 41.4 L52.3 40.4 L50.3 39.7 L47.4 39.2 L45.8 39.2 L43.5 39.7 L41.1 40.8 L39.3 42.1 L37.8 43.8 L36.6 45.8 L35.7 48.2 L35.0 53.3 L35.5 56.5 L36.2 59.0 L37.5 61.3 L39.3 63.7 L41.1 65.3 L43.5 66.8 L45.6 67.7 L48.4 68.5 L52.6 69.0 L54.6 68.9 L57.9 68.4 L60.6 67.6 L63.0 66.3 L65.9 64.3 L67.4 62.8 L69.0 60.9 L70.6 58.3 L71.7 55.7 L72.5 52.5 L73.0 49.1 L73.2 46.8 L73.1 44.5 L72.6 41.4 L71.9 38.9 L71.0 36.8 L69.6 34.1 L67.8 31.7 L66.0 29.7 L63.8 27.7 L61.3 26.1 L58.6 24.8 L55.9 23.8 L50.1 22.8 L46.4 22.5 L39.8 23.4 L37.5 24.0 L35.1 25.0 L30.6 27.6 L27.2 30.4 L23.6 34.7 L22.0 37.3 L20.6 40.1 L19.6 43.0 L19.0 45.6 L18.3 52.8 L19.3 60.8 L20.1 63.8 L21.2 66.7 L22.7 69.5 L24.3 72.0 L26.6 74.8 L28.9 77.1 L31.2 79.0 L34.2 81.0 L37.1 82.5 L41.8 84.5 L44.5 85.4 L47.7 86.0 L49.6 86.2 L53.2 85.8 L59.2 85.1 L62.7 84.4 L65.7 83.5 L69.2 82.1 L71.7 80.8 L74.3 79.1 L77.0 77.0 L79.4 74.8 L83.5 69.8 L85.1 67.9" fill="none" stroke="#FFFFFF" stroke-width="17" stroke-linecap="round" stroke-linejoin="round" style="stroke-dasharray: 303.85 303.85; stroke-dashoffset: 139.94"/></g></mask></defs><g transform="matrix(0.74 0 0 0.74 14 13)"><path d="M55.6 54.6C56 54.4 56.4 54.1 56.8 53.8C57.2 53.5 57.5 53.2 57.8 52.8C58.2 52.4 58.5 52 58.7 51.5C59 51.1 59.2 50.6 59.4 50.1C59.5 49.6 59.7 49 59.7 48.4C59.8 47.9 59.9 47.3 59.8 46.7C59.8 46.1 59.7 45.5 59.6 44.9C59.5 44.3 59.3 43.7 59.1 43.1C58.8 42.5 58.5 41.9 58.2 41.4C57.8 40.8 57.4 40.3 57 39.7C56.5 39.2 56 38.7 55.5 38.3C54.9 37.9 54.3 37.4 53.6 37.1C53 36.7 52.3 36.4 51.6 36.2C50.9 35.9 50.1 35.7 49.3 35.6C48.6 35.5 47.8 35.4 47 35.4C46.1 35.4 45.3 35.5 44.5 35.6C43.7 35.7 42.8 35.9 42 36.2C41.2 36.5 40.4 36.8 39.6 37.3C38.8 37.7 38.1 38.2 37.4 38.7C36.6 39.3 35.9 39.9 35.3 40.6C34.7 41.3 34.1 42 33.5 42.9C33 43.7 32.5 44.5 32.1 45.4C31.7 46.3 31.4 47.3 31.1 48.2C30.9 49.2 30.7 50.3 30.6 51.3C30.5 52.3 30.5 53.4 30.6 54.4C30.6 55.5 30.8 56.6 31 57.6C31.3 58.7 31.6 59.8 32 60.8C32.5 61.8 33 62.8 33.6 63.8C34.2 64.8 34.9 65.7 35.6 66.6C36.4 67.5 37.2 68.3 38.2 69.1C39.1 69.8 40.1 70.6 41.1 71.2C42.2 71.8 43.3 72.3 44.4 72.8C45.6 73.2 46.8 73.6 48 73.9C49.3 74.1 50.6 74.3 51.9 74.4C53.2 74.5 54.5 74.4 55.8 74.3C57.1 74.1 58.4 73.9 59.7 73.5C61 73.2 62.3 72.7 63.6 72.1C64.8 71.6 66 70.9 67.2 70.1C68.4 69.3 69.5 68.5 70.5 67.5C71.6 66.5 72.6 65.5 73.4 64.3C74.3 63.2 75.2 61.9 75.9 60.6C76.6 59.4 77.2 58 77.7 56.6C78.2 55.2 78.6 53.7 78.9 52.2C79.2 50.7 79.3 49.1 79.4 47.6C79.4 46 79.3 44.4 79.1 42.9C78.9 41.3 78.6 39.7 78.1 38.2C77.6 36.7 77 35.1 76.3 33.7C75.6 32.2 74.8 30.8 73.8 29.4C72.9 28.1 71.8 26.8 70.6 25.6C69.4 24.4 68.2 23.2 66.8 22.2C65.4 21.2 63.9 20.3 62.4 19.5C60.9 18.6 59.2 18 57.6 17.4C55.9 16.8 54.2 16.4 52.4 16.1C50.7 15.8 48.8 15.7 47 15.7C45.2 15.6 43.4 15.8 41.6 16.1C39.7 16.3 37.9 16.8 36.1 17.3C34.4 17.9 32.6 18.6 30.9 19.5C29.3 20.3 27.6 21.4 26.1 22.5C24.5 23.6 23 24.9 21.7 26.3C20.3 27.6 19 29.1 17.9 30.7C16.7 32.3 15.7 34.1 14.8 35.8C14 37.6 13.2 39.5 12.6 41.4C12.1 43.4 11.6 45.4 11.3 47.4C11.1 49.4 10.9 51.5 11 53.5C11 55.6 11.2 57.6 11.6 59.7C12 61.7 12.5 63.8 13.2 65.8C13.9 67.7 14.8 69.7 15.8 71.6C16.8 73.4 17.9 75.2 19.2 76.9C20.6 78.6 22 80.3 23.6 81.8C25.1 83.2 26.9 84.6 28.7 85.9C30.5 87.1 32.4 88.2 34.4 89.2C36.4 90.1 38.5 91 40.6 91.5C42.8 92.1 45.1 92.3 47.3 92.4C49.5 92.4 51.8 92.4 54 92.1C56.2 91.9 58.4 91.4 60.5 90.8C62.7 90.2 64.8 89.4 66.8 88.5C68.8 87.6 70.7 86.5 72.6 85.3C74.4 84.1 76.1 82.7 77.7 81.2C79.3 79.7 80.8 78.1 82.2 76.3C83.5 74.6 85.1 72 85.8 70.9C86.5 69.8 86.2 70.1 86.2 69.7C86.2 69.3 86.2 68.8 86 68.4C85.8 68.1 85.5 67.7 85.1 67.5C84.8 67.2 84.4 67.1 83.9 67.1C83.5 67 83.1 67.1 82.7 67.3C82.3 67.5 82.6 67.3 81.7 68.1C80.9 69 79.2 71 77.8 72.2C76.4 73.4 74.9 74.6 73.3 75.5C71.8 76.5 70.2 77.3 68.5 78C66.9 78.7 65.2 79.2 63.6 79.6C61.9 80 60.2 80.3 58.6 80.4C56.9 80.5 55.2 80.5 53.6 80.4C52 80.3 50.4 80 48.9 79.6C47.4 79.2 46 78.6 44.6 78.1C43.1 77.6 41.7 77.1 40.4 76.5C39.1 75.9 37.8 75.1 36.6 74.3C35.4 73.5 34.3 72.6 33.2 71.6C32.2 70.6 31.2 69.5 30.4 68.4C29.5 67.3 28.7 66.1 28.1 64.9C27.4 63.7 26.9 62.4 26.4 61.1C26 59.8 25.6 58.5 25.4 57.2C25.1 55.9 25 54.5 25 53.2C24.9 51.9 25 50.6 25.2 49.3C25.4 48 25.7 46.7 26 45.5C26.4 44.3 26.9 43.1 27.4 42C28 40.9 28.6 39.8 29.3 38.8C30 37.8 30.8 36.8 31.6 35.9C32.4 35 33.3 34.2 34.3 33.5C35.2 32.7 36.2 32.1 37.2 31.5C38.3 30.9 39.3 30.4 40.4 30C41.5 29.6 42.6 29.3 43.8 29.1C44.9 28.9 46 28.8 47.1 28.8C48.3 28.7 49.4 28.8 50.5 28.9C51.6 29.1 52.6 29.3 53.7 29.6C54.7 29.9 55.7 30.3 56.7 30.7C57.7 31.2 58.6 31.7 59.5 32.3C60.3 32.9 61.1 33.6 61.9 34.3C62.6 35 63.3 35.8 63.9 36.6C64.5 37.4 65.1 38.2 65.6 39.1C66 40 66.4 40.9 66.8 41.8C67.1 42.7 67.3 43.7 67.5 44.6C67.7 45.6 67.8 46.5 67.8 47.5C67.8 48.4 67.7 49.3 67.6 50.3C67.5 51.2 67.3 52.1 67 52.9C66.7 53.8 66.4 54.6 66 55.4C65.6 56.2 65.2 57 64.7 57.7C64.2 58.4 63.6 59.1 63 59.7C62.4 60.3 61.8 60.8 61.1 61.3C60.4 61.8 59.7 62.2 59 62.6C58.3 63 57.5 63.3 56.8 63.6C56 63.8 55.3 64 54.5 64.1C53.7 64.2 53 64.3 52.2 64.3C51.4 64.3 50.7 64.2 50 64.1C49.2 64 48.5 63.8 47.8 63.6C47.1 63.4 46.5 63.1 45.9 62.8C45.2 62.4 44.6 62.1 44.1 61.7C43.5 61.3 43 60.8 42.6 60.3C42.1 59.9 41.7 59.3 41.3 58.8C40.9 58.3 40.6 57.7 40.3 57.2C40.1 56.6 39.8 56 39.6 55.4C39.5 54.8 39.3 54.2 39.3 53.6C39.2 53.1 39.2 52.5 39.2 51.9C39.2 51.3 39.3 50.8 39.4 50.2C39.5 49.7 39.6 49.1 39.8 48.6C40 48.1 40.2 47.6 40.5 47.2C40.7 46.7 41 46.3 41.3 45.9C41.6 45.5 42 45.1 42.3 44.8C42.7 44.5 43.1 44.2 43.5 43.9C43.8 43.7 44.3 43.5 44.7 43.3C45.1 43.1 45.5 43 45.9 42.9C46.3 42.7 46.7 42.7 47.2 42.6C47.6 42.6 48 42.6 48.4 42.6C48.8 42.7 49.1 42.7 49.5 42.8C49.9 42.9 50.2 43 50.6 43.2C50.9 43.3 51.2 43.5 51.5 43.6C51.8 43.8 52 44 52.3 44.2C52.5 44.4 52.7 44.7 52.9 44.9C53.1 45.2 53.3 45.4 53.4 45.6C53.6 45.9 53.7 46.2 53.8 46.4C53.8 46.7 53.9 46.9 54 47.1C54 47.4 54 47.6 54 47.9C54 48.1 54 48.3 54 48.5C53.9 48.7 53.9 48.9 53.8 49.1C53.8 49.3 53.7 49.5 53.6 49.6C53.5 49.8 53.4 49.9 53.3 50C53.2 50.2 53.2 50.2 53 50.4C52.8 50.6 52.3 50.9 52.1 51.3C51.9 51.7 51.8 52.2 51.8 52.6C51.8 53 52 53.5 52.2 53.8C52.4 54.2 52.8 54.5 53.1 54.7C53.5 54.9 54 55 54.4 55C54.8 55 55.2 54.8 55.6 54.6Z" fill="#C9973F" fill-opacity="0.25"/></g><g mask="url(#demo-colata)"><g transform="matrix(0.74 0 0 0.74 14 13)"><path d="M55.6 54.6C56 54.4 56.4 54.1 56.8 53.8C57.2 53.5 57.5 53.2 57.8 52.8C58.2 52.4 58.5 52 58.7 51.5C59 51.1 59.2 50.6 59.4 50.1C59.5 49.6 59.7 49 59.7 48.4C59.8 47.9 59.9 47.3 59.8 46.7C59.8 46.1 59.7 45.5 59.6 44.9C59.5 44.3 59.3 43.7 59.1 43.1C58.8 42.5 58.5 41.9 58.2 41.4C57.8 40.8 57.4 40.3 57 39.7C56.5 39.2 56 38.7 55.5 38.3C54.9 37.9 54.3 37.4 53.6 37.1C53 36.7 52.3 36.4 51.6 36.2C50.9 35.9 50.1 35.7 49.3 35.6C48.6 35.5 47.8 35.4 47 35.4C46.1 35.4 45.3 35.5 44.5 35.6C43.7 35.7 42.8 35.9 42 36.2C41.2 36.5 40.4 36.8 39.6 37.3C38.8 37.7 38.1 38.2 37.4 38.7C36.6 39.3 35.9 39.9 35.3 40.6C34.7 41.3 34.1 42 33.5 42.9C33 43.7 32.5 44.5 32.1 45.4C31.7 46.3 31.4 47.3 31.1 48.2C30.9 49.2 30.7 50.3 30.6 51.3C30.5 52.3 30.5 53.4 30.6 54.4C30.6 55.5 30.8 56.6 31 57.6C31.3 58.7 31.6 59.8 32 60.8C32.5 61.8 33 62.8 33.6 63.8C34.2 64.8 34.9 65.7 35.6 66.6C36.4 67.5 37.2 68.3 38.2 69.1C39.1 69.8 40.1 70.6 41.1 71.2C42.2 71.8 43.3 72.3 44.4 72.8C45.6 73.2 46.8 73.6 48 73.9C49.3 74.1 50.6 74.3 51.9 74.4C53.2 74.5 54.5 74.4 55.8 74.3C57.1 74.1 58.4 73.9 59.7 73.5C61 73.2 62.3 72.7 63.6 72.1C64.8 71.6 66 70.9 67.2 70.1C68.4 69.3 69.5 68.5 70.5 67.5C71.6 66.5 72.6 65.5 73.4 64.3C74.3 63.2 75.2 61.9 75.9 60.6C76.6 59.4 77.2 58 77.7 56.6C78.2 55.2 78.6 53.7 78.9 52.2C79.2 50.7 79.3 49.1 79.4 47.6C79.4 46 79.3 44.4 79.1 42.9C78.9 41.3 78.6 39.7 78.1 38.2C77.6 36.7 77 35.1 76.3 33.7C75.6 32.2 74.8 30.8 73.8 29.4C72.9 28.1 71.8 26.8 70.6 25.6C69.4 24.4 68.2 23.2 66.8 22.2C65.4 21.2 63.9 20.3 62.4 19.5C60.9 18.6 59.2 18 57.6 17.4C55.9 16.8 54.2 16.4 52.4 16.1C50.7 15.8 48.8 15.7 47 15.7C45.2 15.6 43.4 15.8 41.6 16.1C39.7 16.3 37.9 16.8 36.1 17.3C34.4 17.9 32.6 18.6 30.9 19.5C29.3 20.3 27.6 21.4 26.1 22.5C24.5 23.6 23 24.9 21.7 26.3C20.3 27.6 19 29.1 17.9 30.7C16.7 32.3 15.7 34.1 14.8 35.8C14 37.6 13.2 39.5 12.6 41.4C12.1 43.4 11.6 45.4 11.3 47.4C11.1 49.4 10.9 51.5 11 53.5C11 55.6 11.2 57.6 11.6 59.7C12 61.7 12.5 63.8 13.2 65.8C13.9 67.7 14.8 69.7 15.8 71.6C16.8 73.4 17.9 75.2 19.2 76.9C20.6 78.6 22 80.3 23.6 81.8C25.1 83.2 26.9 84.6 28.7 85.9C30.5 87.1 32.4 88.2 34.4 89.2C36.4 90.1 38.5 91 40.6 91.5C42.8 92.1 45.1 92.3 47.3 92.4C49.5 92.4 51.8 92.4 54 92.1C56.2 91.9 58.4 91.4 60.5 90.8C62.7 90.2 64.8 89.4 66.8 88.5C68.8 87.6 70.7 86.5 72.6 85.3C74.4 84.1 76.1 82.7 77.7 81.2C79.3 79.7 80.8 78.1 82.2 76.3C83.5 74.6 85.1 72 85.8 70.9C86.5 69.8 86.2 70.1 86.2 69.7C86.2 69.3 86.2 68.8 86 68.4C85.8 68.1 85.5 67.7 85.1 67.5C84.8 67.2 84.4 67.1 83.9 67.1C83.5 67 83.1 67.1 82.7 67.3C82.3 67.5 82.6 67.3 81.7 68.1C80.9 69 79.2 71 77.8 72.2C76.4 73.4 74.9 74.6 73.3 75.5C71.8 76.5 70.2 77.3 68.5 78C66.9 78.7 65.2 79.2 63.6 79.6C61.9 80 60.2 80.3 58.6 80.4C56.9 80.5 55.2 80.5 53.6 80.4C52 80.3 50.4 80 48.9 79.6C47.4 79.2 46 78.6 44.6 78.1C43.1 77.6 41.7 77.1 40.4 76.5C39.1 75.9 37.8 75.1 36.6 74.3C35.4 73.5 34.3 72.6 33.2 71.6C32.2 70.6 31.2 69.5 30.4 68.4C29.5 67.3 28.7 66.1 28.1 64.9C27.4 63.7 26.9 62.4 26.4 61.1C26 59.8 25.6 58.5 25.4 57.2C25.1 55.9 25 54.5 25 53.2C24.9 51.9 25 50.6 25.2 49.3C25.4 48 25.7 46.7 26 45.5C26.4 44.3 26.9 43.1 27.4 42C28 40.9 28.6 39.8 29.3 38.8C30 37.8 30.8 36.8 31.6 35.9C32.4 35 33.3 34.2 34.3 33.5C35.2 32.7 36.2 32.1 37.2 31.5C38.3 30.9 39.3 30.4 40.4 30C41.5 29.6 42.6 29.3 43.8 29.1C44.9 28.9 46 28.8 47.1 28.8C48.3 28.7 49.4 28.8 50.5 28.9C51.6 29.1 52.6 29.3 53.7 29.6C54.7 29.9 55.7 30.3 56.7 30.7C57.7 31.2 58.6 31.7 59.5 32.3C60.3 32.9 61.1 33.6 61.9 34.3C62.6 35 63.3 35.8 63.9 36.6C64.5 37.4 65.1 38.2 65.6 39.1C66 40 66.4 40.9 66.8 41.8C67.1 42.7 67.3 43.7 67.5 44.6C67.7 45.6 67.8 46.5 67.8 47.5C67.8 48.4 67.7 49.3 67.6 50.3C67.5 51.2 67.3 52.1 67 52.9C66.7 53.8 66.4 54.6 66 55.4C65.6 56.2 65.2 57 64.7 57.7C64.2 58.4 63.6 59.1 63 59.7C62.4 60.3 61.8 60.8 61.1 61.3C60.4 61.8 59.7 62.2 59 62.6C58.3 63 57.5 63.3 56.8 63.6C56 63.8 55.3 64 54.5 64.1C53.7 64.2 53 64.3 52.2 64.3C51.4 64.3 50.7 64.2 50 64.1C49.2 64 48.5 63.8 47.8 63.6C47.1 63.4 46.5 63.1 45.9 62.8C45.2 62.4 44.6 62.1 44.1 61.7C43.5 61.3 43 60.8 42.6 60.3C42.1 59.9 41.7 59.3 41.3 58.8C40.9 58.3 40.6 57.7 40.3 57.2C40.1 56.6 39.8 56 39.6 55.4C39.5 54.8 39.3 54.2 39.3 53.6C39.2 53.1 39.2 52.5 39.2 51.9C39.2 51.3 39.3 50.8 39.4 50.2C39.5 49.7 39.6 49.1 39.8 48.6C40 48.1 40.2 47.6 40.5 47.2C40.7 46.7 41 46.3 41.3 45.9C41.6 45.5 42 45.1 42.3 44.8C42.7 44.5 43.1 44.2 43.5 43.9C43.8 43.7 44.3 43.5 44.7 43.3C45.1 43.1 45.5 43 45.9 42.9C46.3 42.7 46.7 42.7 47.2 42.6C47.6 42.6 48 42.6 48.4 42.6C48.8 42.7 49.1 42.7 49.5 42.8C49.9 42.9 50.2 43 50.6 43.2C50.9 43.3 51.2 43.5 51.5 43.6C51.8 43.8 52 44 52.3 44.2C52.5 44.4 52.7 44.7 52.9 44.9C53.1 45.2 53.3 45.4 53.4 45.6C53.6 45.9 53.7 46.2 53.8 46.4C53.8 46.7 53.9 46.9 54 47.1C54 47.4 54 47.6 54 47.9C54 48.1 54 48.3 54 48.5C53.9 48.7 53.9 48.9 53.8 49.1C53.8 49.3 53.7 49.5 53.6 49.6C53.5 49.8 53.4 49.9 53.3 50C53.2 50.2 53.2 50.2 53 50.4C52.8 50.6 52.3 50.9 52.1 51.3C51.9 51.7 51.8 52.2 51.8 52.6C51.8 53 52 53.5 52.2 53.8C52.4 54.2 52.8 54.5 53.1 54.7C53.5 54.9 54 55 54.4 55C54.8 55 55.2 54.8 55.6 54.6Z" fill="#C9973F"/></g></g></svg>
+              <p><span class="demo-numero" data-arrivate>11</span> <span>scrippelle arrivate<br>su 19</span></p>
+            </div>
+          </div>
+          <figcaption>Un esempio: a ogni consegna la casa si spunta e la spirale si colora, come nell'app.</figcaption>
+        </figure>
       </div>
     </div>
   </section>
 
+  <section class="sezione tradizione" aria-labelledby="tradizione-titolo">
+    <div class="contenitore">
+      <h2 id="tradizione-titolo">A Mondragone, quando ci si sposa, la casa degli sposi diventa una piccola friggitoria.</h2>
+      <p>Le scrippelle si friggono lì, si spolverano di zucchero e cannella e si avvolgono nella carta bianca, insieme ai confetti. Poi, nelle due settimane prima delle nozze, paggetti e damigelle le portano a invitati, amici e vicini, una porta dopo l'altra. Scrippellapp nasce per dare una mano a questa tradizione, non per cambiarla.</p>
+    </div>
+  </section>
+
   <section class="sezione" id="perche" aria-labelledby="perche-titolo">
-    <div class="contenitore vantaggi">
-      <div>
-        <h2 id="perche-titolo">Meno telefonate, più scrippelle.</h2>
-        <ul class="vantaggi-lista">
-          <li>
-            <h3>Nessuno resta senza.</h3>
-            <p>Una lista sola per parenti, invitati e vicini, condivisa da chi organizza. Ogni casa ha il suo punto sulla mappa e la sua spunta quando la scrippella arriva.</p>
-          </li>
-          <li>
-            <h3>I giri si preparano da soli.</h3>
-            <p>Prima i vicini a piedi, poi le altre zone, circa cinque scrippelle a giro: l'app li propone e li divide in parti uguali tra chi consegna. Voi confermate.</p>
-          </li>
-          <li>
-            <h3>Sapete sempre a che punto siete.</h3>
-            <p>Chi è per strada, quali case sono servite, che cosa resta da fare. E in home una spirale che si colora a ogni scrippella consegnata.</p>
-          </li>
-        </ul>
-      </div>
-      <svg class="mappa" viewBox="0 0 560 460" role="img" aria-labelledby="mappa-titolo">
-      <title id="mappa-titolo">Disegno dei giri: la casa degli sposi al centro, il giro a piedi tra i vicini e gli altri giri verso le zone più lontane, ognuno nel colore di chi consegna. Le case con la spunta hanno già ricevuto la scrippella.</title>
-      <defs><clipPath id="mappa-bordo"><rect x="1" y="1" width="558" height="458" rx="28"/></clipPath></defs>
-      <rect x="1" y="1" width="558" height="458" rx="28" fill="#FFFFFF"/>
-      <g clip-path="url(#mappa-bordo)">
-      <path d="M-10 120C120 140 300 90 570 130" fill="none" stroke="#F3EDE3" stroke-width="14" stroke-linecap="round"/>
-      <path d="M-10 330C150 300 330 360 570 320" fill="none" stroke="#F3EDE3" stroke-width="14" stroke-linecap="round"/>
-      <path d="M150 -10C170 120 120 300 170 470" fill="none" stroke="#F3EDE3" stroke-width="14" stroke-linecap="round"/>
-      <path d="M410 -10C380 150 440 300 400 470" fill="none" stroke="#F3EDE3" stroke-width="14" stroke-linecap="round"/>
-      <path d="M-10 230L570 245" fill="none" stroke="#F3EDE3" stroke-width="14" stroke-linecap="round"/>
-      </g>
-      <rect x="1" y="1" width="558" height="458" rx="28" fill="none" stroke="#E9E2D7" stroke-width="2"/>
-      <circle cx="270" cy="226" r="112" fill="#F3E7D3" fill-opacity="0.55" stroke="#6F645A" stroke-width="1.5" stroke-dasharray="5 6"/>
-      <text x="270" y="358" text-anchor="middle" class="mappa-etichetta">a piedi</text>
-      <path d="M270.0 226.0C254.4 232.6 206.6 203.0 201.1 189.4C195.6 175.8 221.4 151.0 237.0 144.4C252.6 137.8 289.2 136.3 294.7 149.9C300.2 163.5 285.6 219.4 270.0 226.0Z" fill="none" stroke="#2A5DB0" stroke-width="3" stroke-linejoin="round" stroke-opacity="0.85"/>
-      <path d="M270.0 226.0C258.7 206.5 366.8 123.4 398.0 102.4C429.3 81.3 439.9 87.3 457.4 99.6C474.8 112.0 501.4 156.6 502.8 176.5C504.2 196.4 504.7 210.9 465.9 219.2C427.1 227.4 281.3 245.5 270.0 226.0Z" fill="none" stroke="#A3317E" stroke-width="3" stroke-linejoin="round" stroke-opacity="0.85"/>
-      <path d="M270.0 226.0C264.1 214.0 138.4 269.2 100.8 274.5C63.2 279.8 47.2 244.8 44.2 257.7C41.2 270.7 67.3 337.6 82.6 352.4C98.0 367.2 105.0 367.5 136.2 346.4C167.5 325.4 275.9 238.0 270.0 226.0Z" fill="none" stroke="#0E6F86" stroke-width="3" stroke-linejoin="round" stroke-opacity="0.85"/>
-      <path d="M270.0 226.0C260.4 225.5 343.2 342.2 348.9 374.3C354.5 406.5 294.4 418.5 304.0 419.0C313.6 419.6 412.2 409.8 406.5 377.6C400.8 345.4 279.6 226.5 270.0 226.0Z" fill="none" stroke="#9E480B" stroke-width="3" stroke-linejoin="round" stroke-opacity="0.85"/>
-      <path d="M190.1 187.4L201.1 174.4L212.1 187.4L212.1 200.4L190.1 200.4Z" fill="#2A5DB0" stroke="#2A5DB0" stroke-width="2.5" stroke-linejoin="round"/><path d="M196.5 192.4l3.2 3.2l5.6 -6.4" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M226.0 142.4L237.0 129.4L248.0 142.4L248.0 155.4L226.0 155.4Z" fill="#2A5DB0" stroke="#2A5DB0" stroke-width="2.5" stroke-linejoin="round"/><path d="M232.4 147.4l3.2 3.2l5.6 -6.4" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M283.7 147.9L294.7 134.9L305.7 147.9L305.7 160.9L283.7 160.9Z" fill="#2A5DB0" stroke="#2A5DB0" stroke-width="2.5" stroke-linejoin="round"/><path d="M290.1 152.9l3.2 3.2l5.6 -6.4" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M387.0 100.4L398.0 87.4L409.0 100.4L409.0 113.4L387.0 113.4Z" fill="#A3317E" stroke="#A3317E" stroke-width="2.5" stroke-linejoin="round"/><path d="M393.4 105.4l3.2 3.2l5.6 -6.4" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M446.4 97.6L457.4 84.6L468.4 97.6L468.4 110.6L446.4 110.6Z" fill="#A3317E" stroke="#A3317E" stroke-width="2.5" stroke-linejoin="round"/><path d="M452.8 102.6l3.2 3.2l5.6 -6.4" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M491.8 174.5L502.8 161.5L513.8 174.5L513.8 187.5L491.8 187.5Z" fill="#FFFFFF" stroke="#A3317E" stroke-width="2.5" stroke-linejoin="round"/>
-      <path d="M454.9 217.2L465.9 204.2L476.9 217.2L476.9 230.2L454.9 230.2Z" fill="#FFFFFF" stroke="#A3317E" stroke-width="2.5" stroke-linejoin="round"/>
-      <path d="M89.8 272.5L100.8 259.5L111.8 272.5L111.8 285.5L89.8 285.5Z" fill="#0E6F86" stroke="#0E6F86" stroke-width="2.5" stroke-linejoin="round"/><path d="M96.2 277.5l3.2 3.2l5.6 -6.4" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M33.2 255.7L44.2 242.7L55.2 255.7L55.2 268.7L33.2 268.7Z" fill="#FFFFFF" stroke="#0E6F86" stroke-width="2.5" stroke-linejoin="round"/>
-      <path d="M71.6 350.4L82.6 337.4L93.6 350.4L93.6 363.4L71.6 363.4Z" fill="#FFFFFF" stroke="#0E6F86" stroke-width="2.5" stroke-linejoin="round"/>
-      <path d="M125.2 344.4L136.2 331.4L147.2 344.4L147.2 357.4L125.2 357.4Z" fill="#FFFFFF" stroke="#0E6F86" stroke-width="2.5" stroke-linejoin="round"/>
-      <path d="M337.9 372.3L348.9 359.3L359.9 372.3L359.9 385.3L337.9 385.3Z" fill="#FFFFFF" stroke="#9E480B" stroke-width="2.5" stroke-linejoin="round"/>
-      <path d="M293.0 417.0L304.0 404.0L315.0 417.0L315.0 430.0L293.0 430.0Z" fill="#FFFFFF" stroke="#9E480B" stroke-width="2.5" stroke-linejoin="round"/>
-      <path d="M395.5 375.6L406.5 362.6L417.5 375.6L417.5 388.6L395.5 388.6Z" fill="#FFFFFF" stroke="#9E480B" stroke-width="2.5" stroke-linejoin="round"/>
-      <circle cx="483.6" cy="135.4" r="15" fill="#A3317E" stroke="#FFFFFF" stroke-width="3"/>
-      <text x="483.6" y="139.9" text-anchor="middle" class="mappa-iniziali">AL</text>
-      <circle cx="270" cy="226" r="30" fill="#FFFFFF" stroke="#E9E2D7" stroke-width="2"/>
-      <g transform="translate(250.38 206.00) scale(0.6920) translate(-21.6 -24.1)"><g transform="matrix(0.74 0 0 0.74 14 13)"><path d="M55.6 54.6C56 54.4 56.4 54.1 56.8 53.8C57.2 53.5 57.5 53.2 57.8 52.8C58.2 52.4 58.5 52 58.7 51.5C59 51.1 59.2 50.6 59.4 50.1C59.5 49.6 59.7 49 59.7 48.4C59.8 47.9 59.9 47.3 59.8 46.7C59.8 46.1 59.7 45.5 59.6 44.9C59.5 44.3 59.3 43.7 59.1 43.1C58.8 42.5 58.5 41.9 58.2 41.4C57.8 40.8 57.4 40.3 57 39.7C56.5 39.2 56 38.7 55.5 38.3C54.9 37.9 54.3 37.4 53.6 37.1C53 36.7 52.3 36.4 51.6 36.2C50.9 35.9 50.1 35.7 49.3 35.6C48.6 35.5 47.8 35.4 47 35.4C46.1 35.4 45.3 35.5 44.5 35.6C43.7 35.7 42.8 35.9 42 36.2C41.2 36.5 40.4 36.8 39.6 37.3C38.8 37.7 38.1 38.2 37.4 38.7C36.6 39.3 35.9 39.9 35.3 40.6C34.7 41.3 34.1 42 33.5 42.9C33 43.7 32.5 44.5 32.1 45.4C31.7 46.3 31.4 47.3 31.1 48.2C30.9 49.2 30.7 50.3 30.6 51.3C30.5 52.3 30.5 53.4 30.6 54.4C30.6 55.5 30.8 56.6 31 57.6C31.3 58.7 31.6 59.8 32 60.8C32.5 61.8 33 62.8 33.6 63.8C34.2 64.8 34.9 65.7 35.6 66.6C36.4 67.5 37.2 68.3 38.2 69.1C39.1 69.8 40.1 70.6 41.1 71.2C42.2 71.8 43.3 72.3 44.4 72.8C45.6 73.2 46.8 73.6 48 73.9C49.3 74.1 50.6 74.3 51.9 74.4C53.2 74.5 54.5 74.4 55.8 74.3C57.1 74.1 58.4 73.9 59.7 73.5C61 73.2 62.3 72.7 63.6 72.1C64.8 71.6 66 70.9 67.2 70.1C68.4 69.3 69.5 68.5 70.5 67.5C71.6 66.5 72.6 65.5 73.4 64.3C74.3 63.2 75.2 61.9 75.9 60.6C76.6 59.4 77.2 58 77.7 56.6C78.2 55.2 78.6 53.7 78.9 52.2C79.2 50.7 79.3 49.1 79.4 47.6C79.4 46 79.3 44.4 79.1 42.9C78.9 41.3 78.6 39.7 78.1 38.2C77.6 36.7 77 35.1 76.3 33.7C75.6 32.2 74.8 30.8 73.8 29.4C72.9 28.1 71.8 26.8 70.6 25.6C69.4 24.4 68.2 23.2 66.8 22.2C65.4 21.2 63.9 20.3 62.4 19.5C60.9 18.6 59.2 18 57.6 17.4C55.9 16.8 54.2 16.4 52.4 16.1C50.7 15.8 48.8 15.7 47 15.7C45.2 15.6 43.4 15.8 41.6 16.1C39.7 16.3 37.9 16.8 36.1 17.3C34.4 17.9 32.6 18.6 30.9 19.5C29.3 20.3 27.6 21.4 26.1 22.5C24.5 23.6 23 24.9 21.7 26.3C20.3 27.6 19 29.1 17.9 30.7C16.7 32.3 15.7 34.1 14.8 35.8C14 37.6 13.2 39.5 12.6 41.4C12.1 43.4 11.6 45.4 11.3 47.4C11.1 49.4 10.9 51.5 11 53.5C11 55.6 11.2 57.6 11.6 59.7C12 61.7 12.5 63.8 13.2 65.8C13.9 67.7 14.8 69.7 15.8 71.6C16.8 73.4 17.9 75.2 19.2 76.9C20.6 78.6 22 80.3 23.6 81.8C25.1 83.2 26.9 84.6 28.7 85.9C30.5 87.1 32.4 88.2 34.4 89.2C36.4 90.1 38.5 91 40.6 91.5C42.8 92.1 45.1 92.3 47.3 92.4C49.5 92.4 51.8 92.4 54 92.1C56.2 91.9 58.4 91.4 60.5 90.8C62.7 90.2 64.8 89.4 66.8 88.5C68.8 87.6 70.7 86.5 72.6 85.3C74.4 84.1 76.1 82.7 77.7 81.2C79.3 79.7 80.8 78.1 82.2 76.3C83.5 74.6 85.1 72 85.8 70.9C86.5 69.8 86.2 70.1 86.2 69.7C86.2 69.3 86.2 68.8 86 68.4C85.8 68.1 85.5 67.7 85.1 67.5C84.8 67.2 84.4 67.1 83.9 67.1C83.5 67 83.1 67.1 82.7 67.3C82.3 67.5 82.6 67.3 81.7 68.1C80.9 69 79.2 71 77.8 72.2C76.4 73.4 74.9 74.6 73.3 75.5C71.8 76.5 70.2 77.3 68.5 78C66.9 78.7 65.2 79.2 63.6 79.6C61.9 80 60.2 80.3 58.6 80.4C56.9 80.5 55.2 80.5 53.6 80.4C52 80.3 50.4 80 48.9 79.6C47.4 79.2 46 78.6 44.6 78.1C43.1 77.6 41.7 77.1 40.4 76.5C39.1 75.9 37.8 75.1 36.6 74.3C35.4 73.5 34.3 72.6 33.2 71.6C32.2 70.6 31.2 69.5 30.4 68.4C29.5 67.3 28.7 66.1 28.1 64.9C27.4 63.7 26.9 62.4 26.4 61.1C26 59.8 25.6 58.5 25.4 57.2C25.1 55.9 25 54.5 25 53.2C24.9 51.9 25 50.6 25.2 49.3C25.4 48 25.7 46.7 26 45.5C26.4 44.3 26.9 43.1 27.4 42C28 40.9 28.6 39.8 29.3 38.8C30 37.8 30.8 36.8 31.6 35.9C32.4 35 33.3 34.2 34.3 33.5C35.2 32.7 36.2 32.1 37.2 31.5C38.3 30.9 39.3 30.4 40.4 30C41.5 29.6 42.6 29.3 43.8 29.1C44.9 28.9 46 28.8 47.1 28.8C48.3 28.7 49.4 28.8 50.5 28.9C51.6 29.1 52.6 29.3 53.7 29.6C54.7 29.9 55.7 30.3 56.7 30.7C57.7 31.2 58.6 31.7 59.5 32.3C60.3 32.9 61.1 33.6 61.9 34.3C62.6 35 63.3 35.8 63.9 36.6C64.5 37.4 65.1 38.2 65.6 39.1C66 40 66.4 40.9 66.8 41.8C67.1 42.7 67.3 43.7 67.5 44.6C67.7 45.6 67.8 46.5 67.8 47.5C67.8 48.4 67.7 49.3 67.6 50.3C67.5 51.2 67.3 52.1 67 52.9C66.7 53.8 66.4 54.6 66 55.4C65.6 56.2 65.2 57 64.7 57.7C64.2 58.4 63.6 59.1 63 59.7C62.4 60.3 61.8 60.8 61.1 61.3C60.4 61.8 59.7 62.2 59 62.6C58.3 63 57.5 63.3 56.8 63.6C56 63.8 55.3 64 54.5 64.1C53.7 64.2 53 64.3 52.2 64.3C51.4 64.3 50.7 64.2 50 64.1C49.2 64 48.5 63.8 47.8 63.6C47.1 63.4 46.5 63.1 45.9 62.8C45.2 62.4 44.6 62.1 44.1 61.7C43.5 61.3 43 60.8 42.6 60.3C42.1 59.9 41.7 59.3 41.3 58.8C40.9 58.3 40.6 57.7 40.3 57.2C40.1 56.6 39.8 56 39.6 55.4C39.5 54.8 39.3 54.2 39.3 53.6C39.2 53.1 39.2 52.5 39.2 51.9C39.2 51.3 39.3 50.8 39.4 50.2C39.5 49.7 39.6 49.1 39.8 48.6C40 48.1 40.2 47.6 40.5 47.2C40.7 46.7 41 46.3 41.3 45.9C41.6 45.5 42 45.1 42.3 44.8C42.7 44.5 43.1 44.2 43.5 43.9C43.8 43.7 44.3 43.5 44.7 43.3C45.1 43.1 45.5 43 45.9 42.9C46.3 42.7 46.7 42.7 47.2 42.6C47.6 42.6 48 42.6 48.4 42.6C48.8 42.7 49.1 42.7 49.5 42.8C49.9 42.9 50.2 43 50.6 43.2C50.9 43.3 51.2 43.5 51.5 43.6C51.8 43.8 52 44 52.3 44.2C52.5 44.4 52.7 44.7 52.9 44.9C53.1 45.2 53.3 45.4 53.4 45.6C53.6 45.9 53.7 46.2 53.8 46.4C53.8 46.7 53.9 46.9 54 47.1C54 47.4 54 47.6 54 47.9C54 48.1 54 48.3 54 48.5C53.9 48.7 53.9 48.9 53.8 49.1C53.8 49.3 53.7 49.5 53.6 49.6C53.5 49.8 53.4 49.9 53.3 50C53.2 50.2 53.2 50.2 53 50.4C52.8 50.6 52.3 50.9 52.1 51.3C51.9 51.7 51.8 52.2 51.8 52.6C51.8 53 52 53.5 52.2 53.8C52.4 54.2 52.8 54.5 53.1 54.7C53.5 54.9 54 55 54.4 55C54.8 55 55.2 54.8 55.6 54.6Z" fill="#C9973F"/></g></g>
-      <text x="270" y="278" text-anchor="middle" class="mappa-etichetta mappa-forte">Casa degli sposi</text>
-      </svg>
+    <div class="contenitore">
+      <h2 id="perche-titolo">Meno telefonate, più scrippelle.</h2>
+      <ul class="vantaggi">
+        <li>
+          <span class="icona"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M12 22L24 11L36 22V37H12Z" fill="none" stroke="#8B5A2B" stroke-width="2.5" stroke-linejoin="round"/><path d="M18.5 27.5l4 4l7.5 -8.5" fill="none" stroke="#8B5A2B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <h3>Nessuno resta senza.</h3>
+          <p>Una lista sola per parenti, invitati e vicini, condivisa da chi organizza. Ogni casa ha il suo punto sulla mappa e la sua spunta quando la scrippella arriva.</p>
+        </li>
+        <li>
+          <span class="icona"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M14 34C6 26 10 12 22 11C33 10 41 18 37 27C34 34 24 37 14 34Z" fill="none" stroke="#8B5A2B" stroke-width="2.5" stroke-linejoin="round" stroke-dasharray="4 4.5"/><circle cx="14" cy="34" r="4.5" fill="#8B5A2B"/><circle cx="37" cy="18" r="3" fill="#FFFFFF" stroke="#8B5A2B" stroke-width="2.5"/><circle cx="24" cy="11" r="3" fill="#FFFFFF" stroke="#8B5A2B" stroke-width="2.5"/></svg></span>
+          <h3>I giri si preparano da soli.</h3>
+          <p>Prima i vicini a piedi, poi le altre zone, circa cinque scrippelle a giro: l'app li propone e li divide in parti uguali tra chi consegna. Voi confermate.</p>
+        </li>
+        <li>
+          <span class="icona"><svg viewBox="21.6 24.1 56.7 57.8" aria-hidden="true" focusable="false"><g transform="matrix(0.74 0 0 0.74 14 13)"><path d="M55.6 54.6C56 54.4 56.4 54.1 56.8 53.8C57.2 53.5 57.5 53.2 57.8 52.8C58.2 52.4 58.5 52 58.7 51.5C59 51.1 59.2 50.6 59.4 50.1C59.5 49.6 59.7 49 59.7 48.4C59.8 47.9 59.9 47.3 59.8 46.7C59.8 46.1 59.7 45.5 59.6 44.9C59.5 44.3 59.3 43.7 59.1 43.1C58.8 42.5 58.5 41.9 58.2 41.4C57.8 40.8 57.4 40.3 57 39.7C56.5 39.2 56 38.7 55.5 38.3C54.9 37.9 54.3 37.4 53.6 37.1C53 36.7 52.3 36.4 51.6 36.2C50.9 35.9 50.1 35.7 49.3 35.6C48.6 35.5 47.8 35.4 47 35.4C46.1 35.4 45.3 35.5 44.5 35.6C43.7 35.7 42.8 35.9 42 36.2C41.2 36.5 40.4 36.8 39.6 37.3C38.8 37.7 38.1 38.2 37.4 38.7C36.6 39.3 35.9 39.9 35.3 40.6C34.7 41.3 34.1 42 33.5 42.9C33 43.7 32.5 44.5 32.1 45.4C31.7 46.3 31.4 47.3 31.1 48.2C30.9 49.2 30.7 50.3 30.6 51.3C30.5 52.3 30.5 53.4 30.6 54.4C30.6 55.5 30.8 56.6 31 57.6C31.3 58.7 31.6 59.8 32 60.8C32.5 61.8 33 62.8 33.6 63.8C34.2 64.8 34.9 65.7 35.6 66.6C36.4 67.5 37.2 68.3 38.2 69.1C39.1 69.8 40.1 70.6 41.1 71.2C42.2 71.8 43.3 72.3 44.4 72.8C45.6 73.2 46.8 73.6 48 73.9C49.3 74.1 50.6 74.3 51.9 74.4C53.2 74.5 54.5 74.4 55.8 74.3C57.1 74.1 58.4 73.9 59.7 73.5C61 73.2 62.3 72.7 63.6 72.1C64.8 71.6 66 70.9 67.2 70.1C68.4 69.3 69.5 68.5 70.5 67.5C71.6 66.5 72.6 65.5 73.4 64.3C74.3 63.2 75.2 61.9 75.9 60.6C76.6 59.4 77.2 58 77.7 56.6C78.2 55.2 78.6 53.7 78.9 52.2C79.2 50.7 79.3 49.1 79.4 47.6C79.4 46 79.3 44.4 79.1 42.9C78.9 41.3 78.6 39.7 78.1 38.2C77.6 36.7 77 35.1 76.3 33.7C75.6 32.2 74.8 30.8 73.8 29.4C72.9 28.1 71.8 26.8 70.6 25.6C69.4 24.4 68.2 23.2 66.8 22.2C65.4 21.2 63.9 20.3 62.4 19.5C60.9 18.6 59.2 18 57.6 17.4C55.9 16.8 54.2 16.4 52.4 16.1C50.7 15.8 48.8 15.7 47 15.7C45.2 15.6 43.4 15.8 41.6 16.1C39.7 16.3 37.9 16.8 36.1 17.3C34.4 17.9 32.6 18.6 30.9 19.5C29.3 20.3 27.6 21.4 26.1 22.5C24.5 23.6 23 24.9 21.7 26.3C20.3 27.6 19 29.1 17.9 30.7C16.7 32.3 15.7 34.1 14.8 35.8C14 37.6 13.2 39.5 12.6 41.4C12.1 43.4 11.6 45.4 11.3 47.4C11.1 49.4 10.9 51.5 11 53.5C11 55.6 11.2 57.6 11.6 59.7C12 61.7 12.5 63.8 13.2 65.8C13.9 67.7 14.8 69.7 15.8 71.6C16.8 73.4 17.9 75.2 19.2 76.9C20.6 78.6 22 80.3 23.6 81.8C25.1 83.2 26.9 84.6 28.7 85.9C30.5 87.1 32.4 88.2 34.4 89.2C36.4 90.1 38.5 91 40.6 91.5C42.8 92.1 45.1 92.3 47.3 92.4C49.5 92.4 51.8 92.4 54 92.1C56.2 91.9 58.4 91.4 60.5 90.8C62.7 90.2 64.8 89.4 66.8 88.5C68.8 87.6 70.7 86.5 72.6 85.3C74.4 84.1 76.1 82.7 77.7 81.2C79.3 79.7 80.8 78.1 82.2 76.3C83.5 74.6 85.1 72 85.8 70.9C86.5 69.8 86.2 70.1 86.2 69.7C86.2 69.3 86.2 68.8 86 68.4C85.8 68.1 85.5 67.7 85.1 67.5C84.8 67.2 84.4 67.1 83.9 67.1C83.5 67 83.1 67.1 82.7 67.3C82.3 67.5 82.6 67.3 81.7 68.1C80.9 69 79.2 71 77.8 72.2C76.4 73.4 74.9 74.6 73.3 75.5C71.8 76.5 70.2 77.3 68.5 78C66.9 78.7 65.2 79.2 63.6 79.6C61.9 80 60.2 80.3 58.6 80.4C56.9 80.5 55.2 80.5 53.6 80.4C52 80.3 50.4 80 48.9 79.6C47.4 79.2 46 78.6 44.6 78.1C43.1 77.6 41.7 77.1 40.4 76.5C39.1 75.9 37.8 75.1 36.6 74.3C35.4 73.5 34.3 72.6 33.2 71.6C32.2 70.6 31.2 69.5 30.4 68.4C29.5 67.3 28.7 66.1 28.1 64.9C27.4 63.7 26.9 62.4 26.4 61.1C26 59.8 25.6 58.5 25.4 57.2C25.1 55.9 25 54.5 25 53.2C24.9 51.9 25 50.6 25.2 49.3C25.4 48 25.7 46.7 26 45.5C26.4 44.3 26.9 43.1 27.4 42C28 40.9 28.6 39.8 29.3 38.8C30 37.8 30.8 36.8 31.6 35.9C32.4 35 33.3 34.2 34.3 33.5C35.2 32.7 36.2 32.1 37.2 31.5C38.3 30.9 39.3 30.4 40.4 30C41.5 29.6 42.6 29.3 43.8 29.1C44.9 28.9 46 28.8 47.1 28.8C48.3 28.7 49.4 28.8 50.5 28.9C51.6 29.1 52.6 29.3 53.7 29.6C54.7 29.9 55.7 30.3 56.7 30.7C57.7 31.2 58.6 31.7 59.5 32.3C60.3 32.9 61.1 33.6 61.9 34.3C62.6 35 63.3 35.8 63.9 36.6C64.5 37.4 65.1 38.2 65.6 39.1C66 40 66.4 40.9 66.8 41.8C67.1 42.7 67.3 43.7 67.5 44.6C67.7 45.6 67.8 46.5 67.8 47.5C67.8 48.4 67.7 49.3 67.6 50.3C67.5 51.2 67.3 52.1 67 52.9C66.7 53.8 66.4 54.6 66 55.4C65.6 56.2 65.2 57 64.7 57.7C64.2 58.4 63.6 59.1 63 59.7C62.4 60.3 61.8 60.8 61.1 61.3C60.4 61.8 59.7 62.2 59 62.6C58.3 63 57.5 63.3 56.8 63.6C56 63.8 55.3 64 54.5 64.1C53.7 64.2 53 64.3 52.2 64.3C51.4 64.3 50.7 64.2 50 64.1C49.2 64 48.5 63.8 47.8 63.6C47.1 63.4 46.5 63.1 45.9 62.8C45.2 62.4 44.6 62.1 44.1 61.7C43.5 61.3 43 60.8 42.6 60.3C42.1 59.9 41.7 59.3 41.3 58.8C40.9 58.3 40.6 57.7 40.3 57.2C40.1 56.6 39.8 56 39.6 55.4C39.5 54.8 39.3 54.2 39.3 53.6C39.2 53.1 39.2 52.5 39.2 51.9C39.2 51.3 39.3 50.8 39.4 50.2C39.5 49.7 39.6 49.1 39.8 48.6C40 48.1 40.2 47.6 40.5 47.2C40.7 46.7 41 46.3 41.3 45.9C41.6 45.5 42 45.1 42.3 44.8C42.7 44.5 43.1 44.2 43.5 43.9C43.8 43.7 44.3 43.5 44.7 43.3C45.1 43.1 45.5 43 45.9 42.9C46.3 42.7 46.7 42.7 47.2 42.6C47.6 42.6 48 42.6 48.4 42.6C48.8 42.7 49.1 42.7 49.5 42.8C49.9 42.9 50.2 43 50.6 43.2C50.9 43.3 51.2 43.5 51.5 43.6C51.8 43.8 52 44 52.3 44.2C52.5 44.4 52.7 44.7 52.9 44.9C53.1 45.2 53.3 45.4 53.4 45.6C53.6 45.9 53.7 46.2 53.8 46.4C53.8 46.7 53.9 46.9 54 47.1C54 47.4 54 47.6 54 47.9C54 48.1 54 48.3 54 48.5C53.9 48.7 53.9 48.9 53.8 49.1C53.8 49.3 53.7 49.5 53.6 49.6C53.5 49.8 53.4 49.9 53.3 50C53.2 50.2 53.2 50.2 53 50.4C52.8 50.6 52.3 50.9 52.1 51.3C51.9 51.7 51.8 52.2 51.8 52.6C51.8 53 52 53.5 52.2 53.8C52.4 54.2 52.8 54.5 53.1 54.7C53.5 54.9 54 55 54.4 55C54.8 55 55.2 54.8 55.6 54.6Z" fill="#C9973F"/></g></svg></span>
+          <h3>Sapete sempre a che punto siete.</h3>
+          <p>Chi è per strada, quali case sono servite, che cosa resta da fare. E in home una spirale che si colora a ogni scrippella consegnata.</p>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -326,5 +398,69 @@
     </div>
   </div>
 </footer>
+
+<script>
+// Esempio dei giri in apertura: chi consegna va alla casa, la casa si spunta, la spirale si colora.
+// Riparte dal fotogramma scritto nella pagina e ricomincia da capo a distribuzione finita.
+// Con «Riduci movimento» resta fermo; fuori dallo schermo o con la scheda nascosta si mette in pausa.
+(function () {
+  var demo = document.querySelector('[data-demo]');
+  if (!demo || !window.matchMedia || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var case_ = Array.prototype.slice.call(demo.querySelectorAll('.casa')).sort(function (a, b) {
+    return a.dataset.n - b.dataset.n;
+  });
+  var rider = {};
+  Array.prototype.forEach.call(demo.querySelectorAll('.rider'), function (r) { rider[r.dataset.giro] = r; });
+  var numero = demo.querySelector('[data-arrivate]');
+  var colata = demo.querySelector('.demo-colata');
+  var totale = Number(demo.dataset.totale);
+  // Misure della spirale, come nello ScrippellaLoader dell'app
+  var LUNGHEZZA = 279.85, PIENA = 12, VUOTA = LUNGHEZZA + 36;
+  var passo = demo.querySelectorAll('.casa.fatta').length;
+  var timer = null, visibile = false;
+
+  function sposta(r, x, y) { r.style.transform = 'translate(' + x + 'px, ' + y + 'px)'; }
+  function conta() {
+    var n = 0;
+    case_.forEach(function (c) { if (c.classList.contains('fatta')) n += Number(c.dataset.q); });
+    numero.textContent = String(n);
+    colata.style.strokeDashoffset = String(VUOTA - (VUOTA - PIENA) * n / totale);
+  }
+  function azzera() {
+    case_.forEach(function (c) { c.classList.remove('fatta'); });
+    Object.keys(rider).forEach(function (k) { sposta(rider[k], rider[k].dataset.x0, rider[k].dataset.y0); });
+    passo = 0;
+    conta();
+  }
+  function avanti() {
+    timer = null;
+    if (passo < case_.length) {
+      var c = case_[passo++];
+      sposta(rider[c.dataset.giro], c.dataset.x, Number(c.dataset.y) - 26);
+      c.classList.add('fatta');
+      setTimeout(conta, 650);
+      timer = setTimeout(avanti, 1250);
+    } else {
+      timer = setTimeout(function () { azzera(); timer = setTimeout(avanti, 1200); }, 3500);
+    }
+  }
+  function parti() {
+    if (timer || !visibile || document.hidden) return;
+    timer = setTimeout(avanti, 1500);
+  }
+  function ferma() { clearTimeout(timer); timer = null; }
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (voci) {
+      visibile = voci[0].isIntersecting;
+      if (visibile) parti(); else ferma();
+    }, { threshold: 0.25 }).observe(demo);
+  } else {
+    visibile = true;
+    parti();
+  }
+  document.addEventListener('visibilitychange', function () { if (document.hidden) ferma(); else parti(); });
+})();
+</script>
 </body>
 </html>
