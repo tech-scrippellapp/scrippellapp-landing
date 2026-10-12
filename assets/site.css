@@ -119,7 +119,40 @@ a:hover {
 /* ───── Testata ───── */
 
 .testata {
-  padding-block: 20px;
+  padding-block: 16px;
+}
+
+.testata:not(.testata-pagina) .contenitore {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 24px;
+}
+
+.presentato {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--secondario);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Il posto della bottega principale: finché è libero è un invito alle attività */
+.posto-presentato {
+  width: 168px;
+  height: 52px;
+  aspect-ratio: auto;
+  padding: 0 12px;
+  color: var(--azione);
+  font-size: 0.8125rem;
+  text-decoration: none;
+}
+
+.posto-presentato:hover {
+  border-color: var(--cannella);
+  text-decoration: underline;
 }
 
 .testata nav ul {
@@ -194,6 +227,27 @@ a:hover {
   flex: none;
   width: 22px;
   height: 22px;
+}
+
+.azioni {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 20px;
+  margin-top: 32px;
+}
+
+.azioni .pulsante,
+.azioni .disponibile {
+  margin-top: 0;
+}
+
+/* Accanto al pulsante la disponibilità resta una nota, senza fondo */
+.azioni .disponibile {
+  padding: 0;
+  background: none;
+  color: var(--secondario);
+  font-size: 0.9375rem;
 }
 
 .rito {
@@ -285,6 +339,67 @@ a:hover {
   font-weight: 700;
   line-height: 1.3;
   letter-spacing: -0.01em;
+}
+
+/* Vantaggi: tre frasi a sinistra, il disegno dei giri a destra */
+.vantaggi {
+  display: grid;
+  gap: 48px 64px;
+  align-items: center;
+}
+
+.vantaggi-lista {
+  display: grid;
+  gap: 28px;
+  margin-top: 32px;
+  padding: 0;
+  list-style: none;
+}
+
+.vantaggi-lista h3 {
+  font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  letter-spacing: -0.02em;
+}
+
+.vantaggi-lista p {
+  max-width: 46ch;
+  margin-top: 8px;
+  color: var(--secondario);
+}
+
+.mappa {
+  width: 100%;
+  height: auto;
+}
+
+/* Le etichette hanno un alone bianco, così restano leggibili sopra le linee dei giri */
+.mappa-etichetta {
+  fill: var(--secondario);
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 600;
+  paint-order: stroke;
+  stroke: var(--foglio);
+  stroke-width: 5px;
+  stroke-linejoin: round;
+}
+
+.mappa-forte {
+  fill: var(--testo);
+  font-weight: 700;
+}
+
+.mappa-iniziali {
+  fill: var(--foglio);
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+@media (min-width: 900px) {
+  .vantaggi {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  }
 }
 
 /* Come funziona: titolo fermo a sinistra, passi a destra */
@@ -415,6 +530,54 @@ a:hover {
   background: var(--tenue);
 }
 
+/* Botteghe amiche: sei posti tratteggiati che i loghi delle botteghe riempiranno (D-95),
+   tre per riga sul telefono e tutti in fila sugli schermi larghi. La bottega principale sta in testata */
+.botteghe {
+  margin-bottom: clamp(56px, 8vw, 96px);
+}
+
+.posti {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 32px;
+  padding: 0;
+  list-style: none;
+}
+
+.posto {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 3 / 2;
+  padding: 16px;
+  border: 2px dashed rgb(139 90 43 / 0.55);
+  border-radius: 14px;
+  color: var(--secondario);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Quando arriveranno i loghi: l'immagine sta dentro il posto senza deformarsi */
+.posto img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media (min-width: 720px) {
+  .posti {
+    gap: 20px;
+  }
+}
+
+@media (min-width: 1040px) {
+  .posti {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
 .foglio-ombra {
   /* Il filo del foglio: con il ritaglio dell'angolo un bordo CSS sparirebbe */
   filter: drop-shadow(0 0 0.6px rgb(111 100 90 / 0.7)) drop-shadow(0 3px 4px rgb(139 90 43 / 0.08));
@@ -502,6 +665,40 @@ a:hover {
 
 .pulsante:hover {
   background: #74501a;
+}
+
+/* Invito finale: l'unica fascia scura, per chiudere la pagina con la domanda giusta */
+.finale {
+  padding-block: var(--sezione);
+  background: var(--testo);
+  color: var(--carta);
+}
+
+.finale h2 {
+  font-size: clamp(2.25rem, 1.4rem + 3.4vw, 3.5rem);
+  font-weight: 750;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.finale p {
+  max-width: 44ch;
+  margin-top: 20px;
+  color: #e6ddd0;
+  font-size: clamp(1.125rem, 1.05rem + 0.3vw, 1.25rem);
+}
+
+.finale :focus-visible {
+  outline-color: var(--scrippella);
+}
+
+.pulsante-oro {
+  background: var(--scrippella);
+  color: var(--testo);
+}
+
+.pulsante-oro:hover {
+  background: #d8a84e;
 }
 
 /* ───── Piede ───── */
