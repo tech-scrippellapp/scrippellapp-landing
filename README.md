@@ -2,7 +2,7 @@
 
 Il sito di Scrippellapp, `https://www.scrippellapp.it/`, pubblicato con GitHub Pages (D-80). La repo è pubblica perché GitHub Pages è gratuito solo dalle repo pubbliche. Qui non ci sono codice dell'app né segreti.
 
-Riferimenti: piano di sviluppo (Fase 2, prova P2, e Fase 11) e FDD nella cartella `DOC`, marchio in `MARCHIO`.
+Riferimenti: piano di sviluppo (Fase 4, prova P2, e Fase 11) e FDD nella cartella `DOC` della repo `scrippellapp`, marchio in `DOC/MARCHIO` della stessa repo.
 
 ## Struttura
 
@@ -15,11 +15,11 @@ scrippellapp-landing/
 ├── accessibilita.html
 ├── assets/
 │   ├── site.css            stili condivisi da tutte le pagine
-│   ├── scrippellapp-logo.svg   logo delle pagine interne, da MARCHIO/logo-completo
+│   ├── scrippellapp-logo.svg   logo delle pagine interne, da DOC/MARCHIO/logo-completo
 │   └── fonts/              Plus Jakarta Sans, licenza in OFL.txt
 ├── favicon.ico, favicon.svg, favicon-32.png, apple-touch-icon.png,
 │   icon-192.png, icon-512.png, icon-maskable-512.png,
-│   site.webmanifest, og-image-1200x630.png      copiati da MARCHIO/web, senza modifiche
+│   site.webmanifest, og-image-1200x630.png      copiati da DOC/MARCHIO/web, senza modifiche
 ├── CNAME                   www.scrippellapp.it
 ├── .nojekyll               senza, GitHub Pages non pubblica le cartelle che iniziano con il punto
 ├── robots.txt
@@ -35,8 +35,8 @@ Le pagine legali sono bozze del 12 ottobre 2026, scritte dal FDD (cap. 15) e dai
 
 ## Regole
 
-- Colori e font solo dalle variabili in testa a `assets/site.css`. I valori sono quelli di `apps/mobile/src/theme` e di `MARCHIO/LEGGIMI.md` (palette Carta e Oro).
-- Il logo in `index.html` è quello di `MARCHIO/logo-completo`, scritto dentro la pagina. All'apertura la spirale si stende dal centro come nello `ScrippellaLoader` dell'app (D-94), poi arrivano zucchero e cannella. Con "Riduci movimento" il logo compare subito intero. Se il marchio cambia, si ricopiano i tracciati da `MARCHIO`.
+- Colori e font solo dalle variabili in testa a `assets/site.css`. I valori sono quelli di `apps/mobile/src/theme` e di `DOC/MARCHIO/LEGGIMI.md` (palette Carta e Oro).
+- Il logo in `index.html` è quello di `DOC/MARCHIO/logo-completo`, scritto dentro la pagina. All'apertura la spirale si stende dal centro come nello `ScrippellaLoader` dell'app (D-94), poi arrivano zucchero e cannella. Con "Riduci movimento" il logo compare subito intero. Se il marchio cambia, si ricopiano i tracciati da `MARCHIO`.
 - Solo italiano e solo tema chiaro, come l'app (D-09).
 - Un solo script, scritto dentro `index.html`: anima l'esempio dei giri in apertura, si ferma con "Riduci movimento" e quando l'esempio non è sullo schermo. Nessun servizio esterno: niente statistiche, niente cookie, quindi nessun banner. Il font è servito dal sito e non da Google Fonts, così l'indirizzo IP di chi visita non va a terzi.
 - L'esempio dei giri in apertura è un disegno, non una schermata dell'app: case, giri e iniziali sono inventati. Il fotogramma fermo scritto nella pagina è quello che vede chi ha "Riduci movimento".
