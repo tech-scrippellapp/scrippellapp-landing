@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["RTU39N93C3.it.scrippellapp.app"],
+        "components": [{ "/": "/invito/*" }]
+      },
+      {
+        "appIDs": ["RTU39N93C3.it.scrippellapp.app.staging"],
+        "components": [{ "/": "/invito-staging/*" }]
+      }
+    ]
+  }
+}

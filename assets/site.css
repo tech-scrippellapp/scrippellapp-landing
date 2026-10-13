@@ -1187,3 +1187,16 @@ a:hover {
   padding-left: 16px;
   border-left: 3px solid var(--cannella);
 }
+
+/* Pagine dei link di invito (D-110): il codice in chiaro, grande, da leggere o dettare */
+.codice-invito {
+  display: inline-block;
+  padding: 16px 24px;
+  background: var(--tenue);
+  border-radius: 16px;
+  font-size: clamp(2rem, 1.6rem + 2vw, 2.75rem);
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.18em;
+  line-height: 1;
+}

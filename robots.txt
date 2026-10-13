@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /invito/
+Disallow: /invito-staging/
 
 Sitemap: https://www.scrippellapp.it/sitemap.xml

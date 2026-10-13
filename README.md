@@ -13,6 +13,11 @@ scrippellapp-landing/
 ├── termini.html            termini di servizio, con l'accordo art. 28 per lo spazio (#accordo)
 ├── elimina-account.html    eliminazione di account e dati, richiesta da Google Play
 ├── accessibilita.html
+├── invito/index.html       link di invito dell'app (D-110), fuori dai motori di ricerca
+├── invito-staging/index.html   lo stesso per l'app di prova, senza il bottone di Play
+├── .well-known/
+│   ├── apple-app-site-association   le due app di iPhone sui due percorsi di invito
+│   └── assetlinks.json     i due pacchetti Android con le impronte SHA-256 delle firme
 ├── assets/
 │   ├── site.css            stili condivisi da tutte le pagine
 │   ├── scrippellapp-logo.svg   logo delle pagine interne, da DOC/MARCHIO/logo-completo
@@ -28,7 +33,6 @@ scrippellapp-landing/
 
 Da aggiungere, come nel piano di sviluppo:
 
-- Fase 2, prova P2: `.well-known/apple-app-site-association`, `.well-known/assetlinks.json`, `invito/index.html`, `staging/invito/index.html`.
 - Fase 11: link alle pagine legali dall'app (`config/legal.ts` come Memura).
 
 Le pagine legali sono bozze del 12 ottobre 2026, scritte dal FDD (cap. 15) e dai testi di Memura: prima di pubblicarle le rivede chi segue la parte legale. Ogni pagina ha la data in alto: quando cambia un testo si aggiornano la data e `sitemap.xml`. Il piede è uguale in tutte le pagine; nella pagina corrente il suo link ha `aria-current="page"`.
@@ -39,7 +43,7 @@ Le pagine legali sono bozze del 12 ottobre 2026, scritte dal FDD (cap. 15) e dai
 - Il logo in `index.html` è quello di `DOC/MARCHIO/logo-completo`, scritto dentro la pagina. All'apertura la spirale si stende dal centro come nello `ScrippellaLoader` dell'app (D-94), poi arrivano zucchero e cannella. Con "Riduci movimento" il logo compare subito intero. Se il marchio cambia, si ricopiano i tracciati da `MARCHIO`.
 - Solo italiano e solo tema chiaro, come l'app (D-09).
 - Niente numeri decisi da noi (scrippelle per giro, giorni della distribuzione, durata e livelli degli accordi con le botteghe): restano solo i tempi che la legge chiede di scrivere, come la conservazione dei dati (D-107).
-- Un solo script, scritto dentro `index.html`: anima l'esempio dei giri in apertura, si ferma con "Riduci movimento" e quando l'esempio non è sullo schermo. Nessun servizio esterno: niente statistiche, niente cookie, quindi nessun banner. Il font è servito dal sito e non da Google Fonts, così l'indirizzo IP di chi visita non va a terzi.
+- Script solo dentro le pagine e solo due: quello di `index.html` anima l'esempio dei giri in apertura, si ferma con "Riduci movimento" e quando l'esempio non è sullo schermo; quello di poche righe delle pagine di invito legge il codice dal link e lo scrive nella pagina e nel link di Google Play (D-110). Nessun servizio esterno: niente statistiche, niente cookie, quindi nessun banner. Il font è servito dal sito e non da Google Fonts, così l'indirizzo IP di chi visita non va a terzi.
 - L'esempio dei giri in apertura è un disegno, non una schermata dell'app: case, giri e iniziali sono inventati. Il fotogramma fermo scritto nella pagina è quello che vede chi ha "Riduci movimento".
 - Percorsi assoluti (`/assets/site.css`), così le pagine nelle sottocartelle, come `invito/`, usano gli stessi file.
 - Prima di pubblicare: pagina leggibile su telefono, nessun errore nella console, controllo di accessibilità (axe) senza violazioni.
@@ -88,6 +92,10 @@ dig scrippellapp.it +short       # i quattro indirizzi 185.199.108-111.153
 | `https://scrippellapp.it/` | rimanda a www |
 | `https://www.scrippellapp.it/og-image-1200x630.png` | l'immagine delle anteprime |
 | `https://www.scrippellapp.it/robots.txt` e `/sitemap.xml` | i due file |
+| `https://www.scrippellapp.it/.well-known/apple-app-site-association` e `/.well-known/assetlinks.json` | 200, senza redirect (`curl -sI`) |
+| `https://www.scrippellapp.it/invito/?c=K7M4QX` | la pagina di invito con il codice `K7M4QX` |
+
+Le impronte SHA-256 in `assetlinks.json` (keystore di debug, di caricamento e firma di Google Play) non sono segrete. C'è già quella della keystore di debug dell'app; le altre due le dà Matteo nella Fase 4 (prove P2 e P3).
 
 L'anteprima su WhatsApp si prova incollando il link in una chat. WhatsApp tiene in memoria le anteprime: dopo un cambio dell'immagine conviene provare con `?v=2` in fondo al link.
 
