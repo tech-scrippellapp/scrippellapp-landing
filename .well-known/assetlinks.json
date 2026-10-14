@@ -7,7 +7,7 @@
       "namespace": "android_app",
       "package_name": "it.scrippellapp.app",
       "sha256_cert_fingerprints": [
-        "FA:C6:17:45:DC:09:03:78:6F:B9:ED:E6:2A:96:2B:39:9F:73:48:F0:BB:6F:89:9B:83:32:66:75:91:03:3B:9C"
+        "2D:A3:7A:5F:B4:39:D9:36:95:0B:EC:8E:24:76:E0:61:EA:AD:E7:35:2C:4B:1C:D7:64:1D:E6:F1:36:61:F0:74"
       ]
     }
   },
@@ -19,7 +19,8 @@
       "namespace": "android_app",
       "package_name": "it.scrippellapp.app.staging",
       "sha256_cert_fingerprints": [
-        "FA:C6:17:45:DC:09:03:78:6F:B9:ED:E6:2A:96:2B:39:9F:73:48:F0:BB:6F:89:9B:83:32:66:75:91:03:3B:9C"
+        "FA:C6:17:45:DC:09:03:78:6F:B9:ED:E6:2A:96:2B:39:9F:73:48:F0:BB:6F:89:9B:83:32:66:75:91:03:3B:9C",
+        "2D:A3:7A:5F:B4:39:D9:36:95:0B:EC:8E:24:76:E0:61:EA:AD:E7:35:2C:4B:1C:D7:64:1D:E6:F1:36:61:F0:74"
       ]
     }
   }
