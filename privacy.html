@@ -144,7 +144,7 @@
     </dl>
     <p>Le persone delle case non usano l'app e non ricevono messaggi da noi. Creando lo spazio, l'amministratore conferma di inserire lui le case e di avere il permesso di farlo. Per una famiglia che organizza un evento privato vale l'esenzione per le attività personali o domestiche (art. 2.2.c GDPR); restano però gli obblighi di chi fornisce lo strumento, cioè i nostri. Associazioni, parrocchie o attività che usano l'app sono titolari a tutti gli effetti.</p>
     <p><strong>Rubrica.</strong> Mentre scrivi il nome di una nuova casa o di una persona che inviti nella squadra, l'app può proporti i contatti della rubrica che corrispondono: la prima volta il telefono ti chiede il permesso, e puoi dire di no. La ricerca avviene solo sul telefono e la rubrica non lascia mai il telefono. Puoi anche usare "Scegli dalla rubrica", che apre il selettore del telefono senza chiedere permessi e passa all'app soltanto il contatto scelto. In entrambi i casi al nostro server arrivano solo i dati che salvi: per una casa nome, telefono e indirizzo, per un invito il nome.</p>
-    <p><strong>Indirizzi sulla mappa.</strong> Per mettere una casa sulla mappa il nostro server manda solo l'indirizzo, mai nomi o telefoni, al servizio di ricerca Nominatim di OpenStreetMap Foundation. Le risposte restano in memoria sul nostro server, per non chiedere due volte lo stesso indirizzo.</p>
+    <p><strong>Indirizzi sulla mappa.</strong> Per proporti gli indirizzi mentre scrivi e per mettere una casa sulla mappa, il nostro server manda a Google (Places e Geocoding di Google Maps Platform) solo l'indirizzo e il comune che scrivi o scegli, mai nomi o telefoni. Le coordinate che ci dà Google le teniamo al massimo 30 giorni, poi le chiediamo di nuovo; se lo spazio non si usa da più di 30 giorni le cancelliamo e le richiediamo al primo uso. I punti che metti tu a mano restano finché resta la casa.</p>
 
     <h3>2.6 Notifiche</h3>
     <dl class="scheda">
@@ -188,7 +188,7 @@
     </dl>
 
     <h3>2.10 Mappe</h3>
-    <p>Le mappe dell'app si scaricano da OpenFreeMap, che riceve, come ogni servizio di mappe, l'indirizzo IP del telefono e la zona che stai guardando. I dati delle mappe sono di OpenStreetMap.</p>
+    <p>Le mappe dell'app sono di Google Maps: Google riceve, come ogni servizio di mappe, l'indirizzo IP del telefono e la zona che stai guardando, e li tratta secondo la sua <a href="https://policies.google.com/privacy">informativa sulla privacy</a>.</p>
 
     <h3>2.11 Se ci scrivi</h3>
     <p>Se scrivi a hello@ o legal@scrippellapp.it, usiamo il tuo indirizzo e il messaggio per risponderti. Li teniamo il tempo che serve per la tua richiesta e, per le richieste sui dati personali, per dimostrare di averle gestite. Base giuridica: legittimo interesse (art. 6.1.f) e, per le richieste sui dati, obbligo di legge (art. 6.1.c).</p>
@@ -216,20 +216,20 @@
     <ul>
       <li><strong>Cloudflare, Inc.:</strong> server dell'app e database. Il database è vincolato all'Unione Europea: case, persone e consegne sono salvate ed elaborate nell'UE.</li>
       <li><strong>Apple Inc. e Google LLC:</strong> accesso con Apple o con Google, recapito delle notifiche e, solo se le accendi, statistiche ed errori con Firebase.</li>
-      <li><strong>OpenStreetMap Foundation:</strong> ricerca degli indirizzi con Nominatim; riceve solo l'indirizzo.</li>
-      <li><strong>OpenFreeMap:</strong> le mappe dell'app.</li>
+      <li><strong>Google LLC, con Google Maps Platform:</strong> le mappe dell'app, le proposte di indirizzo e la ricerca degli indirizzi; riceve solo l'indirizzo e il comune.</li>
       <li><strong>GitHub, Inc.:</strong> questo sito.</li>
       <li><strong>Il fornitore della posta elettronica</strong> delle caselle di scrippellapp.it.</li>
     </ul>
     <p>Non vendiamo dati, non li usiamo per pubblicità mirata e non li diamo ad altri, salvo quando lo impone la legge.</p>
 
     <h2 id="estero">6. Dati fuori dall'Unione Europea</h2>
-    <p>Case, persone e consegne restano salvate nell'Unione Europea. Apple, Google, Cloudflare e GitHub però sono società statunitensi: per l'accesso, le notifiche, le statistiche facoltative e il passaggio sulla rete di Cloudflare alcuni dati possono transitare da server fuori dall'UE. Questi trasferimenti avvengono con le garanzie del GDPR: la decisione di adeguatezza per le società certificate nel Data Privacy Framework UE-USA oppure le clausole contrattuali standard della Commissione europea. OpenStreetMap Foundation ha sede nel Regno Unito, per cui vale una decisione di adeguatezza.</p>
+    <p>Case, persone e consegne restano salvate nell'Unione Europea. Apple, Google, Cloudflare e GitHub però sono società statunitensi: per l'accesso, le notifiche, le mappe e la ricerca degli indirizzi, le statistiche facoltative e il passaggio sulla rete di Cloudflare alcuni dati possono transitare da server fuori dall'UE. Questi trasferimenti avvengono con le garanzie del GDPR: la decisione di adeguatezza per le società certificate nel Data Privacy Framework UE-USA oppure le clausole contrattuali standard della Commissione europea.</p>
 
     <h2 id="tempi">7. Per quanto tempo</h2>
     <ul>
       <li><strong>Posizione durante il giro:</strong> fino alla chiusura del giro.</li>
       <li><strong>Spazio, case, giri e consegne:</strong> finché l'amministratore non elimina lo spazio.</li>
+      <li><strong>Coordinate delle case date da Google:</strong> al massimo 30 giorni, poi si richiedono o si cancellano.</li>
       <li><strong>Account:</strong> finché non lo elimini.</li>
       <li><strong>Nome nella squadra:</strong> finché non esci dallo spazio o non elimini l'account. Il nome e il ruolo restano sulle consegne fatte.</li>
       <li><strong>Inviti:</strong> valgono 7 giorni, poi si cancellano.</li>
