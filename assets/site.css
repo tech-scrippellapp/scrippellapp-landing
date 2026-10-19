@@ -492,7 +492,7 @@ a:hover {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  /* All'apertura i giri si disegnano dalla casa degli sposi, subito dopo la colata del logo */
+  /* All'apertura i giri si disegnano dalla casa dei festeggiamenti, subito dopo la colata del logo */
   .demo .giro {
     animation: disegna 1.4s cubic-bezier(0.65, 0, 0.35, 1) 1s both;
   }
