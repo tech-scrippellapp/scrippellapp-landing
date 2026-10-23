@@ -945,6 +945,59 @@ a:hover {
   background: #d8a84e;
 }
 
+/* ───── Patrocinio del Comune (D-202) ───── */
+
+/* Nascosti finché il Worker non dice che è acceso: il display di sotto non deve vincere */
+[data-patrocinio][hidden] {
+  display: none;
+}
+
+.patrocinio {
+  padding-block: 28px;
+  background: var(--foglio);
+  border-block: 1px solid var(--bordo);
+}
+
+.patrocinio-riga {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 0;
+  color: var(--secondario);
+  font-weight: 600;
+}
+
+.patrocinio-riga img {
+  flex: none;
+  width: auto;
+  height: 104px;
+}
+
+.patrocinio-riga span {
+  display: flex;
+  flex-direction: column;
+}
+
+.patrocinio-riga strong {
+  color: var(--testo);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.piede-patrocinio {
+  justify-content: flex-start;
+}
+
+.piede-patrocinio img {
+  height: 56px;
+}
+
+.piede-patrocinio strong {
+  font-size: 1.125rem;
+}
+
 /* ───── Piede ───── */
 
 .piede {
@@ -1021,7 +1074,8 @@ a:hover {
     justify-content: end;
   }
 
-  .piede-legale {
+  .piede-legale,
+  .piede-patrocinio {
     grid-column: 1 / -1;
   }
 }

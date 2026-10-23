@@ -52,6 +52,16 @@
 
 <main id="contenuto">
 
+  <!-- Patrocinio del Comune (D-202): nascosto finché il Worker non dice che è acceso dalla console -->
+  <section class="patrocinio" aria-label="Patrocinio" data-patrocinio hidden>
+    <div class="contenitore">
+      <p class="patrocinio-riga">
+        <img src="/assets/stemma-mondragone.png" alt="" width="72" height="104">
+        <span>Con il patrocinio del <strong>Comune di Mondragone</strong></span>
+      </p>
+    </div>
+  </section>
+
   <section class="apertura" aria-labelledby="titolo">
     <div class="contenitore">
       <!-- Logo dai file di DOC/MARCHIO/logo-completo (repo scrippellapp), con la spirale che si stende all'apertura -->
@@ -385,6 +395,10 @@
         <dd><a href="mailto:legal@scrippellapp.it">legal@scrippellapp.it</a></dd>
       </div>
     </dl>
+    <p class="patrocinio-riga piede-patrocinio" data-patrocinio hidden>
+      <img src="/assets/stemma-mondragone.png" alt="" width="39" height="56">
+      <span>Con il patrocinio del <strong>Comune di Mondragone</strong></span>
+    </p>
     <div class="piede-legale">
       <nav aria-label="Informazioni legali">
         <ul>
@@ -466,6 +480,7 @@
 // Botteghe (D-95, Fase 10): i loghi delle botteghe attive, letti dal Worker, nei posti tratteggiati.
 // La principale (Main) in testa con "Presentato da", le altre tra le "Botteghe amiche"; i posti
 // liberi restano tratteggiati. Senza link. Se il Worker non risponde la pagina resta com'è.
+// Con la stessa lettura il patrocinio del Comune (D-202): fascia e piede compaiono se è acceso.
 (function () {
   if (!window.fetch) return;
   fetch('https://scrippellapp-api.scrippellapp.workers.dev/sito/botteghe')
@@ -473,6 +488,11 @@
       return risposta.ok ? risposta.json() : null;
     })
     .then(function (dati) {
+      if (dati && dati.patrocinio === true) {
+        Array.prototype.forEach.call(document.querySelectorAll('[data-patrocinio]'), function (el) {
+          el.hidden = false;
+        });
+      }
       if (!dati || !Array.isArray(dati.botteghe)) return;
       var logo = function (bottega) {
         var img = document.createElement('img');
