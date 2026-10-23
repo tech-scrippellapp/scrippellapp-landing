@@ -787,11 +787,16 @@ a:hover {
   text-align: center;
 }
 
-/* Quando arriveranno i loghi: l'immagine sta dentro il posto senza deformarsi */
+/* Con il logo: l'immagine sta dentro il posto senza deformarsi, il bordo non è più tratteggiato */
 .posto img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+.posto.pieno {
+  border: 1px solid var(--bordo);
+  background: var(--foglio);
 }
 
 @media (min-width: 720px) {
