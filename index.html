@@ -34,7 +34,7 @@
 <header class="testata">
   <div class="contenitore">
     <!-- "Presentato da" (D-95): la bottega principale sta in testa alla pagina, come nell'Accesso dell'app.
-         In Fase 10 lo script mette qui il suo logo; finché il posto è libero porta alla sezione per le attività. -->
+         Lo script in fondo alla pagina mette qui il suo logo; finché il posto è libero porta alla sezione per le attività. -->
     <p class="presentato">
       <span>Presentato da</span>
       <a class="posto posto-presentato" href="#attivita">Il tuo logo qui</a>
@@ -51,6 +51,16 @@
 </header>
 
 <main id="contenuto">
+
+  <!-- Patrocinio del Comune (D-202): nascosto finché il Worker non dice che è acceso dalla console -->
+  <section class="patrocinio" aria-label="Patrocinio" data-patrocinio hidden>
+    <div class="contenitore">
+      <p class="patrocinio-riga">
+        <img src="/assets/stemma-mondragone.png" alt="" width="72" height="104">
+        <span>Con il patrocinio del <strong>Comune di Mondragone</strong></span>
+      </p>
+    </div>
+  </section>
 
   <section class="apertura" aria-labelledby="titolo">
     <div class="contenitore">
@@ -326,7 +336,7 @@
       <div class="botteghe">
         <h2 id="botteghe-titolo">Botteghe amiche</h2>
         <p class="introduzione">Qui trovano posto le botteghe che sostengono Scrippellapp.</p>
-        <!-- Posti per le botteghe (D-95). In Fase 10 uno script li riempie con i loghi letti dal Worker; la bottega principale sta in testa alla pagina.
+        <!-- Posti per le botteghe (D-95). Lo script in fondo alla pagina li riempie con i loghi letti dal Worker; la bottega principale sta in testa alla pagina.
              Finché sono vuoti la lista è solo decorativa, per questo è nascosta agli screen reader. -->
         <ul class="posti" aria-hidden="true">
           <li class="posto"></li>
@@ -385,6 +395,10 @@
         <dd><a href="mailto:legal@scrippellapp.it">legal@scrippellapp.it</a></dd>
       </div>
     </dl>
+    <p class="patrocinio-riga piede-patrocinio" data-patrocinio hidden>
+      <img src="/assets/stemma-mondragone.png" alt="" width="39" height="56">
+      <span>Con il patrocinio del <strong>Comune di Mondragone</strong></span>
+    </p>
     <div class="piede-legale">
       <nav aria-label="Informazioni legali">
         <ul>
@@ -460,6 +474,66 @@
     parti();
   }
   document.addEventListener('visibilitychange', function () { if (document.hidden) ferma(); else parti(); });
+})();
+</script>
+<script>
+// Botteghe (D-95, Fase 10): i loghi delle botteghe attive, letti dal Worker, nei posti tratteggiati.
+// La principale (Main) in testa con "Presentato da", le altre tra le "Botteghe amiche"; i posti
+// liberi restano tratteggiati. Senza link. Se il Worker non risponde la pagina resta com'è.
+// Con la stessa lettura il patrocinio del Comune (D-202): fascia e piede compaiono se è acceso.
+(function () {
+  if (!window.fetch) return;
+  fetch('https://scrippellapp-api.scrippellapp.workers.dev/sito/botteghe')
+    .then(function (risposta) {
+      return risposta.ok ? risposta.json() : null;
+    })
+    .then(function (dati) {
+      if (dati && dati.patrocinio === true) {
+        Array.prototype.forEach.call(document.querySelectorAll('[data-patrocinio]'), function (el) {
+          el.hidden = false;
+        });
+      }
+      if (!dati || !Array.isArray(dati.botteghe)) return;
+      var logo = function (bottega) {
+        var img = document.createElement('img');
+        img.src = bottega.logo;
+        img.alt = bottega.nome;
+        img.decoding = 'async';
+        return img;
+      };
+      var main = dati.botteghe.filter(function (b) {
+        return b.livello === 'main';
+      })[0];
+      var invito = document.querySelector('.posto-presentato');
+      if (main && invito) {
+        var posto = document.createElement('span');
+        posto.className = 'posto posto-presentato pieno';
+        posto.appendChild(logo(main));
+        invito.parentNode.replaceChild(posto, invito);
+      }
+      var altre = dati.botteghe.filter(function (b) {
+        return b !== main;
+      });
+      var lista = document.querySelector('.posti');
+      if (!lista || altre.length === 0) return;
+      var posti = lista.querySelectorAll('.posto');
+      altre.forEach(function (bottega, i) {
+        var li = posti[i];
+        if (!li) {
+          li = document.createElement('li');
+          li.className = 'posto';
+          lista.appendChild(li);
+        }
+        li.className = 'posto pieno';
+        li.appendChild(logo(bottega));
+      });
+      // la lista non è più solo decorativa: i posti liberi restano nascosti agli screen reader
+      lista.removeAttribute('aria-hidden');
+      Array.prototype.forEach.call(lista.querySelectorAll('.posto:not(.pieno)'), function (li) {
+        li.setAttribute('aria-hidden', 'true');
+      });
+    })
+    .catch(function () {});
 })();
 </script>
 </body>
