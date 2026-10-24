@@ -45,7 +45,7 @@
         <li>La lista delle case, con nomi, indirizzi e telefoni, è di chi organizza. Noi la custodiamo per conto vostro, nell'Unione Europea, e non la usiamo per nient'altro.</li>
         <li>Chi consegna entra con il suo account Apple o Google. La sua posizione si vede solo durante il giro e si cancella quando il giro finisce.</li>
         <li>Statistiche d'uso e segnalazione degli errori sono spente: le accendi tu, se vuoi.</li>
-        <li>Non vendiamo dati e non facciamo pubblicità mirata. A chi riceve le scrippelle l'app non scrive: alla porta bussate voi.</li>
+        <li>Non vendiamo dati e non facciamo pubblicità mirata. Chi aspetta le scrippelle e ha l'app può lasciarci il suo cellulare per sapere quando parte il rider; a chi non ce l'ha l'app non scrive: alla porta bussate voi.</li>
         <li>Puoi eliminare account e dati dall'app, quando vuoi.</li>
       </ul>
     </section>
@@ -142,7 +142,7 @@
       <dt>Per quanto</dt>
       <dd>Finché l'amministratore non elimina lo spazio.</dd>
     </dl>
-    <p>Le persone delle case non usano l'app e non ricevono messaggi da noi. Creando lo spazio, l'amministratore conferma di inserire lui le case e di avere il permesso di farlo. Per una famiglia che organizza un evento privato vale l'esenzione per le attività personali o domestiche (art. 2.2.c GDPR); restano però gli obblighi di chi fornisce lo strumento, cioè i nostri. Associazioni, parrocchie o attività che usano l'app sono titolari a tutti gli effetti.</p>
+    <p>Le persone delle case non ricevono messaggi da noi, né SMS né email. Solo chi ha l'app e ci ha lasciato il suo cellulare riceve una notifica quando arriva la sua scrippella (vedi 2.7). Creando lo spazio, l'amministratore conferma di inserire lui le case e di avere il permesso di farlo. Per una famiglia che organizza un evento privato vale l'esenzione per le attività personali o domestiche (art. 2.2.c GDPR); restano però gli obblighi di chi fornisce lo strumento, cioè i nostri. Associazioni, parrocchie o attività che usano l'app sono titolari a tutti gli effetti.</p>
     <p><strong>Rubrica.</strong> Mentre scrivi il nome di una nuova casa o di una persona che inviti nella squadra, l'app può proporti i contatti della rubrica che corrispondono: la prima volta il telefono ti chiede il permesso, e puoi dire di no. La ricerca avviene solo sul telefono e la rubrica non lascia mai il telefono. Puoi anche usare "Scegli dalla rubrica", che apre il selettore del telefono senza chiedere permessi e passa all'app soltanto il contatto scelto. In entrambi i casi al nostro server arrivano solo i dati che salvi: per una casa nome, telefono e indirizzo, per un invito il nome.</p>
     <p><strong>Indirizzi sulla mappa.</strong> Per proporti gli indirizzi mentre scrivi e per mettere una casa sulla mappa, il nostro server manda a Google (Places e Geocoding di Google Maps Platform) solo l'indirizzo e il comune che scrivi o scegli, mai nomi o telefoni. Le coordinate che ci dà Google le teniamo al massimo 30 giorni, poi le chiediamo di nuovo; se lo spazio non si usa da più di 30 giorni le cancelliamo e le richiediamo al primo uso. I punti che metti tu a mano restano finché resta la casa.</p>
 
@@ -160,10 +160,23 @@
     <p>Le notifiche le recapita Firebase Cloud Messaging di Google e, sugli iPhone, il servizio di notifiche di Apple.</p>
     <p><strong>Notifiche di prova.</strong> Per l'assistenza, chi gestisce il servizio può mandare ai telefoni del tuo account una notifica di prova o un breve messaggio: cerca l'account con l'email esatta e vede solo se la notifica è partita e su quanti telefoni. L'invio resta nel registro interno del servizio, con l'email, il testo, chi l'ha mandato e quando. Base giuridica: legittimo interesse a far funzionare le notifiche e a darti assistenza (art. 6.1.f).</p>
 
-    <h3>2.7 Fotocamera</h3>
+    <h3>2.7 Avviso di arrivo, per chi riceve le scrippelle</h3>
+    <dl class="scheda">
+      <dt>Che cosa</dt>
+      <dd>Il numero di cellulare che scrivi nell'app, se vuoi: te lo chiediamo una volta dopo l'accesso, e puoi rispondere "Non ricevo scrippelle".</dd>
+      <dt>Perché</dt>
+      <dd>Avvisarti con una notifica quando il rider parte verso casa tua, quando la consegna non riesce e, se passi tu a prenderle, la mattina della distribuzione. Il nostro server confronta il tuo numero con i telefoni delle case delle distribuzioni: chi organizza non vede il tuo numero e non sa chi ha l'app. L'avviso non contiene nomi, né quello della famiglia né quello dello spazio, e mai gli appunti del rider. Non mandiamo SMS né email.</dd>
+      <dt>Base giuridica</dt>
+      <dd>Il tuo consenso (art. 6.1.a), che dai salvando il numero e ritiri togliendolo da Altro, Notifiche, Il tuo cellulare. Da lì puoi anche spegnere solo l'avviso.</dd>
+      <dt>Per quanto</dt>
+      <dd>Finché non togli il numero o non elimini l'account.</dd>
+    </dl>
+    <p>Il numero non si verifica: per questo lo stesso numero può stare al massimo su due account. Se il tuo è già occupato, scrivici a <a href="mailto:hello@scrippellapp.it">hello@scrippellapp.it</a>: chi gestisce il servizio lo toglie dagli account che l'hanno, e nel registro interno resta solo quanti account erano, mai il numero.</p>
+
+    <h3>2.8 Fotocamera</h3>
     <p>La fotocamera serve solo a inquadrare il codice per entrare in uno spazio. Le immagini non vengono salvate né inviate.</p>
 
-    <h3>2.8 Statistiche d'uso e segnalazione degli errori</h3>
+    <h3>2.9 Statistiche d'uso e segnalazione degli errori</h3>
     <dl class="scheda">
       <dt>Che cosa</dt>
       <dd>Con le statistiche: eventi d'uso, come "giro iniziato" o "schermata aperta", legati a un identificativo casuale dell'installazione. Con la segnalazione degli errori: i dati tecnici di un blocco dell'app, come modello del telefono, versione del sistema e punto del programma. Mai nomi, indirizzi, telefoni o appunti sulle consegne.</dd>
@@ -176,7 +189,7 @@
     </dl>
     <p>Le raccolgono Firebase Analytics e Firebase Crashlytics di Google.</p>
 
-    <h3>2.9 Dati tecnici delle richieste</h3>
+    <h3>2.10 Dati tecnici delle richieste</h3>
     <dl class="scheda">
       <dt>Che cosa</dt>
       <dd>Come ogni servizio su internet, il nostro server riceve l'indirizzo IP del telefono e registra dati tecnici delle richieste, come ora, tipo, esito e durata, senza nomi, indirizzi né contenuti.</dd>
@@ -188,10 +201,10 @@
       <dd>Circa tre mesi, poi si cancellano da soli.</dd>
     </dl>
 
-    <h3>2.10 Mappe</h3>
+    <h3>2.11 Mappe</h3>
     <p>Le mappe dell'app sono di Google Maps: Google riceve, come ogni servizio di mappe, l'indirizzo IP del telefono e la zona che stai guardando, e li tratta secondo la sua <a href="https://policies.google.com/privacy">informativa sulla privacy</a>.</p>
 
-    <h3>2.11 Se ci scrivi</h3>
+    <h3>2.12 Se ci scrivi</h3>
     <p>Se scrivi a hello@ o legal@scrippellapp.it, usiamo il tuo indirizzo e il messaggio per risponderti. Li teniamo il tempo che serve per la tua richiesta e, per le richieste sui dati personali, per dimostrare di averle gestite. Base giuridica: legittimo interesse (art. 6.1.f) e, per le richieste sui dati, obbligo di legge (art. 6.1.c).</p>
 
     <h2 id="botteghe">3. Botteghe che sostengono Scrippellapp</h2>
@@ -233,6 +246,7 @@
       <li><strong>Spazio, case, giri e consegne:</strong> finché l'amministratore non elimina lo spazio.</li>
       <li><strong>Coordinate delle case date da Google:</strong> al massimo 30 giorni, poi si richiedono o si cancellano.</li>
       <li><strong>Account:</strong> finché non lo elimini.</li>
+      <li><strong>Cellulare per l'avviso di arrivo:</strong> finché non lo togli o non elimini l'account.</li>
       <li><strong>Nome nella squadra:</strong> finché non esci dallo spazio o non elimini l'account. Il nome e il ruolo restano sulle consegne fatte.</li>
       <li><strong>Inviti:</strong> valgono 7 giorni e si cancellano 30 giorni dopo la scadenza.</li>
       <li><strong>Dati tecnici delle richieste:</strong> circa tre mesi.</li>
@@ -250,7 +264,7 @@
     <p>"Esci dall'account" ed "Esci dalla squadra" non eliminano niente. Tutti i passaggi, anche senza l'app, sono nella pagina <a href="/elimina-account.html">Eliminare l'account o i dati</a>.</p>
 
     <h2 id="case">9. Se sei una delle case</h2>
-    <p>Se il tuo nome o il tuo indirizzo sono in Scrippellapp, è perché una famiglia vuole portarti le scrippelle della sua festa. Noi non ti scriviamo e non ti chiamiamo: a portarti la scrippella sarà qualcuno di loro. Per sapere quali dati ci sono, correggerli o farli togliere puoi chiederlo a chi organizza, oppure scrivere a <a href="mailto:legal@scrippellapp.it">legal@scrippellapp.it</a>: giriamo la richiesta allo spazio e lo aiutiamo a risponderti.</p>
+    <p>Se il tuo nome o il tuo indirizzo sono in Scrippellapp, è perché una famiglia vuole portarti le scrippelle della sua festa. Noi non ti scriviamo e non ti chiamiamo: a portarti la scrippella sarà qualcuno di loro. Se hai l'app e ci hai lasciato il tuo cellulare, ti mandiamo solo una notifica quando la tua scrippella sta arrivando (vedi 2.7). Per sapere quali dati ci sono, correggerli o farli togliere puoi chiederlo a chi organizza, oppure scrivere a <a href="mailto:legal@scrippellapp.it">legal@scrippellapp.it</a>: giriamo la richiesta allo spazio e lo aiutiamo a risponderti.</p>
 
     <h2 id="diritti">10. I tuoi diritti</h2>
     <p>Sui tuoi dati hai diritto di:</p>
