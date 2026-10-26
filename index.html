@@ -108,7 +108,7 @@
           </div>
         </div>
         <!-- Esempio animato dei giri: il fotogramma qui sotto è quello fermo; lo script in fondo alla pagina lo fa andare avanti -->
-        <figure class="demo" data-demo data-totale="19" role="img" aria-label="Esempio di una distribuzione: dalla casa dei festeggiamenti partono i giri, a piedi tra i vicini e verso le zone più lontane, ognuno nel colore di chi consegna. A ogni consegna la casa si spunta e la spirale si colora.">
+        <figure class="demo" data-demo data-totale="19" role="img" aria-label="Esempio dei giri di un evento: dalla casa dei festeggiamenti partono i giri, a piedi tra i vicini e verso le zone più lontane, ognuno nel colore di chi consegna. A ogni consegna la casa si spunta e la spirale si colora.">
           <div class="demo-schermo">
         <svg class="mappa" viewBox="0 0 560 440" aria-hidden="true" focusable="false">
         <defs><clipPath id="mappa-bordo"><rect width="560" height="440" rx="24"/></clipPath></defs>
@@ -251,7 +251,7 @@
       </header>
       <ol class="passi">
         <li>
-          <h3>Crea lo spazio della festa</h3>
+          <h3>Crea l'evento della festa</h3>
           <p>Entri con Apple o Google e gli dai un nome, per esempio "Comunione di Sofia". È il vostro posto: quello che c'è dentro lo vede solo chi ne fa parte.</p>
         </li>
         <li>
@@ -263,7 +263,7 @@
           <p>Parenti, invitati, vicini: li aggiungi a mano o dalla rubrica del telefono, con quante scrippelle vanno a ogni casa. Ogni casa ha il suo punto sulla mappa.</p>
         </li>
         <li>
-          <h3>Prepara la distribuzione</h3>
+          <h3>Prepara i giri</h3>
           <p>Scegli i giorni in cui si frigge e la casa da cui si parte. L'app raggruppa le case vicine in giri, comincia dai vicini da servire a piedi e divide i giri in parti uguali tra chi consegna. Se vuoi cambiare qualcosa, sposti tu.</p>
         </li>
         <li>
@@ -271,8 +271,8 @@
           <p>Vedi chi è per strada e dove, quali case sono servite e che cosa resta da sistemare, come una porta a cui non ha risposto nessuno.</p>
         </li>
         <li>
-          <h3>Chiudi la distribuzione</h3>
-          <p>Quando l'ultima scrippella è arrivata, l'app te lo dice. La distribuzione resta nello storico, con tutte le case servite.</p>
+          <h3>Concludi l'evento</h3>
+          <p>Quando l'ultima scrippella è arrivata, l'app te lo dice. L'evento concluso resta nello storico, con tutte le case servite.</p>
         </li>
       </ol>
     </div>
@@ -415,7 +415,7 @@
 
 <script>
 // Esempio dei giri in apertura: chi consegna va alla casa, la casa si spunta, la spirale si colora.
-// Riparte dal fotogramma scritto nella pagina e ricomincia da capo a distribuzione finita.
+// Riparte dal fotogramma scritto nella pagina e ricomincia da capo a consegne finite.
 // Con "Riduci movimento" resta fermo; fuori dallo schermo o con la scheda nascosta si mette in pausa.
 (function () {
   var demo = document.querySelector('[data-demo]');
