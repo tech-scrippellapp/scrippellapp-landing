@@ -10,7 +10,7 @@ Riferimenti: piano di sviluppo (Fase 4, prova P2, e Fase 11) e FDD nella cartell
 scrippellapp-landing/
 ├── index.html              pagina principale
 ├── privacy.html            informativa sulla privacy, anche per le botteghe
-├── termini.html            termini di servizio, con l'accordo art. 28 per lo spazio (#accordo)
+├── termini.html            termini di servizio, con l'accordo art. 28 per l'evento (#accordo)
 ├── elimina-account.html    eliminazione di account e dati, richiesta da Google Play
 ├── accessibilita.html
 ├── invito/index.html       link di invito dell'app (D-110), fuori dai motori di ricerca
@@ -42,7 +42,7 @@ Le pagine legali sono bozze del 12 ottobre 2026, scritte dal FDD (cap. 15) e dai
 - Colori e font solo dalle variabili in testa a `assets/site.css`. I valori sono quelli di `apps/mobile/src/theme` e di `DOC/MARCHIO/LEGGIMI.md` (palette Carta e Oro).
 - Il logo in `index.html` è quello di `DOC/MARCHIO/logo-completo`, scritto dentro la pagina. All'apertura la spirale si stende dal centro come nello `ScrippellaLoader` dell'app (D-94), poi arrivano zucchero e cannella. Con "Riduci movimento" il logo compare subito intero. Se il marchio cambia, si ricopiano i tracciati da `MARCHIO`.
 - Solo italiano e solo tema chiaro, come l'app (D-09).
-- Niente numeri decisi da noi (scrippelle per giro, giorni della distribuzione, durata e livelli degli accordi con le botteghe): restano solo i tempi che la legge chiede di scrivere, come la conservazione dei dati (D-118).
+- Niente numeri decisi da noi (scrippelle per giro, giorni dei giri, durata e livelli degli accordi con le botteghe): restano solo i tempi che la legge chiede di scrivere, come la conservazione dei dati (D-118).
 - Script solo dentro le pagine e solo tre: in `index.html` uno anima l'esempio dei giri in apertura, si ferma con "Riduci movimento" e quando l'esempio non è sullo schermo, e uno legge le botteghe attive da `/sito/botteghe` del Worker e mette i loghi nei posti tratteggiati, senza link (D-95, Fase 10), e con la stessa risposta mostra il patrocinio del Comune (fascia in testa e piede) se è acceso dalla console (D-202); quello di poche righe delle pagine di invito legge il codice dal link e lo scrive nella pagina e nel link di Google Play (D-110). Il solo servizio esterno è il Worker di Scrippellapp, per i loghi: niente statistiche di terzi, niente cookie, quindi nessun banner. Il font è servito dal sito e non da Google Fonts, così l'indirizzo IP di chi visita non va a terzi.
 - L'esempio dei giri in apertura è un disegno, non una schermata dell'app: case, giri e iniziali sono inventati. Il fotogramma fermo scritto nella pagina è quello che vede chi ha "Riduci movimento".
 - Percorsi assoluti (`/assets/site.css`), così le pagine nelle sottocartelle, come `invito/`, usano gli stessi file.
