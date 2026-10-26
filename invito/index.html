@@ -86,7 +86,7 @@
 </footer>
 
 <script>
-  // Legge il codice dal link (?c=…) come normalizeInviteCode dell'app: maiuscole, senza spazi
+  // Legge il codice dal link (?c=…) come normalizeInviteCode dell'app: maiuscole e senza caratteri vuoti
   // e trattini, 6 simboli senza 0, O, 1, I e L. Lo scrive nella pagina e nel referrer di Play.
   (function () {
     var c = (new URLSearchParams(location.search).get('c') || '').replace(/[\s-]/g, '').toUpperCase();
