@@ -39,6 +39,11 @@
       <span>Presentato da</span>
       <a class="posto posto-presentato" href="#attivita">Il tuo logo qui</a>
     </p>
+    <!-- Patrocinio del Comune (D-202), piccolo nell'intestazione (Fase 15, lavoro 2): nascosto finché il Worker non dice che è acceso -->
+    <p class="patrocinio-riga patrocinio-testata" data-patrocinio hidden>
+      <img src="/assets/stemma-mondragone.png" alt="" width="22" height="32">
+      <span>Con il patrocinio del <strong>Comune di Mondragone</strong></span>
+    </p>
     <nav aria-label="Sezioni della pagina">
       <ul>
         <li><a href="#come-funziona">Come funziona</a></li>
@@ -51,16 +56,6 @@
 </header>
 
 <main id="contenuto">
-
-  <!-- Patrocinio del Comune (D-202): nascosto finché il Worker non dice che è acceso dalla console -->
-  <section class="patrocinio" aria-label="Patrocinio" data-patrocinio hidden>
-    <div class="contenitore">
-      <p class="patrocinio-riga">
-        <img src="/assets/stemma-mondragone.png" alt="" width="72" height="104">
-        <span>Con il patrocinio del <strong>Comune di Mondragone</strong></span>
-      </p>
-    </div>
-  </section>
 
   <section class="apertura" aria-labelledby="titolo">
     <div class="contenitore">
@@ -480,7 +475,7 @@
 // Botteghe (D-95, Fase 10): i loghi delle botteghe attive, letti dal Worker, nei posti tratteggiati.
 // La principale (Main) in testa con "Presentato da", le altre tra le "Botteghe amiche"; i posti
 // liberi restano tratteggiati. Senza link. Se il Worker non risponde la pagina resta com'è.
-// Con la stessa lettura il patrocinio del Comune (D-202): fascia e piede compaiono se è acceso.
+// Con la stessa lettura il patrocinio del Comune (D-202): intestazione e piede compaiono se è acceso.
 (function () {
   if (!window.fetch) return;
   fetch('https://scrippellapp-api.scrippellapp.workers.dev/sito/botteghe')
