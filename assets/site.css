@@ -945,17 +945,11 @@ a:hover {
   background: #d8a84e;
 }
 
-/* ───── Patrocinio del Comune (D-202) ───── */
+/* ───── Patrocinio del Comune (D-202): nell'intestazione e nel piede ───── */
 
 /* Nascosti finché il Worker non dice che è acceso: il display di sotto non deve vincere */
 [data-patrocinio][hidden] {
   display: none;
-}
-
-.patrocinio {
-  padding-block: 28px;
-  background: var(--foglio);
-  border-block: 1px solid var(--bordo);
 }
 
 .patrocinio-riga {
@@ -984,6 +978,21 @@ a:hover {
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 700;
   line-height: 1.2;
+}
+
+/* Nell'intestazione, piccolo (Fase 15, lavoro 2): stemma da 32 e le due righe del testo minore */
+.patrocinio-testata {
+  gap: 10px;
+  font-size: 0.8125rem;
+  line-height: 1.25;
+}
+
+.patrocinio-testata img {
+  height: 32px;
+}
+
+.patrocinio-testata strong {
+  font-size: 0.875rem;
 }
 
 .piede-patrocinio {
