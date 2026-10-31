@@ -42,9 +42,10 @@
       <p class="codice-invito" id="codice"></p>
       <div class="azioni">
         <a class="pulsante" id="play" href="https://play.google.com/store/apps/details?id=it.scrippellapp.app">Scarica da Google Play</a>
+        <a class="pulsante" id="app-store" href="https://apps.apple.com/it/app/scrippellapp/id6821852198">Scarica da App Store</a>
       </div>
-      <p>L'app per iPhone arriva presto.</p>
-      <p class="nota-bordo">Dopo l'installazione apri l'app, entra con Apple o Google e tocca <span class="percorso">Ho ricevuto un invito</span>.</p>
+      <p>Su iPhone, toccando <span class="percorso">Scarica da App Store</span> copi l'invito: alla prima apertura l'app ti chiede di incollarlo e, dopo l'accesso, ti porta nella squadra.</p>
+      <p class="nota-bordo">Se l'invito non arriva, apri l'app, entra con Apple o Google e tocca <span class="percorso">Ho ricevuto un invito</span>.</p>
     </div>
 
     <p id="senza-codice" hidden>Questo link non contiene un invito. Chiedi a chi ti ha invitato di mandartene un altro.</p>
@@ -87,7 +88,8 @@
 
 <script>
   // Legge il codice dal link (?c=…) come normalizeInviteCode dell'app: maiuscole e senza caratteri vuoti
-  // e trattini, 6 simboli senza 0, O, 1, I e L. Lo scrive nella pagina e nel referrer di Play.
+  // e trattini, 6 simboli senza 0, O, 1, I e L. Lo scrive nella pagina e nel referrer di Play; su
+  // iPhone, al tocco di App Store, copia il link intero, che l'app legge al primo avvio (D-246).
   (function () {
     var c = (new URLSearchParams(location.search).get('c') || '').replace(/[\s-]/g, '').toUpperCase();
     if (!/^[23456789ABCDEFGHJKMNPQRSTUVWXYZ]{6}$/.test(c)) {
@@ -97,6 +99,15 @@
     document.getElementById('codice').textContent = c;
     var play = document.getElementById('play');
     if (play) play.href += '&referrer=' + encodeURIComponent('c=' + c);
+    var store = document.getElementById('app-store');
+    if (store && navigator.clipboard) {
+      store.addEventListener('click', function (e) {
+        e.preventDefault();
+        var apri = function () { location.href = store.href; };
+        // Safari copia solo durante un tocco; se non riesce si va allo store lo stesso
+        navigator.clipboard.writeText('https://www.scrippellapp.it/invito/?c=' + c).then(apri, apri);
+      });
+    }
     document.getElementById('con-codice').hidden = false;
   })();
 </script>
