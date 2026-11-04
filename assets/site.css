@@ -176,20 +176,23 @@ a:hover {
   font-weight: 600;
 }
 
-/* Il posto della bottega principale: finché è libero è un invito alle attività */
+/* "Presentato da" e "Botteghe amiche" restano nascosti finché non hanno una bottega */
+.presentato[hidden],
+.botteghe[hidden] {
+  display: none;
+}
+
+/* Il menu resta a destra anche senza "Presentato da" */
+.testata nav {
+  margin-left: auto;
+}
+
+/* Il posto della bottega principale */
 .posto-presentato {
   width: 168px;
   height: 52px;
   aspect-ratio: auto;
   padding: 0 12px;
-  color: var(--azione);
-  font-size: 0.8125rem;
-  text-decoration: none;
-}
-
-.posto-presentato:hover {
-  border-color: var(--cannella);
-  text-decoration: underline;
 }
 
 .testata nav ul {
@@ -758,7 +761,7 @@ a:hover {
   background: var(--tenue);
 }
 
-/* Botteghe amiche: sei posti tratteggiati che i loghi delle botteghe riempiranno (D-95),
+/* Botteghe amiche: sei posti che i loghi delle botteghe riempiono (D-95), nascosti finché non ce n'è una;
    tre per riga sul telefono e tutti in fila sugli schermi larghi. La bottega principale sta in testata */
 .botteghe {
   margin-bottom: clamp(56px, 8vw, 96px);
