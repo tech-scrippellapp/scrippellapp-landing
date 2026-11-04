@@ -34,10 +34,10 @@
 <header class="testata">
   <div class="contenitore">
     <!-- "Presentato da" (D-95): la bottega principale sta in testa alla pagina, come nell'Accesso dell'app.
-         Lo script in fondo alla pagina mette qui il suo logo; finché il posto è libero porta alla sezione per le attività. -->
-    <p class="presentato">
+         Nascosto finché non c'è: lo script in fondo alla pagina mette qui il suo logo e lo mostra. -->
+    <p class="presentato" hidden>
       <span>Presentato da</span>
-      <a class="posto posto-presentato" href="#attivita">Il tuo logo qui</a>
+      <span class="posto posto-presentato"></span>
     </p>
     <!-- Patrocinio del Comune (D-202), piccolo nell'intestazione (Fase 15, lavoro 2): nascosto finché il Worker non dice che è acceso -->
     <p class="patrocinio-riga patrocinio-testata" data-patrocinio hidden>
@@ -328,11 +328,11 @@
 
   <section class="sezione attivita" id="attivita" aria-labelledby="botteghe-titolo">
     <div class="contenitore">
-      <div class="botteghe">
+      <div class="botteghe" hidden>
         <h2 id="botteghe-titolo">Botteghe amiche</h2>
         <p class="introduzione">Qui trovano posto le botteghe che sostengono Scrippellapp.</p>
         <!-- Posti per le botteghe (D-95). Lo script in fondo alla pagina li riempie con i loghi letti dal Worker; la bottega principale sta in testa alla pagina.
-             Finché sono vuoti la lista è solo decorativa, per questo è nascosta agli screen reader. -->
+             Senza botteghe il blocco resta nascosto; i posti liberi accanto ai loghi sono solo decorativi, nascosti agli screen reader. -->
         <ul class="posti" aria-hidden="true">
           <li class="posto"></li>
           <li class="posto"></li>
@@ -474,7 +474,8 @@
 <script>
 // Botteghe (D-95, Fase 10): i loghi delle botteghe attive, letti dal Worker, nei posti tratteggiati.
 // La principale (Main) in testa con "Presentato da", le altre tra le "Botteghe amiche"; i posti
-// liberi restano tratteggiati. Senza link. Se il Worker non risponde la pagina resta com'è.
+// liberi restano tratteggiati. Senza link. Le due parti si vedono solo se hanno una bottega:
+// se non ce ne sono, o il Worker non risponde, restano nascoste.
 // Con la stessa lettura il patrocinio del Comune (D-202): intestazione e piede compaiono se è acceso.
 (function () {
   if (!window.fetch) return;
@@ -499,18 +500,20 @@
       var main = dati.botteghe.filter(function (b) {
         return b.livello === 'main';
       })[0];
-      var invito = document.querySelector('.posto-presentato');
-      if (main && invito) {
+      var segnaposto = document.querySelector('.posto-presentato');
+      if (main && segnaposto) {
         var posto = document.createElement('span');
         posto.className = 'posto posto-presentato pieno';
         posto.appendChild(logo(main));
-        invito.parentNode.replaceChild(posto, invito);
+        segnaposto.parentNode.hidden = false;
+        segnaposto.parentNode.replaceChild(posto, segnaposto);
       }
       var altre = dati.botteghe.filter(function (b) {
         return b !== main;
       });
       var lista = document.querySelector('.posti');
       if (!lista || altre.length === 0) return;
+      lista.parentNode.hidden = false;
       var posti = lista.querySelectorAll('.posto');
       altre.forEach(function (bottega, i) {
         var li = posti[i];
