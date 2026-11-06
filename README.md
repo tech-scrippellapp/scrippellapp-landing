@@ -2,14 +2,14 @@
 
 Il sito di Scrippellapp, `https://www.scrippellapp.it/`, pubblicato con GitHub Pages (D-80). La repo è pubblica perché GitHub Pages è gratuito solo dalle repo pubbliche. Qui non ci sono codice dell'app né segreti.
 
-Riferimenti: piano di sviluppo (Fase 4, prova P2, e Fase 11) e FDD nella cartella `DOC` della repo `scrippellapp`, marchio in `DOC/MARCHIO` della stessa repo.
+Riferimenti: piano di sviluppo (Fase 4, prova P2, e Fase 11) e FDD nella cartella `DOC Scrippellapp/MD`, marchio in `DOC Scrippellapp/MARCHIO` (accanto alle repo, fuori da git).
 
 ## Struttura
 
 ```
 scrippellapp-landing/
 ├── index.html              pagina principale
-├── privacy.html            informativa sulla privacy, anche per le botteghe
+├── privacy.html            informativa sulla privacy, anche per gli sponsor
 ├── termini.html            termini di servizio, con l'accordo art. 28 per l'evento (#accordo)
 ├── elimina-account.html    eliminazione di account e dati, richiesta da Google Play
 ├── accessibilita.html
@@ -20,11 +20,11 @@ scrippellapp-landing/
 │   └── assetlinks.json     i due pacchetti Android con le impronte SHA-256 delle firme
 ├── assets/
 │   ├── site.css            stili condivisi da tutte le pagine
-│   ├── scrippellapp-logo.svg   logo delle pagine interne, da DOC/MARCHIO/logo-completo
+│   ├── scrippellapp-logo.svg   logo delle pagine interne, da DOC Scrippellapp/MARCHIO/logo-completo
 │   └── fonts/              Plus Jakarta Sans, licenza in OFL.txt
 ├── favicon.ico, favicon.svg, favicon-32.png, apple-touch-icon.png,
 │   icon-192.png, icon-512.png, icon-maskable-512.png,
-│   site.webmanifest, og-image-1200x630.png      copiati da DOC/MARCHIO/web, senza modifiche
+│   site.webmanifest, og-image-1200x630.png      copiati da DOC Scrippellapp/MARCHIO/web, senza modifiche
 ├── CNAME                   www.scrippellapp.it
 ├── .nojekyll               senza, GitHub Pages non pubblica le cartelle che iniziano con il punto
 ├── robots.txt
@@ -39,11 +39,11 @@ Le pagine legali sono bozze del 12 ottobre 2026, scritte dal FDD (cap. 15) e dai
 
 ## Regole
 
-- Colori e font solo dalle variabili in testa a `assets/site.css`. I valori sono quelli di `apps/mobile/src/theme` e di `DOC/MARCHIO/LEGGIMI.md` (palette Carta e Oro).
-- Il logo in `index.html` è quello di `DOC/MARCHIO/logo-completo`, scritto dentro la pagina. All'apertura la spirale si stende dal centro come nello `ScrippellaLoader` dell'app (D-94), poi arrivano zucchero e cannella. Con "Riduci movimento" il logo compare subito intero. Se il marchio cambia, si ricopiano i tracciati da `MARCHIO`.
+- Colori e font solo dalle variabili in testa a `assets/site.css`. I valori sono quelli di `apps/mobile/src/theme` e di `DOC Scrippellapp/MARCHIO/LEGGIMI.md` (palette Carta e Oro).
+- Il logo in `index.html` è quello di `DOC Scrippellapp/MARCHIO/logo-completo`, scritto dentro la pagina. All'apertura la spirale si stende dal centro come nello `ScrippellaLoader` dell'app (D-94), poi arrivano zucchero e cannella. Con "Riduci movimento" il logo compare subito intero. Se il marchio cambia, si ricopiano i tracciati da `MARCHIO`.
 - Solo italiano e solo tema chiaro, come l'app (D-09).
-- Niente numeri decisi da noi (scrippelle per giro, giorni dei giri, durata e livelli degli accordi con le botteghe): restano solo i tempi che la legge chiede di scrivere, come la conservazione dei dati (D-118).
-- Script solo dentro le pagine e solo tre: in `index.html` uno anima l'esempio dei giri in apertura, si ferma con "Riduci movimento" e quando l'esempio non è sullo schermo, e uno legge le botteghe attive da `/sito/botteghe` del Worker e mette i loghi nei posti tratteggiati, senza link (D-95, Fase 10): "Presentato da" e "Botteghe amiche" compaiono solo se hanno almeno una bottega, e con la stessa risposta mostra il patrocinio del Comune (piccolo nell'intestazione e nel piede, Fase 15) se è acceso dalla console (D-202); quello di poche righe delle pagine di invito legge il codice dal link e lo scrive nella pagina e nel link di Google Play (D-110); in `invito/`, al tocco di "Scarica da App Store", copia negli appunti il link intero, che l'app per iPhone legge al primo avvio (D-246), poi apre lo store anche se la copia non riesce. Il solo servizio esterno è il Worker di Scrippellapp, per i loghi: niente statistiche di terzi, niente cookie, quindi nessun banner. Il font è servito dal sito e non da Google Fonts, così l'indirizzo IP di chi visita non va a terzi.
+- Niente numeri decisi da noi (scrippelle per giro, giorni dei giri, durata e livelli degli accordi con gli sponsor): restano solo i tempi che la legge chiede di scrivere, come la conservazione dei dati (D-118).
+- Script solo dentro le pagine e solo tre: in `index.html` uno anima l'esempio dei giri in apertura, si ferma con "Riduci movimento" e quando l'esempio non è sullo schermo, e uno legge gli sponsor attivi da `/sito/botteghe` del Worker e mette i loghi nei posti tratteggiati, senza link (D-95, Fase 10): "Presentato da" e "I nostri sponsor" compaiono solo se hanno almeno uno sponsor, e con la stessa risposta mostra il patrocinio del Comune (piccolo nell'intestazione e nel piede, Fase 15) se è acceso dalla console (D-202); quello di poche righe delle pagine di invito legge il codice dal link e lo scrive nella pagina e nel link di Google Play (D-110); in `invito/`, al tocco di "Scarica da App Store", copia negli appunti il link intero, che l'app per iPhone legge al primo avvio (D-246), poi apre lo store anche se la copia non riesce. Il solo servizio esterno è il Worker di Scrippellapp, per i loghi: niente statistiche di terzi, niente cookie, quindi nessun banner. Il font è servito dal sito e non da Google Fonts, così l'indirizzo IP di chi visita non va a terzi.
 - L'esempio dei giri in apertura è un disegno, non una schermata dell'app: case, giri e iniziali sono inventati. Il fotogramma fermo scritto nella pagina è quello che vede chi ha "Riduci movimento".
 - Percorsi assoluti (`/assets/site.css`), così le pagine nelle sottocartelle, come `invito/`, usano gli stessi file.
 - Prima di pubblicare: pagina leggibile su telefono, nessun errore nella console, controllo di accessibilità (axe) senza violazioni.
