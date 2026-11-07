@@ -166,8 +166,9 @@ a:hover {
   }
 }
 
-/* Sul telefono il patrocinio scende in una riga sua, al centro */
-@media (max-width: 599px) {
+/* Sotto gli 860 px le tre colonne non ci stanno (il patrocinio al centro vuole due lati da 255 px):
+   il patrocinio scende in una riga sua, al centro */
+@media (max-width: 859px) {
   .testata:not(.testata-pagina) .contenitore {
     grid-template-columns: minmax(0, 1fr) auto;
     min-height: 0;
@@ -187,6 +188,8 @@ a:hover {
 
 .presentato {
   display: flex;
+  min-width: 0;
+  white-space: nowrap;
   align-items: center;
   gap: 12px;
   color: var(--secondario);
@@ -202,7 +205,9 @@ a:hover {
 
 /* Il posto della bottega principale; con .posto davanti, se no vince il padding di .posto più sotto */
 .posto.posto-presentato {
-  width: 168px;
+  flex: 0 1 168px;
+  /* sui telefoni più stretti si stringe, il menu resta accanto */
+  min-width: 96px;
   height: 52px;
   aspect-ratio: auto;
   padding: 6px 12px;
