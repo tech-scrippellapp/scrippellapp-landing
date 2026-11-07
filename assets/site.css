@@ -187,12 +187,12 @@ a:hover {
   margin-left: auto;
 }
 
-/* Il posto della bottega principale */
-.posto-presentato {
+/* Il posto della bottega principale; con .posto davanti, se no vince il padding di .posto più sotto */
+.posto.posto-presentato {
   width: 168px;
   height: 52px;
   aspect-ratio: auto;
-  padding: 0 12px;
+  padding: 6px 12px;
 }
 
 .testata nav ul {
