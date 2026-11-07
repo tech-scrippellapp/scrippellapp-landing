@@ -203,14 +203,75 @@ a:hover {
   display: none;
 }
 
-/* Il posto della bottega principale; con .posto davanti, se no vince il padding di .posto più sotto */
+/* Il posto della bottega principale: lo spazio concesso allo sponsor. Con .posto davanti, se no
+   vince il padding di .posto più sotto */
 .posto.posto-presentato {
-  flex: 0 1 168px;
+  flex: 0 1 auto;
   /* sui telefoni più stretti si stringe, il menu resta accanto */
   min-width: 96px;
-  height: 52px;
+  width: 216px;
+  height: 72px;
   aspect-ratio: auto;
   padding: 6px 12px;
+}
+
+/* Con lo sponsor dentro diventa il foglio della scrippella, come nel logo (MARCHIO): bianco, un po'
+   storto, con l'angolo in alto a destra arricciato. Il logo sta sul foglio, lontano dalla piega */
+.posto.posto-presentato.pieno {
+  position: relative;
+  isolation: isolate;
+  padding: 12px 26px 12px 16px;
+  border: 0;
+  background: none;
+  filter: drop-shadow(0 0 0.6px rgb(42 35 30 / 0.35)) drop-shadow(0 6px 10px rgb(42 35 30 / 0.08));
+}
+
+.posto.posto-presentato.pieno::before,
+.posto.posto-presentato.pieno::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+}
+
+/* Il foglio: i lati non sono dritti, e in alto a destra segue la curva della piega */
+.posto.posto-presentato.pieno::before {
+  inset: 0;
+  background: var(--foglio);
+  clip-path: polygon(
+    0 9%,
+    calc(100% - 20px) 0,
+    calc(100% - 16px) 5.5px,
+    calc(100% - 11.4px) 10.3px,
+    calc(100% - 6px) 14.2px,
+    100% 17.4px,
+    99% 100%,
+    1% 94%
+  );
+}
+
+/* Il lembo arricciato, con le curve del logo */
+.posto.posto-presentato.pieno::after {
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 18px;
+  background: var(--lembo);
+  clip-path: path('M0 0Q7.3 11.8 20 17.4Q13.2 13.8 4.9 14.6Q4.4 6.2 0 0Z');
+}
+
+@media (max-width: 679px) {
+  /* "Presentato da" prende tutta la colonna, così il foglio si può stringere */
+  .testata .presentato {
+    justify-self: stretch;
+  }
+
+  .posto.posto-presentato {
+    height: 60px;
+  }
+
+  .posto.posto-presentato.pieno {
+    padding: 10px 24px 10px 12px;
+  }
 }
 
 /* Le tre righe del menu */
