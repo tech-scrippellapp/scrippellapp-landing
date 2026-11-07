@@ -122,11 +122,11 @@ a:hover {
   padding-block: 14px;
 }
 
-/* Tre colonne: "Presentato da" a sinistra, patrocinio al centro, menu a destra.
-   Le colonne di lato sono uguali, così il patrocinio resta davvero al centro */
+/* Tre colonne: "Presentato da" a sinistra, menu a destra, patrocinio al centro dello spazio
+   che resta tra i due (non per forza al centro della pagina) */
 .testata:not(.testata-pagina) .contenitore {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: 12px 24px;
   min-height: 88px;
@@ -140,6 +140,7 @@ a:hover {
 .testata .patrocinio-testata {
   grid-column: 2;
   grid-row: 1;
+  justify-self: center;
 }
 
 .apri-menu {
@@ -166,9 +167,8 @@ a:hover {
   }
 }
 
-/* Sotto gli 860 px le tre colonne non ci stanno (il patrocinio al centro vuole due lati da 255 px):
-   il patrocinio scende in una riga sua, al centro */
-@media (max-width: 859px) {
+/* Sotto i 680 px le tre colonne non ci stanno: il patrocinio scende in una riga sua, al centro */
+@media (max-width: 679px) {
   .testata:not(.testata-pagina) .contenitore {
     grid-template-columns: minmax(0, 1fr) auto;
     min-height: 0;
