@@ -122,12 +122,39 @@ a:hover {
   padding-block: 14px;
 }
 
+/* Tre colonne: "Presentato da" a sinistra, patrocinio al centro, menu a destra.
+   Le colonne di lato sono uguali, così il patrocinio resta davvero al centro */
+.testata:not(.testata-pagina) .contenitore {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px 24px;
+  min-height: 88px;
+}
+
+.testata .presentato {
+  grid-column: 1;
+  justify-self: start;
+}
+
+.testata .patrocinio-testata {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.apri-menu {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+}
+
 @media (min-width: 900px) {
-  /* Sugli schermi larghi la testata resta in alto: "Presentato da" e "Provala" sempre a portata */
+  /* Sugli schermi larghi la testata resta in alto: "Presentato da" e il menu sempre a portata */
   .testata:not(.testata-pagina) {
     position: sticky;
     top: 0;
     z-index: 20;
+    padding-block: 18px;
     background: rgb(250 247 242 / 0.86);
     border-bottom: 1px solid rgb(233 226 215 / 0.8);
     -webkit-backdrop-filter: blur(14px);
@@ -135,36 +162,27 @@ a:hover {
   }
 
   main section[id] {
-    scroll-margin-top: 96px;
+    scroll-margin-top: 136px;
   }
 }
 
+/* Sul telefono il patrocinio scende in una riga sua, al centro */
 @media (max-width: 599px) {
-  .solo-largo {
-    display: none;
+  .testata:not(.testata-pagina) .contenitore {
+    grid-template-columns: minmax(0, 1fr) auto;
+    min-height: 0;
   }
-}
 
-.testata nav .pulsante-piccolo {
-  min-height: 40px;
-  margin-top: 0;
-  padding: 8px 18px;
-  color: var(--foglio);
-  font-size: 0.9375rem;
-  text-decoration: none;
-}
+  .testata .patrocinio-testata {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    padding-top: 12px;
+    border-top: 1px solid var(--bordo);
+  }
 
-.testata nav .pulsante-piccolo:hover {
-  color: var(--foglio);
-  text-decoration: none;
-}
-
-.testata:not(.testata-pagina) .contenitore {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px 24px;
+  .apri-menu {
+    grid-column: 2;
+  }
 }
 
 .presentato {
@@ -182,11 +200,6 @@ a:hover {
   display: none;
 }
 
-/* Il menu resta a destra anche senza "Presentato da" */
-.testata nav {
-  margin-left: auto;
-}
-
 /* Il posto della bottega principale; con .posto davanti, se no vince il padding di .posto più sotto */
 .posto.posto-presentato {
   width: 168px;
@@ -195,28 +208,175 @@ a:hover {
   padding: 6px 12px;
 }
 
-.testata nav ul {
-  display: flex;
-  flex-wrap: wrap;
+/* Le tre righe del menu */
+.apri-menu,
+.chiudi-menu {
+  display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
-  gap: 4px clamp(16px, 3vw, 28px);
+  justify-content: center;
+  gap: 5px;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid var(--bordo);
+  border-radius: 14px;
+  background: var(--foglio);
+  color: var(--testo);
+  cursor: pointer;
+}
+
+.apri-menu span,
+.chiudi-menu span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.apri-menu:hover,
+.chiudi-menu:hover {
+  border-color: var(--scrippella);
+}
+
+/* La X: le due righe incrociate */
+.chiudi-menu {
+  position: relative;
+  align-self: flex-end;
+}
+
+.chiudi-menu span {
+  position: absolute;
+}
+
+.chiudi-menu span:first-child {
+  transform: rotate(45deg);
+}
+
+.chiudi-menu span:last-child {
+  transform: rotate(-45deg);
+}
+
+/* Il menu: un foglio che entra da destra */
+.menu:popover-open {
+  display: flex;
+}
+
+.menu {
+  flex-direction: column;
+  gap: 24px;
+  inset: 0 0 0 auto;
+  width: min(340px, 86vw);
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 20px var(--margine) 32px;
+  border: 0;
+  border-left: 1px solid var(--bordo);
+  background: var(--carta);
+  color: var(--testo);
+  box-shadow: -16px 0 48px rgb(42 35 30 / 0.12);
+}
+
+.menu::backdrop {
+  background: rgb(42 35 30 / 0.28);
+}
+
+.menu ul {
+  margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.testata nav a {
-  display: inline-block;
-  padding-block: 10px;
+.menu li a {
+  display: block;
+  padding-block: 16px;
+  border-bottom: 1px solid var(--bordo);
   color: var(--testo);
-  font-size: 0.9375rem;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 700;
   text-decoration: none;
 }
 
-.testata nav a:hover {
+.menu li a:hover {
   color: var(--azione);
-  text-decoration: underline;
+}
+
+.menu .pulsante {
+  justify-content: center;
+  margin-top: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .menu,
+  .menu::backdrop {
+    transition:
+      transform 0.28s ease,
+      opacity 0.28s ease,
+      overlay 0.28s allow-discrete,
+      display 0.28s allow-discrete;
+  }
+
+  .menu {
+    transform: translateX(100%);
+  }
+
+  .menu:popover-open {
+    transform: none;
+  }
+
+  .menu::backdrop {
+    opacity: 0;
+  }
+
+  .menu:popover-open::backdrop {
+    opacity: 1;
+  }
+
+  @starting-style {
+    .menu:popover-open {
+      transform: translateX(100%);
+    }
+
+    .menu:popover-open::backdrop {
+      opacity: 0;
+    }
+  }
+}
+
+/* Browser senza popover: niente pulsanti, le voci restano in fila sotto la testata */
+@supports not selector(:popover-open) {
+  .apri-menu,
+  .chiudi-menu {
+    display: none;
+  }
+
+  .menu {
+    display: block;
+    grid-column: 1 / -1;
+    width: auto;
+    height: auto;
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+  }
+
+  .menu ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 24px;
+  }
+
+  .menu li a {
+    border: 0;
+    font-size: 0.9375rem;
+  }
+
+  .menu .pulsante {
+    display: none;
+  }
 }
 
 /* ───── Apertura ───── */

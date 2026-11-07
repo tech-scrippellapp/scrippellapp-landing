@@ -44,13 +44,21 @@
       <img src="/assets/stemma-mondragone.png" alt="" width="22" height="32">
       <span>Con il patrocinio del <strong>Comune di Mondragone</strong></span>
     </p>
-    <nav aria-label="Sezioni della pagina">
+    <!-- Il menu si apre da destra (popover del browser, senza script). Dove il popover non c'è,
+         le voci restano in fila nella testata e il pulsante non compare -->
+    <button type="button" class="apri-menu" popovertarget="menu" aria-label="Apri il menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="menu" class="menu" popover aria-label="Sezioni della pagina">
+      <button type="button" class="chiudi-menu" popovertarget="menu" popovertargetaction="hide" aria-label="Chiudi il menu">
+        <span></span><span></span>
+      </button>
       <ul>
         <li><a href="#come-funziona">Come funziona</a></li>
         <li><a href="#chi-consegna">Chi consegna</a></li>
         <li><a href="#attivita">Botteghe</a></li>
-        <li class="solo-largo"><a class="pulsante pulsante-piccolo" href="mailto:hello@scrippellapp.it?subject=Voglio%20provare%20Scrippellapp">Provala</a></li>
       </ul>
+      <a class="pulsante" href="mailto:hello@scrippellapp.it?subject=Voglio%20provare%20Scrippellapp">Provala</a>
     </nav>
   </div>
 </header>
@@ -472,6 +480,15 @@
 })();
 </script>
 <script>
+// Menu: una voce porta alla sua sezione e chiude il menu (il popover da solo resterebbe aperto)
+(function () {
+  var menu = document.getElementById('menu');
+  if (!menu || !menu.hidePopover) return;
+  menu.addEventListener('click', function (e) {
+    if (e.target.closest('a[href^="#"]')) menu.hidePopover();
+  });
+})();
+
 // Botteghe (D-95, Fase 10): i loghi delle botteghe attive, letti dal Worker, nei posti tratteggiati.
 // La principale (Main) in testa con "Presentato da", le altre tra le "Botteghe amiche"; i posti
 // liberi restano tratteggiati. Senza link. Le due parti si vedono solo se hanno una bottega:
