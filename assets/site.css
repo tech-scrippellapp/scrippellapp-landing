@@ -1,5 +1,6 @@
 /* Scrippellapp, sito. Palette Carta e Oro (D-62) e Plus Jakarta Sans (D-10), come l'app:
-   i valori sono quelli di apps/mobile/src/theme e di MARCHIO/LEGGIMI.md. */
+   i valori sono quelli di apps/mobile/src/theme e di MARCHIO/LEGGIMI.md. I titoli sono in
+   Fraunces 600, come nei social (social/post/sorgente/guida.css) */
 
 @font-face {
   font-family: 'Plus Jakarta Sans';
@@ -7,6 +8,17 @@
   font-weight: 200 800;
   font-display: swap;
   src: url('/assets/fonts/plus-jakarta-sans-latin-wght-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
+    U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Dal file dei social, ridotto agli stessi caratteri di sopra */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/assets/fonts/fraunces-latin-600-normal.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
     U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
@@ -24,6 +36,7 @@
   --cannella: #8b5a2b;
 
   --font: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-titoli: 'Fraunces', Georgia, 'Times New Roman', serif;
 
   --margine: clamp(16px, 5vw, 48px);
   --larghezza: 1120px;
@@ -69,6 +82,21 @@ p,
 ol,
 ul {
   margin: 0;
+}
+
+/* I titoli grandi nel serif dei social; la seconda parte in cannella, come nei post */
+.apertura h1,
+.sezione h2,
+.finale h2,
+.testo h1 {
+  font-family: var(--font-titoli);
+  font-weight: 600;
+}
+
+h1 em,
+h2 em {
+  font-style: normal;
+  color: var(--cannella);
 }
 
 img,
@@ -184,6 +212,15 @@ a:hover {
   .apri-menu {
     grid-column: 2;
   }
+}
+
+/* Senza bottega principale il patrocinio prende il suo posto, a sinistra sulla riga del menu */
+.testata:has(.presentato[hidden]) .patrocinio-testata {
+  grid-column: 1 / -2;
+  grid-row: 1;
+  justify-self: start;
+  padding-top: 0;
+  border-top: 0;
 }
 
 .presentato {
@@ -464,11 +501,10 @@ a:hover {
 }
 
 .apertura h1 {
-  max-width: 13ch;
-  font-size: clamp(2.5rem, 1.35rem + 4.2vw, 4.25rem);
-  font-weight: 780;
-  line-height: 1.02;
-  letter-spacing: -0.035em;
+  max-width: 14ch;
+  font-size: clamp(2.375rem, 1.4rem + 3.8vw, 4rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
   text-wrap: balance;
 }
 
@@ -562,9 +598,8 @@ a:hover {
 
 .sezione h2 {
   font-size: clamp(1.875rem, 1.3rem + 2vw, 2.75rem);
-  font-weight: 750;
-  line-height: 1.1;
-  letter-spacing: -0.025em;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
   text-wrap: balance;
 }
 
@@ -752,10 +787,9 @@ a:hover {
 
 .tradizione h2 {
   max-width: 22ch;
-  font-size: clamp(1.75rem, 1.15rem + 2.5vw, 3rem);
-  font-weight: 650;
-  line-height: 1.12;
-  letter-spacing: -0.025em;
+  font-size: clamp(1.625rem, 1.15rem + 2vw, 2.625rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
 }
 
 .tradizione p {
@@ -1149,9 +1183,12 @@ a:hover {
 
 .finale h2 {
   font-size: clamp(2.25rem, 1.4rem + 3.4vw, 3.5rem);
-  font-weight: 750;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.finale h2 em {
+  color: var(--scrippella);
 }
 
 .finale p {
@@ -1345,9 +1382,8 @@ a:hover {
 
 .testo h1 {
   font-size: clamp(2rem, 1.4rem + 2.6vw, 3rem);
-  font-weight: 750;
-  line-height: 1.08;
-  letter-spacing: -0.03em;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
   text-wrap: balance;
 }
 
