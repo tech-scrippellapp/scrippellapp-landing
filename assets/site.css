@@ -1355,6 +1355,13 @@ a:hover {
   }
 }
 
+/* Le tre email in fila solo dove ci stanno accanto al marchio */
+@media (min-width: 1000px) {
+  .piede dl {
+    grid-template-columns: repeat(3, auto);
+  }
+}
+
 /* ───── Pagine di testo: privacy, termini, eliminazione, accessibilità ───── */
 
 .testata-pagina .contenitore {
