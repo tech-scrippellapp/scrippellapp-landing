@@ -21,7 +21,7 @@ scrippellapp-landing/
 ├── assets/
 │   ├── site.css            stili condivisi da tutte le pagine
 │   ├── scrippellapp-logo.svg   logo delle pagine interne, da DOC Scrippellapp/MARCHIO/logo-completo
-│   └── fonts/              Plus Jakarta Sans, licenza in OFL.txt
+│   └── fonts/              Plus Jakarta Sans e Fraunces (titoli), licenze OFL
 ├── favicon.ico, favicon.svg, favicon-32.png, apple-touch-icon.png,
 │   icon-192.png, icon-512.png, icon-maskable-512.png,
 │   site.webmanifest, og-image-1200x630.png      copiati da DOC Scrippellapp/MARCHIO/web, senza modifiche
