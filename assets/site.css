@@ -1068,9 +1068,306 @@ a:hover {
   }
 }
 
+/* Le card delle botteghe (D-289): quattro per riga sugli schermi larghi, due sul tablet, una sotto
+   i 680 px (anche col testo grande). I posti liberi tratteggiati hanno la stessa misura della card */
 @media (min-width: 1040px) {
   .posti {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 679px) {
+  .posti {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* una per riga: dei posti liberi ne resta uno, se no la pagina diventa una fila di riquadri vuoti */
+  .posti .posto:not(.pieno) ~ .posto:not(.pieno) {
+    display: none;
+  }
+}
+
+/* Con la card il posto non ha più forma sua: la card lo riempie e detta l'altezza della riga */
+.posti .posto {
+  aspect-ratio: auto;
+  min-height: 240px;
+  padding: 0;
+}
+
+.posti .posto.pieno {
+  display: block;
+  border: 0;
+  background: none;
+}
+
+.card-bottega {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--bordo);
+  border-radius: 14px;
+  background: var(--foglio);
+  color: var(--testo);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.card-bottega:hover {
+  box-shadow: 0 10px 20px -12px rgb(139 90 43 / 0.45);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card-bottega:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* La forma della tela dei loghi (3:2, come nell'app): il logo normalizzato ci sta intero */
+.card-media {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 2;
+  background: var(--foglio);
+}
+
+/* l'immagine riempie l'area 3:2 qualunque sia la sua forma */
+.card-foto,
+.card-logo {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* con .posto davanti, se no vince `.posto img` (contain) */
+.posto .card-foto {
+  object-fit: cover;
+}
+
+.card-logo,
+.card-targa img {
+  object-fit: contain;
+}
+
+/* Il logo sulla foto: una targhetta bianca in basso a sinistra, larga metà della card */
+.card-targa {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  width: 50%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--foglio);
+  box-shadow: 0 2px 8px rgb(42 35 30 / 0.18);
+}
+
+.card-targa img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.card-testi {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 14px 14px;
+}
+
+.card-nome {
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.card-sotto {
+  color: var(--secondario);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+/* "Presentato da" apre il dettaglio come una card */
+button.posto-presentato {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* ───── Il dettaglio di una bottega (D-289): un foglio sopra la pagina, col popover come il menu ───── */
+
+.foglio-bottega:popover-open {
+  display: flex;
+}
+
+.foglio-bottega {
+  flex-direction: column;
+  gap: 12px;
+  width: min(520px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 20px 24px 24px;
+  overflow-y: auto;
+  border: 1px solid var(--bordo);
+  border-radius: 20px;
+  background: var(--carta);
+  color: var(--testo);
+  box-shadow: 0 24px 64px rgb(42 35 30 / 0.2);
+}
+
+.foglio-bottega::backdrop {
+  background: rgb(42 35 30 / 0.45);
+}
+
+/* Sul telefono il foglio sale dal basso e occupa tutta la larghezza */
+@media (max-width: 679px) {
+  .foglio-bottega {
+    width: 100%;
+    max-width: none;
+    max-height: 92dvh;
+    margin: auto 0 0;
+    border-radius: 20px 20px 0 0;
+    border-bottom: 0;
+  }
+}
+
+.chiudi-bottega {
+  display: inline-flex;
+  flex: none;
+  align-self: flex-end;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid var(--bordo);
+  border-radius: 14px;
+  background: var(--foglio);
+  cursor: pointer;
+}
+
+.chiudi-bottega span {
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--testo);
+}
+
+.chiudi-bottega {
+  position: relative;
+}
+
+.chiudi-bottega span:first-child {
+  transform: rotate(45deg);
+}
+
+.chiudi-bottega span:last-child {
+  transform: rotate(-45deg);
+}
+
+.bottega-foto {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.bottega-foto[hidden],
+.foglio-bottega [hidden] {
+  display: none;
+}
+
+.foglio-bottega .bottega-nome {
+  font-size: clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem);
+  line-height: 1.2;
+}
+
+.bottega-tipo {
+  margin-top: -8px;
+  color: var(--secondario);
+}
+
+.bottega-sostiene {
+  align-self: flex-start;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--tenue);
+  color: var(--azione);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.bottega-dove {
+  padding: 14px 16px;
+  border: 1px solid var(--bordo);
+  border-radius: 14px;
+  background: var(--foglio);
+}
+
+.bottega-indirizzo {
+  font-weight: 700;
+}
+
+.bottega-orari {
+  margin-top: 4px;
+  color: var(--secondario);
+}
+
+.bottega-azioni {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.bottega-azioni .pulsante {
+  flex: 1 1 140px;
+  justify-content: center;
+  margin-top: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .foglio-bottega,
+  .foglio-bottega::backdrop {
+    transition:
+      transform 0.24s ease,
+      opacity 0.24s ease,
+      overlay 0.24s allow-discrete,
+      display 0.24s allow-discrete;
+  }
+
+  .foglio-bottega {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  .foglio-bottega:popover-open {
+    opacity: 1;
+    transform: none;
+  }
+
+  .foglio-bottega::backdrop {
+    opacity: 0;
+  }
+
+  .foglio-bottega:popover-open::backdrop {
+    opacity: 1;
+  }
+
+  @starting-style {
+    .foglio-bottega:popover-open {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    .foglio-bottega:popover-open::backdrop {
+      opacity: 0;
+    }
   }
 }
 

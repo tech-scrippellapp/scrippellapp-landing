@@ -340,8 +340,9 @@
       <div class="botteghe" hidden>
         <h2 id="botteghe-titolo">Botteghe amiche</h2>
         <p class="introduzione">Le botteghe amiche sono gli sponsor che tengono Scrippellapp gratuita.</p>
-        <!-- Posti per le botteghe (D-95). Lo script in fondo alla pagina li riempie con i loghi letti dal Worker; la bottega principale sta in testa alla pagina.
-             Senza botteghe il blocco resta nascosto; i posti liberi accanto ai loghi sono solo decorativi, nascosti agli screen reader. -->
+        <!-- Posti per le botteghe (D-95, D-289). Lo script in fondo alla pagina li riempie con le card lette dal Worker: foto, logo, nome, tipo e comune;
+             una card apre il dettaglio nel foglio qui sotto. La bottega principale sta in testa alla pagina.
+             Senza botteghe il blocco resta nascosto; i posti liberi accanto alle card sono solo decorativi, nascosti agli screen reader. -->
         <ul class="posti" aria-hidden="true">
           <li class="posto"></li>
           <li class="posto"></li>
@@ -350,6 +351,27 @@
           <li class="posto"></li>
           <li class="posto"></li>
         </ul>
+      </div>
+      <!-- Il dettaglio di una bottega (D-289): un foglio sopra la pagina, col popover del browser come il menu.
+           Lo riempie lo script quando si tocca una card o "Presentato da"; si chiude con la X, con Esc e toccando fuori -->
+      <div id="bottega" class="foglio-bottega" popover role="dialog" aria-modal="true" aria-labelledby="bottega-nome">
+        <button type="button" class="chiudi-bottega" popovertarget="bottega" popovertargetaction="hide" aria-label="Chiudi">
+          <span></span><span></span>
+        </button>
+        <img class="bottega-foto" alt="" hidden>
+        <h2 id="bottega-nome" class="bottega-nome"></h2>
+        <p class="bottega-tipo"></p>
+        <p class="bottega-sostiene">Sostiene Scrippellapp</p>
+        <p class="bottega-descrizione" hidden></p>
+        <div class="bottega-dove">
+          <p class="bottega-indirizzo"></p>
+          <p class="bottega-orari" hidden></p>
+        </div>
+        <div class="bottega-azioni">
+          <a class="pulsante bottega-chiama" data-azione="chiama" hidden>Chiama</a>
+          <a class="pulsante bottega-whatsapp" data-azione="whatsapp" target="_blank" rel="sponsored noopener" hidden>WhatsApp</a>
+          <a class="pulsante bottega-indicazioni" data-azione="indicazioni" target="_blank" rel="sponsored noopener">Indicazioni</a>
+        </div>
       </div>
       <div class="foglio-ombra">
         <div class="foglio">
@@ -494,14 +516,132 @@
   });
 })();
 
-// Botteghe (D-95, Fase 10): i loghi delle botteghe attive, letti dal Worker, nei posti tratteggiati.
-// La principale (Main) in testa con "Presentato da", le altre tra le "Botteghe amiche"; i posti
-// liberi restano tratteggiati. Senza link. Le due parti si vedono solo se hanno una bottega:
-// se non ce ne sono, o il Worker non risponde, restano nascoste.
+// Botteghe (D-95, D-289, Fase 10): le botteghe attive, lette dal Worker. La principale (Main) in
+// testa con "Presentato da", le altre come card nei posti tratteggiati di "Botteghe amiche"; i posti
+// liberi restano tratteggiati. Le due parti si vedono solo se hanno una bottega: se non ce ne sono,
+// o il Worker non risponde, restano nascoste. Una card (e "Presentato da") è un pulsante: apre il
+// dettaglio nel foglio #bottega, coi contatti come nell'app; il fuoco torna sulla card alla chiusura.
+// Si contano, in forma aggregata come le viste, l'apertura del foglio e i tocchi sui pulsanti.
 // Con la stessa lettura il patrocinio del Comune (D-202): intestazione e piede compaiono se è acceso.
 (function () {
   if (!window.fetch) return;
-  fetch('https://scrippellapp-api.scrippellapp.workers.dev/sito/botteghe')
+  var WORKER = 'https://scrippellapp-api.scrippellapp.workers.dev';
+  var foglio = document.getElementById('bottega');
+  var aperta = null;
+  var origine = null;
+
+  // una riga per azione, come le metriche dell'app; text/plain non chiede il permesso prima (CORS)
+  var conta = function (bottega, azione) {
+    fetch(WORKER + '/sponsor/metriche', {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ eventi: [{ sponsor: bottega.id, posizione: 'sito', azione: azione, n: 1 }] }),
+      keepalive: true
+    }).catch(function () {});
+  };
+  var cifre = function (numero) {
+    return String(numero).replace(/\D/g, '');
+  };
+  var dove = function (bottega) {
+    return [bottega.indirizzo, bottega.comune].filter(function (parte) {
+      return parte && parte.trim();
+    }).join(', ');
+  };
+  var mostra = function (el, valore) {
+    el.hidden = !valore;
+    if (valore) el.textContent = valore;
+  };
+  var collega = function (el, href) {
+    el.hidden = !href;
+    if (href) el.href = href;
+    else el.removeAttribute('href');
+  };
+
+  var apri = function (bottega, da) {
+    if (!foglio || !foglio.showPopover) return;
+    aperta = bottega;
+    origine = da;
+    var foto = foglio.querySelector('.bottega-foto');
+    foto.hidden = !bottega.foto;
+    if (bottega.foto) foto.src = bottega.foto;
+    else foto.removeAttribute('src');
+    foglio.querySelector('.bottega-nome').textContent = bottega.nome;
+    mostra(foglio.querySelector('.bottega-tipo'), bottega.tipo);
+    mostra(foglio.querySelector('.bottega-descrizione'), bottega.descrizione);
+    mostra(foglio.querySelector('.bottega-indirizzo'), dove(bottega));
+    mostra(foglio.querySelector('.bottega-orari'), bottega.orari);
+    collega(foglio.querySelector('.bottega-chiama'), bottega.telefono ? 'tel:' + bottega.telefono : null);
+    collega(foglio.querySelector('.bottega-whatsapp'), bottega.whatsapp ? 'https://wa.me/' + cifre(bottega.whatsapp) : null);
+    // Google Maps col punto; senza, con indirizzo e comune
+    var meta = bottega.punto ? bottega.punto.lat + ',' + bottega.punto.lng : dove(bottega);
+    collega(foglio.querySelector('.bottega-indicazioni'), meta ? 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(meta) : null);
+    foglio.showPopover();
+    foglio.querySelector('.chiudi-bottega').focus();
+    conta(bottega, 'scheda');
+  };
+
+  if (foglio) {
+    foglio.addEventListener('click', function (e) {
+      var pulsante = e.target.closest('[data-azione]');
+      if (pulsante && aperta) conta(aperta, pulsante.getAttribute('data-azione'));
+    });
+    // chiuso con la X, con Esc o toccando fuori: il fuoco torna dove si era
+    foglio.addEventListener('toggle', function (e) {
+      if (e.newState !== 'closed') return;
+      if (origine && origine.isConnected) origine.focus();
+      aperta = null;
+    });
+  }
+
+  var logo = function (bottega, classe) {
+    var img = document.createElement('img');
+    img.src = bottega.logo;
+    img.alt = '';
+    img.decoding = 'async';
+    if (classe) img.className = classe;
+    return img;
+  };
+  var testo = function (classe, valore) {
+    var el = document.createElement('span');
+    el.className = classe;
+    el.textContent = valore;
+    return el;
+  };
+  // in alto la foto con il logo su una targhetta; senza foto il logo riempie l'area, come nell'app
+  var card = function (bottega) {
+    var pulsante = document.createElement('button');
+    pulsante.type = 'button';
+    pulsante.className = 'card-bottega';
+    var media = document.createElement('span');
+    media.className = 'card-media';
+    if (bottega.foto) {
+      var foto = document.createElement('img');
+      foto.src = bottega.foto;
+      foto.alt = '';
+      foto.decoding = 'async';
+      foto.className = 'card-foto';
+      media.appendChild(foto);
+      var targa = document.createElement('span');
+      targa.className = 'card-targa';
+      targa.appendChild(logo(bottega));
+      media.appendChild(targa);
+    } else {
+      media.appendChild(logo(bottega, 'card-logo'));
+    }
+    pulsante.appendChild(media);
+    var testi = document.createElement('span');
+    testi.className = 'card-testi';
+    testi.appendChild(testo('card-nome', bottega.nome));
+    var sotto = [bottega.tipo, bottega.comune].filter(Boolean).join(' · ');
+    if (sotto) testi.appendChild(testo('card-sotto', sotto));
+    pulsante.appendChild(testi);
+    pulsante.addEventListener('click', function () {
+      apri(bottega, pulsante);
+    });
+    return pulsante;
+  };
+
+  fetch(WORKER + '/sito/botteghe')
     .then(function (risposta) {
       return risposta.ok ? risposta.json() : null;
     })
@@ -512,21 +652,19 @@
         });
       }
       if (!dati || !Array.isArray(dati.botteghe)) return;
-      var logo = function (bottega) {
-        var img = document.createElement('img');
-        img.src = bottega.logo;
-        img.alt = bottega.nome;
-        img.decoding = 'async';
-        return img;
-      };
       var main = dati.botteghe.filter(function (b) {
         return b.livello === 'main';
       })[0];
       var segnaposto = document.querySelector('.posto-presentato');
       if (main && segnaposto) {
-        var posto = document.createElement('span');
+        var posto = document.createElement('button');
+        posto.type = 'button';
         posto.className = 'posto posto-presentato pieno';
+        posto.setAttribute('aria-label', main.nome + ': apri la scheda');
         posto.appendChild(logo(main));
+        posto.addEventListener('click', function () {
+          apri(main, posto);
+        });
         segnaposto.parentNode.hidden = false;
         segnaposto.parentNode.replaceChild(posto, segnaposto);
       }
@@ -541,11 +679,10 @@
         var li = posti[i];
         if (!li) {
           li = document.createElement('li');
-          li.className = 'posto';
           lista.appendChild(li);
         }
         li.className = 'posto pieno';
-        li.appendChild(logo(bottega));
+        li.appendChild(card(bottega));
       });
       // la lista non è più solo decorativa: i posti liberi restano nascosti agli screen reader
       lista.removeAttribute('aria-hidden');
