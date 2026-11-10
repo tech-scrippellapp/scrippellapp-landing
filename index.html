@@ -341,7 +341,7 @@
         <h2 id="botteghe-titolo">Botteghe amiche</h2>
         <p class="introduzione">Le botteghe amiche sono gli sponsor che tengono Scrippellapp gratuita.</p>
         <!-- Posti per le botteghe (D-95, D-289). Lo script in fondo alla pagina li riempie con le card lette dal Worker: foto, logo, nome, tipo e comune;
-             una card apre il dettaglio nel foglio qui sotto. La bottega principale sta in testa alla pagina.
+             una card apre il dettaglio nel foglio qui sotto. La bottega principale è la prima della fila e sta anche in testa alla pagina (D-291).
              Senza botteghe il blocco resta nascosto; i posti liberi accanto alle card sono solo decorativi, nascosti agli screen reader. -->
         <ul class="posti" aria-hidden="true">
           <li class="posto"></li>
@@ -386,7 +386,7 @@
             <li>tra le "Botteghe amiche" in home;</li>
             <li>a fine giro, con "Questo giro è offerto da";</li>
             <li>all'apertura dell'app, con "Presentato da";</li>
-            <li>qui sul sito, con il loro logo: la bottega principale in testa alla pagina, le altre tra le "Botteghe amiche".</li>
+            <li>qui sul sito, con il loro logo: la bottega principale in testa alla pagina, e tutte tra le "Botteghe amiche".</li>
           </ul>
           <p class="nota">Mai durante un giro, perché chi consegna è per strada.</p>
           <a class="pulsante" href="mailto:hello@scrippellapp.it?subject=Scrippellapp%20per%20la%20mia%20attivit%C3%A0">Scrivi a hello@scrippellapp.it</a>
@@ -517,7 +517,7 @@
 })();
 
 // Botteghe (D-95, D-289, Fase 10): le botteghe attive, lette dal Worker. La principale (Main) in
-// testa con "Presentato da", le altre come card nei posti tratteggiati di "Botteghe amiche"; i posti
+// testa con "Presentato da" e anche prima nella fila, tutte come card nei posti tratteggiati di "Botteghe amiche"; i posti
 // liberi restano tratteggiati. Le due parti si vedono solo se hanno una bottega: se non ce ne sono,
 // o il Worker non risponde, restano nascoste. Una card (e "Presentato da") è un pulsante: apre il
 // dettaglio nel foglio #bottega, coi contatti come nell'app; il fuoco torna sulla card alla chiusura.
@@ -593,9 +593,10 @@
     });
   }
 
-  var logo = function (bottega, classe) {
+  // `largo`: il logo solo ritagliato, per la testata (D-291); le copie di prima non l'hanno
+  var logo = function (bottega, classe, largo) {
     var img = document.createElement('img');
-    img.src = bottega.logo;
+    img.src = (largo && bottega.logoLargo) || bottega.logo;
     img.alt = '';
     img.decoding = 'async';
     if (classe) img.className = classe;
@@ -661,21 +662,21 @@
         posto.type = 'button';
         posto.className = 'posto posto-presentato pieno';
         posto.setAttribute('aria-label', main.nome + ': apri la scheda');
-        posto.appendChild(logo(main));
+        posto.appendChild(logo(main, '', true));
         posto.addEventListener('click', function () {
           apri(main, posto);
         });
         segnaposto.parentNode.hidden = false;
         segnaposto.parentNode.replaceChild(posto, segnaposto);
       }
-      var altre = dati.botteghe.filter(function (b) {
-        return b !== main;
-      });
+      // nella fila tutte, il Main al primo posto con la sua card (piano card-botteghe, cap. 4):
+      // il Worker le dà già in ordine, Main, Oro e Base
+      var fila = dati.botteghe;
       var lista = document.querySelector('.posti');
-      if (!lista || altre.length === 0) return;
+      if (!lista || fila.length === 0) return;
       lista.parentNode.hidden = false;
       var posti = lista.querySelectorAll('.posto');
-      altre.forEach(function (bottega, i) {
+      fila.forEach(function (bottega, i) {
         var li = posti[i];
         if (!li) {
           li = document.createElement('li');
