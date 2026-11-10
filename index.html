@@ -530,13 +530,11 @@
   var aperta = null;
   var origine = null;
 
-  // una riga per azione, come le metriche dell'app. La risposta non serve: con no-cors il browser
-  // la manda senza chiedere il permesso al Worker e senza errori nella console
+  // una riga per azione, in JSON come le metriche dell'app: il Worker dà il permesso (CORS) al sito
   var conta = function (bottega, azione) {
     fetch(WORKER + '/sponsor/metriche', {
       method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ eventi: [{ sponsor: bottega.id, posizione: 'sito', azione: azione, n: 1 }] }),
       keepalive: true
     }).catch(function () {});
