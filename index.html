@@ -341,7 +341,7 @@
         <h2 id="botteghe-titolo">Botteghe amiche</h2>
         <p class="introduzione">Le botteghe amiche sono gli sponsor che tengono Scrippellapp gratuita.</p>
         <!-- Posti per le botteghe (D-95, D-289). Lo script in fondo alla pagina li riempie con le card lette dal Worker: foto, logo, nome, tipo e comune;
-             una card apre il dettaglio nel foglio qui sotto. La bottega principale è la prima della fila e sta anche in testa alla pagina (D-291).
+             una card apre il dettaglio nel foglio qui sotto. La bottega principale è la prima della fila e sta anche in testa alla pagina (D-293).
              Senza botteghe il blocco resta nascosto; i posti liberi accanto alle card sono solo decorativi, nascosti agli screen reader. -->
         <ul class="posti" aria-hidden="true">
           <li class="posto"></li>
@@ -593,7 +593,7 @@
     });
   }
 
-  // `largo`: il logo solo ritagliato, per la testata (D-291); le copie di prima non l'hanno
+  // `largo`: il logo solo ritagliato, per la testata (D-293); le copie di prima non l'hanno
   var logo = function (bottega, classe, largo) {
     var img = document.createElement('img');
     img.src = (largo && bottega.logoLargo) || bottega.logo;
