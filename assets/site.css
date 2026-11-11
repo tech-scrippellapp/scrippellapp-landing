@@ -1375,26 +1375,9 @@ button.posto-presentato {
   padding-right: 56px;
 }
 
-/* tipo e "Sostiene Scrippellapp" sulla stessa riga, se ci stanno */
-.bottega-riga {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px 12px;
-  margin-top: -6px;
-}
-
 .bottega-tipo {
+  margin-top: -6px;
   color: var(--secondario);
-}
-
-.bottega-sostiene {
-  padding: 4px 12px;
-  border-radius: 999px;
-  background: var(--tenue);
-  color: var(--azione);
-  font-size: 0.875rem;
-  font-weight: 700;
 }
 
 .bottega-dove {
