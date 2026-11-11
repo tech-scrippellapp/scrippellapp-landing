@@ -1287,11 +1287,11 @@ button.posto-presentato {
 
 .foglio-bottega {
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   width: min(520px, calc(100vw - 32px));
   max-height: calc(100dvh - 32px);
   margin: auto;
-  padding: 20px 24px 24px;
+  padding: 20px 24px;
   overflow-y: auto;
   border: 1px solid var(--bordo);
   border-radius: 20px;
@@ -1316,10 +1316,13 @@ button.posto-presentato {
   }
 }
 
+/* la X sta sull'angolo, sopra la foto: non prende una riga */
 .chiudi-bottega {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
   display: inline-flex;
-  flex: none;
-  align-self: flex-end;
   align-items: center;
   justify-content: center;
   width: 48px;
@@ -1339,10 +1342,6 @@ button.posto-presentato {
   background: var(--testo);
 }
 
-.chiudi-bottega {
-  position: relative;
-}
-
 .chiudi-bottega span:first-child {
   transform: rotate(45deg);
 }
@@ -1355,6 +1354,8 @@ button.posto-presentato {
   display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
+  /* sugli schermi bassi la foto si accorcia, così il foglio sta tutto senza scorrere */
+  max-height: 24dvh;
   object-fit: cover;
   border-radius: 14px;
 }
@@ -1369,13 +1370,25 @@ button.posto-presentato {
   line-height: 1.2;
 }
 
+/* senza foto il nome non passa sotto la X */
+.foglio-bottega:has(.bottega-foto[hidden]) .bottega-nome {
+  padding-right: 56px;
+}
+
+/* tipo e "Sostiene Scrippellapp" sulla stessa riga, se ci stanno */
+.bottega-riga {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  margin-top: -6px;
+}
+
 .bottega-tipo {
-  margin-top: -8px;
   color: var(--secondario);
 }
 
 .bottega-sostiene {
-  align-self: flex-start;
   padding: 4px 12px;
   border-radius: 999px;
   background: var(--tenue);
