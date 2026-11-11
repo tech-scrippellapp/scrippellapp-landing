@@ -1212,6 +1212,8 @@ a:hover {
   position: relative;
   display: block;
   aspect-ratio: 3 / 2;
+  /* il logo sul bianco: la carta oleata solo sotto i testi */
+  background: var(--foglio);
 }
 
 /* l'immagine riempie l'area 3:2 qualunque sia la sua forma */
