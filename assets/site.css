@@ -28,6 +28,11 @@
   --foglio: #ffffff;
   --bordo: #e9e2d7;
   --lembo: #ebe3d4;
+  /* il foglio delle card delle botteghe (D-294): carta oleata col riflesso, retro del lembo, ombre */
+  --carta-oleata: linear-gradient(118deg, #fcf7ec 0%, #f7edd8 38%, #fcf6ea 55%, #f5e9d0 100%);
+  --lembo-retro: linear-gradient(135deg, #f7efe0, #d9cbb0);
+  --ombra-foglio: drop-shadow(0 0 0.6px rgb(42 35 30 / 0.28)) drop-shadow(0 6px 10px rgb(42 35 30 / 0.08));
+  --ombra-foglio-su: drop-shadow(0 0 0.6px rgb(42 35 30 / 0.28)) drop-shadow(0 12px 16px rgb(139 90 43 / 0.2));
   --testo: #2a231e;
   --secondario: #6f645a;
   --azione: #8a5e1f;
@@ -252,28 +257,26 @@ a:hover {
   padding: 6px 12px;
 }
 
-/* Il foglio della scrippella, come nel logo (MARCHIO): bianco, un po' storto, con l'angolo in alto a
-   destra arricciato. Il logo (o il nome) sta sul foglio, lontano dalla piega. Lo usano "Presentato
-   da", le card e il dettaglio delle botteghe (D-283, D-294) */
-.foglio-logo {
+/* Con lo sponsor dentro diventa il foglio della scrippella, come nel logo (MARCHIO): bianco, un po'
+   storto, con l'angolo in alto a destra arricciato. Il logo sta sul foglio, lontano dalla piega */
+.posto.posto-presentato.pieno {
   position: relative;
   isolation: isolate;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 12px 26px 12px 16px;
+  border: 0;
+  background: none;
   filter: drop-shadow(0 0 0.6px rgb(42 35 30 / 0.35)) drop-shadow(0 6px 10px rgb(42 35 30 / 0.08));
 }
 
-.foglio-logo::before,
-.foglio-logo::after {
+.posto.posto-presentato.pieno::before,
+.posto.posto-presentato.pieno::after {
   content: '';
   position: absolute;
   z-index: -1;
 }
 
 /* Il foglio: i lati non sono dritti, e in alto a destra segue la curva della piega */
-.foglio-logo::before {
+.posto.posto-presentato.pieno::before {
   inset: 0;
   background: var(--foglio);
   clip-path: polygon(
@@ -289,37 +292,13 @@ a:hover {
 }
 
 /* Il lembo arricciato, con le curve del logo */
-.foglio-logo::after {
+.posto.posto-presentato.pieno::after {
   top: 0;
   right: 0;
   width: 20px;
   height: 18px;
   background: var(--lembo);
   clip-path: path('M0 0Q7.3 11.8 20 17.4Q13.2 13.8 4.9 14.6Q4.4 6.2 0 0Z');
-}
-
-.foglio-logo img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-/* Senza logo il nome, scritto sul foglio come nell'app */
-.foglio-nome {
-  color: var(--testo);
-  font-weight: 700;
-  line-height: 1.25;
-  text-align: center;
-  overflow-wrap: anywhere;
-}
-
-/* "Presentato da" con lo sponsor dentro diventa il foglio: con .posto davanti, se no vincono il
-   bordo e il fondo di .posto.pieno */
-.posto.posto-presentato.pieno {
-  padding: 12px 26px 12px 16px;
-  border: 0;
-  background: none;
 }
 
 @media (max-width: 679px) {
@@ -1126,25 +1105,100 @@ a:hover {
   background: none;
 }
 
+/* La card sul foglio della scrippella (D-294, tavola F.7): carta oleata, angoli a 14 px, in alto a
+   destra l'angolo che si alza col lembo del marchio (0,85). L'ombra sta sul pulsante, il taglio sul
+   foglio dentro: un filtro sullo stesso elemento del clip-path verrebbe tagliato */
 .card-bottega {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
   padding: 0;
-  overflow: hidden;
-  border: 1px solid var(--bordo);
-  border-radius: 14px;
-  background: var(--foglio);
+  border: 0;
+  background: none;
   color: var(--testo);
   font: inherit;
   text-align: left;
   cursor: pointer;
-  transition: box-shadow 0.15s ease, transform 0.15s ease;
+  filter: var(--ombra-foglio);
+  transition: filter 0.15s ease, transform 0.15s ease;
 }
 
 .card-bottega:hover {
-  box-shadow: 0 10px 20px -12px rgb(139 90 43 / 0.45);
+  filter: var(--ombra-foglio-su);
+}
+
+/* ruotate in senso orario, non tutte uguali; i posti liberi restano dritti */
+.posti .posto:nth-child(4n + 1) .card-bottega {
+  rotate: 0.6deg;
+}
+
+.posti .posto:nth-child(4n + 2) .card-bottega {
+  rotate: 0.4deg;
+}
+
+.posti .posto:nth-child(4n + 3) .card-bottega {
+  rotate: 0.7deg;
+}
+
+.posti .posto:nth-child(4n + 4) .card-bottega {
+  rotate: 0.5deg;
+}
+
+/* l'ombra morbida sotto l'angolo che si stacca */
+.card-bottega::before {
+  content: '';
+  position: absolute;
+  top: -4.25px;
+  right: -5.95px;
+  width: 56px;
+  height: 42px;
+  background: radial-gradient(ellipse at 70% 40%, rgb(42 35 30 / 0.15), transparent 70%);
+  filter: blur(4px);
+}
+
+.card-foglio {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--carta-oleata);
+  /* il taglio lungo la curva del lembo */
+  clip-path: polygon(
+    0 0,
+    calc(100% - 28.9px) 0,
+    calc(100% - 26.1px) 4.1px,
+    calc(100% - 23.1px) 7.9px,
+    calc(100% - 19.9px) 11.5px,
+    calc(100% - 16.4px) 14.8px,
+    calc(100% - 12.7px) 17.8px,
+    calc(100% - 8.7px) 20.5px,
+    calc(100% - 4.5px) 23px,
+    100% 25.2px,
+    100% 100%,
+    0 100%
+  );
+}
+
+/* il lembo con la sua ombra sul foglio: l'ombra sul contenitore, la forma sul figlio */
+.card-lembo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 28.9px;
+  height: 25.5px;
+  filter: drop-shadow(-2px 3px 2.5px rgb(42 35 30 / 0.22));
+}
+
+.card-lembo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--lembo-retro);
+  clip-path: path('M0 0Q10.54 17 28.9 25.16Q19.04 19.98 7.06 21.08Q6.38 8.93 0 0Z');
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -1158,16 +1212,11 @@ a:hover {
   position: relative;
   display: block;
   aspect-ratio: 3 / 2;
-  background: var(--foglio);
 }
 
-/* Senza foto il foglio col logo al centro, su Tenue (D-294) */
-.card-media.senza-foto {
-  background: var(--tenue);
-}
-
-/* la foto riempie l'area 3:2 qualunque sia la sua forma */
-.card-foto {
+/* l'immagine riempie l'area 3:2 qualunque sia la sua forma */
+.card-foto,
+.card-logo {
   position: absolute;
   inset: 0;
   display: block;
@@ -1180,24 +1229,28 @@ a:hover {
   object-fit: cover;
 }
 
-/* Il foglio col logo appoggiato sulla foto: in basso a sinistra, largo metà della card (D-294) */
+.card-logo,
+.card-targa img {
+  object-fit: contain;
+}
+
+/* Il logo sulla foto: una targhetta bianca in basso a sinistra, larga metà della card */
 .card-targa {
   position: absolute;
   left: 10px;
   bottom: 10px;
   width: 50%;
   aspect-ratio: 3 / 2;
-  padding: 8px 22px 8px 10px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--foglio);
+  box-shadow: 0 2px 8px rgb(42 35 30 / 0.18);
 }
 
-/* Senza foto il foglio sta al centro, largo quanto basta alla tela del logo */
-.card-foglio {
-  position: absolute;
-  top: 14%;
-  bottom: 14%;
-  left: 50%;
-  aspect-ratio: 3 / 2;
-  transform: translateX(-50%);
+.card-targa img {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .card-testi {
@@ -1296,24 +1349,15 @@ button.posto-presentato {
   transform: rotate(-45deg);
 }
 
-/* In alto il foglio col logo, su Tenue, al posto della foto (D-294) */
-.bottega-logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 2 / 1;
-  padding: 24px;
+.bottega-foto {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
   border-radius: 14px;
-  background: var(--tenue);
 }
 
-.bottega-logo .foglio-logo {
-  height: 100%;
-  aspect-ratio: 3 / 2;
-  max-width: 100%;
-  padding: 14px 30px 14px 18px;
-}
-
+.bottega-foto[hidden],
 .foglio-bottega [hidden] {
   display: none;
 }
