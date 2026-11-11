@@ -340,7 +340,7 @@
       <div class="botteghe" hidden>
         <h2 id="botteghe-titolo">Botteghe amiche</h2>
         <p class="introduzione">Le botteghe amiche sono gli sponsor che tengono Scrippellapp gratuita.</p>
-        <!-- Posti per le botteghe (D-95, D-289). Lo script in fondo alla pagina li riempie con le card lette dal Worker: foto, logo, nome, tipo e comune;
+        <!-- Posti per le botteghe (D-95, D-289). Lo script in fondo alla pagina li riempie con le card lette dal Worker: foto col logo sul foglio, nome, tipo e comune;
              una card apre il dettaglio nel foglio qui sotto. La bottega principale è la prima della fila e sta anche in testa alla pagina (D-293).
              Senza botteghe il blocco resta nascosto; i posti liberi accanto alle card sono solo decorativi, nascosti agli screen reader. -->
         <ul class="posti" aria-hidden="true">
@@ -358,7 +358,8 @@
         <button type="button" class="chiudi-bottega" popovertarget="bottega" popovertargetaction="hide" aria-label="Chiudi">
           <span></span><span></span>
         </button>
-        <img class="bottega-foto" alt="" hidden>
+        <!-- il logo sul foglio della scrippella (D-294); senza logo il nome -->
+        <div class="bottega-logo" aria-hidden="true"><span class="foglio-logo"></span></div>
         <h2 id="bottega-nome" class="bottega-nome"></h2>
         <p class="bottega-tipo"></p>
         <p class="bottega-sostiene">Sostiene Scrippellapp</p>
@@ -561,10 +562,9 @@
     if (!foglio || !foglio.showPopover) return;
     aperta = bottega;
     origine = da;
-    var foto = foglio.querySelector('.bottega-foto');
-    foto.hidden = !bottega.foto;
-    if (bottega.foto) foto.src = bottega.foto;
-    else foto.removeAttribute('src');
+    var carta = foglio.querySelector('.bottega-logo .foglio-logo');
+    carta.textContent = '';
+    carta.appendChild(sulFoglio(bottega));
     foglio.querySelector('.bottega-nome').textContent = bottega.nome;
     mostra(foglio.querySelector('.bottega-tipo'), bottega.tipo);
     mostra(foglio.querySelector('.bottega-descrizione'), bottega.descrizione);
@@ -608,7 +608,20 @@
     el.textContent = valore;
     return el;
   };
-  // in alto la foto con il logo su una targhetta; senza foto il logo riempie l'area, come nell'app
+  // il logo delle card sul foglio; senza logo il nome scritto, come nell'app (D-294)
+  var sulFoglio = function (bottega) {
+    return bottega.logo ? logo(bottega) : testo('foglio-nome', bottega.nome);
+  };
+  var foglioCon = function (bottega, classe) {
+    var carta = document.createElement('span');
+    carta.className = 'foglio-logo ' + classe;
+    // il nome sta già nella card: il foglio non si legge due volte
+    carta.setAttribute('aria-hidden', 'true');
+    carta.appendChild(sulFoglio(bottega));
+    return carta;
+  };
+  // in alto la foto col foglio del logo appoggiato sopra; senza foto il foglio al centro, su Tenue:
+  // il logo una volta sola (D-294)
   var card = function (bottega) {
     var pulsante = document.createElement('button');
     pulsante.type = 'button';
@@ -622,12 +635,10 @@
       foto.decoding = 'async';
       foto.className = 'card-foto';
       media.appendChild(foto);
-      var targa = document.createElement('span');
-      targa.className = 'card-targa';
-      targa.appendChild(logo(bottega));
-      media.appendChild(targa);
+      media.appendChild(foglioCon(bottega, 'card-targa'));
     } else {
-      media.appendChild(logo(bottega, 'card-logo'));
+      media.className += ' senza-foto';
+      media.appendChild(foglioCon(bottega, 'card-foglio'));
     }
     pulsante.appendChild(media);
     var testi = document.createElement('span');
@@ -660,7 +671,7 @@
       if (main && segnaposto) {
         var posto = document.createElement('button');
         posto.type = 'button';
-        posto.className = 'posto posto-presentato pieno';
+        posto.className = 'posto posto-presentato pieno foglio-logo';
         posto.setAttribute('aria-label', main.nome + ': apri la scheda');
         posto.appendChild(logo(main, '', true));
         posto.addEventListener('click', function () {
