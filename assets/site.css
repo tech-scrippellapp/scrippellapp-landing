@@ -252,26 +252,28 @@ a:hover {
   padding: 6px 12px;
 }
 
-/* Con lo sponsor dentro diventa il foglio della scrippella, come nel logo (MARCHIO): bianco, un po'
-   storto, con l'angolo in alto a destra arricciato. Il logo sta sul foglio, lontano dalla piega */
-.posto.posto-presentato.pieno {
+/* Il foglio della scrippella, come nel logo (MARCHIO): bianco, un po' storto, con l'angolo in alto a
+   destra arricciato. Il logo (o il nome) sta sul foglio, lontano dalla piega. Lo usano "Presentato
+   da", le card e il dettaglio delle botteghe (D-283, D-294) */
+.foglio-logo {
   position: relative;
   isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 12px 26px 12px 16px;
-  border: 0;
-  background: none;
   filter: drop-shadow(0 0 0.6px rgb(42 35 30 / 0.35)) drop-shadow(0 6px 10px rgb(42 35 30 / 0.08));
 }
 
-.posto.posto-presentato.pieno::before,
-.posto.posto-presentato.pieno::after {
+.foglio-logo::before,
+.foglio-logo::after {
   content: '';
   position: absolute;
   z-index: -1;
 }
 
 /* Il foglio: i lati non sono dritti, e in alto a destra segue la curva della piega */
-.posto.posto-presentato.pieno::before {
+.foglio-logo::before {
   inset: 0;
   background: var(--foglio);
   clip-path: polygon(
@@ -287,13 +289,37 @@ a:hover {
 }
 
 /* Il lembo arricciato, con le curve del logo */
-.posto.posto-presentato.pieno::after {
+.foglio-logo::after {
   top: 0;
   right: 0;
   width: 20px;
   height: 18px;
   background: var(--lembo);
   clip-path: path('M0 0Q7.3 11.8 20 17.4Q13.2 13.8 4.9 14.6Q4.4 6.2 0 0Z');
+}
+
+.foglio-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Senza logo il nome, scritto sul foglio come nell'app */
+.foglio-nome {
+  color: var(--testo);
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+/* "Presentato da" con lo sponsor dentro diventa il foglio: con .posto davanti, se no vincono il
+   bordo e il fondo di .posto.pieno */
+.posto.posto-presentato.pieno {
+  padding: 12px 26px 12px 16px;
+  border: 0;
+  background: none;
 }
 
 @media (max-width: 679px) {
@@ -1135,9 +1161,13 @@ a:hover {
   background: var(--foglio);
 }
 
-/* l'immagine riempie l'area 3:2 qualunque sia la sua forma */
-.card-foto,
-.card-logo {
+/* Senza foto il foglio col logo al centro, su Tenue (D-294) */
+.card-media.senza-foto {
+  background: var(--tenue);
+}
+
+/* la foto riempie l'area 3:2 qualunque sia la sua forma */
+.card-foto {
   position: absolute;
   inset: 0;
   display: block;
@@ -1150,28 +1180,24 @@ a:hover {
   object-fit: cover;
 }
 
-.card-logo,
-.card-targa img {
-  object-fit: contain;
-}
-
-/* Il logo sulla foto: una targhetta bianca in basso a sinistra, larga metà della card */
+/* Il foglio col logo appoggiato sulla foto: in basso a sinistra, largo metà della card (D-294) */
 .card-targa {
   position: absolute;
   left: 10px;
   bottom: 10px;
   width: 50%;
   aspect-ratio: 3 / 2;
-  overflow: hidden;
-  border-radius: 10px;
-  background: var(--foglio);
-  box-shadow: 0 2px 8px rgb(42 35 30 / 0.18);
+  padding: 8px 22px 8px 10px;
 }
 
-.card-targa img {
-  display: block;
-  width: 100%;
-  height: 100%;
+/* Senza foto il foglio sta al centro, largo quanto basta alla tela del logo */
+.card-foglio {
+  position: absolute;
+  top: 14%;
+  bottom: 14%;
+  left: 50%;
+  aspect-ratio: 3 / 2;
+  transform: translateX(-50%);
 }
 
 .card-testi {
@@ -1270,15 +1296,24 @@ button.posto-presentato {
   transform: rotate(-45deg);
 }
 
-.bottega-foto {
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+/* In alto il foglio col logo, su Tenue, al posto della foto (D-294) */
+.bottega-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 2 / 1;
+  padding: 24px;
   border-radius: 14px;
+  background: var(--tenue);
 }
 
-.bottega-foto[hidden],
+.bottega-logo .foglio-logo {
+  height: 100%;
+  aspect-ratio: 3 / 2;
+  max-width: 100%;
+  padding: 14px 30px 14px 18px;
+}
+
 .foglio-bottega [hidden] {
   display: none;
 }
