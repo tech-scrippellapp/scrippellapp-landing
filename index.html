@@ -613,6 +613,9 @@
     var pulsante = document.createElement('button');
     pulsante.type = 'button';
     pulsante.className = 'card-bottega';
+    // il foglio della scrippella (D-294): dentro il contenuto, sopra il lembo
+    var foglio = document.createElement('span');
+    foglio.className = 'card-foglio';
     var media = document.createElement('span');
     media.className = 'card-media';
     if (bottega.foto) {
@@ -629,13 +632,18 @@
     } else {
       media.appendChild(logo(bottega, 'card-logo'));
     }
-    pulsante.appendChild(media);
+    foglio.appendChild(media);
     var testi = document.createElement('span');
     testi.className = 'card-testi';
     testi.appendChild(testo('card-nome', bottega.nome));
     var sotto = [bottega.tipo, bottega.comune].filter(Boolean).join(' · ');
     if (sotto) testi.appendChild(testo('card-sotto', sotto));
-    pulsante.appendChild(testi);
+    foglio.appendChild(testi);
+    pulsante.appendChild(foglio);
+    var lembo = document.createElement('span');
+    lembo.className = 'card-lembo';
+    lembo.setAttribute('aria-hidden', 'true');
+    pulsante.appendChild(lembo);
     pulsante.addEventListener('click', function () {
       apri(bottega, pulsante);
     });
