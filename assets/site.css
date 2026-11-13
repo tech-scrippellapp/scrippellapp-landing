@@ -162,7 +162,14 @@ a:hover {
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: 12px 24px;
-  min-height: 88px;
+}
+
+/* L'altezza per il foglio di "Presentato da" solo quando c'è: senza, la testata resta bassa.
+   Sotto i 680 px la riga si adatta da sola */
+@media (min-width: 680px) {
+  .testata:not(.testata-pagina):has(.presentato:not([hidden])) .contenitore {
+    min-height: 88px;
+  }
 }
 
 .testata .presentato {
@@ -489,12 +496,12 @@ a:hover {
 
 /* ───── Apertura ───── */
 
-/* Il logo occupa la riga fino a 820 px. Lo spazio libero sopra e sotto è almeno metà
+/* Il logo occupa l'80% della riga, fino a 656 px. Lo spazio libero sopra e sotto è almeno metà
    dell'altezza del marchio (MARCHIO/LEGGIMI.md), cioè circa il 9% della larghezza del logo */
 .apertura .logo {
-  width: min(100%, 820px);
+  width: min(80%, 656px);
   height: auto;
-  margin-block: min(9%, 74px);
+  margin-block: min(7.2%, 59px);
   overflow: visible;
 }
 
