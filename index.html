@@ -370,6 +370,7 @@
           <a class="pulsante bottega-chiama" data-azione="chiama" hidden>Chiama</a>
           <a class="pulsante bottega-whatsapp" data-azione="whatsapp" target="_blank" rel="sponsored noopener" hidden>WhatsApp</a>
           <a class="pulsante bottega-indicazioni" data-azione="indicazioni" target="_blank" rel="sponsored noopener">Indicazioni</a>
+          <a class="pulsante bottega-link" data-azione="link" target="_blank" rel="sponsored noopener" hidden>Visita</a>
         </div>
       </div>
       <div class="foglio-ombra">
@@ -381,7 +382,7 @@
           <h2 id="attivita-titolo">Hai un'attività? Scrivici</h2>
           <p>Dal fioraio al parrucchiere, dal fotografo al negozio sotto casa: ogni attività può stare in Scrippellapp, accanto alle famiglie che preparano la festa. Chi la sostiene compare:</p>
           <ul class="vetrine">
-            <li>nella scheda Botteghe, con foto, orari e i pulsanti Chiama, WhatsApp e Indicazioni;</li>
+            <li>nella scheda Botteghe, con foto, orari e i pulsanti Chiama, WhatsApp, Indicazioni e Visita, che apre il loro sito o la loro pagina social;</li>
             <li>tra le "Botteghe amiche" in home;</li>
             <li>a fine giro, con "Questo giro è offerto da";</li>
             <li>all'apertura dell'app, con "Presentato da";</li>
@@ -575,6 +576,14 @@
     // Google Maps col punto; senza, con indirizzo e comune
     var meta = bottega.punto ? bottega.punto.lat + ',' + bottega.punto.lng : dove(bottega);
     collega(foglio.querySelector('.bottega-indicazioni'), meta ? 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(meta) : null);
+    // "Visita", il link della bottega (D-304): solo una pagina https
+    collega(foglio.querySelector('.bottega-link'), /^https:\/\//.test(bottega.link || '') ? bottega.link : null);
+    // due per riga nell'ordine; quello che resta solo va in fondo a tutta larghezza (D-304)
+    var accesi = foglio.querySelectorAll('.bottega-azioni .pulsante:not([hidden])');
+    foglio.querySelectorAll('.bottega-azioni .pulsante').forEach(function (el) {
+      el.classList.remove('intero');
+    });
+    if (accesi.length % 2 === 1) accesi[accesi.length - 1].classList.add('intero');
     foglio.showPopover();
     foglio.querySelector('.chiudi-bottega').focus();
     conta(bottega, 'scheda');

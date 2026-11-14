@@ -1403,16 +1403,23 @@ button.posto-presentato {
   color: var(--secondario);
 }
 
+/* Due per riga, nell'ordine Chiama, WhatsApp, Indicazioni, Visita; quello che resta solo va in
+   fondo a tutta larghezza (.intero, dallo script), come nell'app (D-304) */
 .bottega-azioni {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
 }
 
 .bottega-azioni .pulsante {
-  flex: 1 1 140px;
   justify-content: center;
   margin-top: 0;
+  min-width: 0;
+  text-align: center;
+}
+
+.bottega-azioni .pulsante.intero {
+  grid-column: 1 / -1;
 }
 
 @media (prefers-reduced-motion: no-preference) {
