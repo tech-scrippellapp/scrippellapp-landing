@@ -152,7 +152,24 @@ a:hover {
 /* ───── Testata ───── */
 
 .testata {
+  position: relative;
+  isolation: isolate;
   padding-block: 14px;
+}
+
+/* La spolverata del logo, zucchero e cannella, su tutta la testata. Due misure sfalsate, così
+   non si vede la griglia; più fitta ai lati e quasi niente al centro, dove c'è il testo */
+.testata::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    url('/assets/spolverata.svg') 0 0 / 150px repeat,
+    url('/assets/spolverata.svg') 61px 37px / 104px repeat;
+  -webkit-mask-image: linear-gradient(90deg, #000, rgb(0 0 0 / 0.25) 30%, rgb(0 0 0 / 0.25) 70%, #000);
+  mask-image: linear-gradient(90deg, #000, rgb(0 0 0 / 0.25) 30%, rgb(0 0 0 / 0.25) 70%, #000);
+  pointer-events: none;
 }
 
 /* Tre colonne: "Presentato da" a sinistra, menu a destra, patrocinio al centro dello spazio
@@ -224,6 +241,50 @@ a:hover {
   .apri-menu {
     grid-column: 2;
   }
+}
+
+/* Né bottega principale né patrocinio: sugli schermi larghi le voci stanno in fila nella testata al
+   posto del pulsante. Appena c'è uno dei due torna il menu che si apre da destra */
+.voci-in-fila {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .testata:has(.presentato[hidden]):has(.patrocinio-testata[hidden]) .voci-in-fila {
+    display: flex;
+    grid-column: 1 / -1;
+    grid-row: 1;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .testata:has(.presentato[hidden]):has(.patrocinio-testata[hidden]) .apri-menu {
+    display: none;
+  }
+}
+
+.voci-in-fila ul {
+  display: flex;
+  gap: 32px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.voci-in-fila li a {
+  display: block;
+  padding-block: 8px;
+  color: var(--testo);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.voci-in-fila li a:hover {
+  color: var(--azione);
+}
+
+.voci-in-fila .pulsante {
+  margin: 0 0 0 auto;
 }
 
 /* Senza bottega principale il patrocinio prende il suo posto, a sinistra sulla riga del menu */
@@ -463,7 +524,8 @@ a:hover {
 /* Browser senza popover: niente pulsanti, le voci restano in fila sotto la testata */
 @supports not selector(:popover-open) {
   .apri-menu,
-  .chiudi-menu {
+  .chiudi-menu,
+  .testata:has(.presentato[hidden]):has(.patrocinio-testata[hidden]) .voci-in-fila {
     display: none;
   }
 
