@@ -172,7 +172,7 @@ a:hover {
   pointer-events: none;
 }
 
-/* Tre colonne: "Presentato da" a sinistra, menu a destra, patrocinio al centro dello spazio
+/* Tre colonne: "Con il sostegno di" a sinistra, menu a destra, patrocinio al centro dello spazio
    che resta tra i due (non per forza al centro della pagina) */
 .testata:not(.testata-pagina) .contenitore {
   display: grid;
@@ -181,7 +181,7 @@ a:hover {
   gap: 12px 24px;
 }
 
-/* L'altezza per il foglio di "Presentato da" solo quando c'è: senza, la testata resta bassa.
+/* L'altezza per il foglio di "Con il sostegno di" solo quando c'è: senza, la testata resta bassa.
    Sotto i 680 px la riga si adatta da sola */
 @media (min-width: 680px) {
   .testata:not(.testata-pagina):has(.presentato:not([hidden])) .contenitore {
@@ -207,7 +207,7 @@ a:hover {
 }
 
 @media (min-width: 900px) {
-  /* Sugli schermi larghi la testata resta in alto: "Presentato da" e il menu sempre a portata */
+  /* Sugli schermi larghi la testata resta in alto: "Con il sostegno di" e il menu sempre a portata */
   .testata:not(.testata-pagina) {
     position: sticky;
     top: 0;
@@ -307,7 +307,7 @@ a:hover {
   font-weight: 600;
 }
 
-/* "Presentato da" e "Botteghe amiche" restano nascosti finché non hanno una bottega */
+/* "Con il sostegno di" e "Botteghe amiche" restano nascosti finché non hanno una bottega */
 .presentato[hidden],
 .botteghe[hidden] {
   display: none;
@@ -369,8 +369,54 @@ a:hover {
   clip-path: path('M0 0Q7.3 11.8 20 17.4Q13.2 13.8 4.9 14.6Q4.4 6.2 0 0Z');
 }
 
+/* La fascia dell'anno (D-308): color scrippella, zig zag ai due capi, ruotata di 16° in senso
+   antiorario. Sporge in basso a destra nel margine della testata e nello spazio fino al menu; il
+   logo si sposta un po' a sinistra. Misura fissa, anche col testo ingrandito */
+.posto.posto-presentato.pieno.con-fascia {
+  padding-right: 34px;
+}
+
+.fascia-anno {
+  position: absolute;
+  right: -12px;
+  bottom: -8px;
+  width: 56px;
+  height: 20px;
+  background: var(--scrippella);
+  color: var(--testo);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.05em;
+  text-align: center;
+  white-space: nowrap;
+  transform: rotate(-16deg);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    calc(100% - 6px) 25%,
+    100% 50%,
+    calc(100% - 6px) 75%,
+    100% 100%,
+    0 100%,
+    6px 75%,
+    0 50%,
+    6px 25%
+  );
+}
+
+/* Per il solo lettore dello schermo: l'anno dopo "Con il sostegno di" */
+.solo-lettore {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 @media (max-width: 679px) {
-  /* "Presentato da" prende tutta la colonna, così il foglio si può stringere */
+  /* "Con il sostegno di" prende tutta la colonna, così il foglio si può stringere */
   .testata .presentato {
     justify-self: stretch;
   }
@@ -381,6 +427,12 @@ a:hover {
 
   .posto.posto-presentato.pieno {
     padding: 10px 24px 10px 12px;
+  }
+
+  .posto.posto-presentato.pieno.con-fascia {
+    padding-right: 32px;
+    /* la fascia non tocca il filo del patrocinio sotto */
+    margin-bottom: 10px;
   }
 }
 
@@ -1342,7 +1394,7 @@ a:hover {
   line-height: 1.4;
 }
 
-/* "Presentato da" apre il dettaglio come una card */
+/* "Con il sostegno di" apre il dettaglio come una card */
 button.posto-presentato {
   font: inherit;
   cursor: pointer;
