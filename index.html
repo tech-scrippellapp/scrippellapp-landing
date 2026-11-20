@@ -34,10 +34,10 @@
 
 <header class="testata">
   <div class="contenitore">
-    <!-- "Presentato da" (D-95): la bottega principale sta in testa alla pagina, come nell'Accesso dell'app.
-         Nascosto finché non c'è: lo script in fondo alla pagina mette qui il suo logo e lo mostra. -->
+    <!-- "Con il sostegno di" (D-95, D-308): la bottega principale sta in testa alla pagina, come nell'Accesso dell'app.
+         Nascosto finché non c'è: lo script in fondo alla pagina mette qui il suo logo, la fascia con l'anno e lo mostra. -->
     <p class="presentato" hidden>
-      <span>Presentato da</span>
+      <span>Con il sostegno di</span>
       <span class="posto posto-presentato"></span>
     </p>
     <!-- Patrocinio del Comune (D-202), piccolo nell'intestazione (Fase 15, lavoro 2): nascosto finché il Worker non dice che è acceso -->
@@ -362,7 +362,7 @@
         </ul>
       </div>
       <!-- Il dettaglio di una bottega (D-289): un foglio sopra la pagina, col popover del browser come il menu.
-           Lo riempie lo script quando si tocca una card o "Presentato da"; si chiude con la X, con Esc e toccando fuori -->
+           Lo riempie lo script quando si tocca una card o "Con il sostegno di"; si chiude con la X, con Esc e toccando fuori -->
       <div id="bottega" class="foglio-bottega" popover role="dialog" aria-modal="true" aria-labelledby="bottega-nome">
         <button type="button" class="chiudi-bottega" popovertarget="bottega" popovertargetaction="hide" aria-label="Chiudi">
           <span></span><span></span>
@@ -394,7 +394,7 @@
             <li>nella scheda Botteghe, con foto, orari e i pulsanti Chiama, WhatsApp, Indicazioni e Visita, che apre il loro sito o la loro pagina social;</li>
             <li>tra le "Botteghe amiche" in home;</li>
             <li>a fine giro, con "Questo giro è offerto da";</li>
-            <li>all'apertura dell'app, con "Presentato da";</li>
+            <li>all'apertura dell'app, con "Con il sostegno di";</li>
             <li>qui sul sito, con il loro logo: la bottega principale in testa alla pagina, e tutte tra le "Botteghe amiche".</li>
           </ul>
           <p class="nota">Mai durante un giro, perché chi consegna è per strada.</p>
@@ -527,9 +527,9 @@
 })();
 
 // Botteghe (D-95, D-289, Fase 10): le botteghe attive, lette dal Worker. La principale (Main) in
-// testa con "Presentato da" e anche prima nella fila, tutte come card nei posti tratteggiati di "Botteghe amiche"; i posti
+// testa con "Con il sostegno di" e anche prima nella fila, tutte come card nei posti tratteggiati di "Botteghe amiche"; i posti
 // liberi restano tratteggiati. Le due parti si vedono solo se hanno una bottega: se non ce ne sono,
-// o il Worker non risponde, restano nascoste. Una card (e "Presentato da") è un pulsante: apre il
+// o il Worker non risponde, restano nascoste. Una card (e "Con il sostegno di") è un pulsante: apre il
 // dettaglio nel foglio #bottega, coi contatti come nell'app; il fuoco torna sulla card alla chiusura.
 // Si contano, in forma aggregata come le viste, l'apertura del foglio e i tocchi sui pulsanti.
 // Con la stessa lettura il patrocinio del Comune (D-202): intestazione e piede compaiono se è acceso.
@@ -689,6 +689,17 @@
         posto.className = 'posto posto-presentato pieno';
         posto.setAttribute('aria-label', main.nome + ': apri la scheda');
         posto.appendChild(logo(main, '', true));
+        // la fascia con l'anno di fine del contratto (D-308): il lettore dello schermo la sente
+        // con l'etichetta, "Con il sostegno di, 2027", perché il nome del pulsante copre il resto
+        if (typeof main.annoFine === 'number') {
+          var fascia = testo('fascia-anno', String(main.annoFine));
+          fascia.setAttribute('aria-hidden', 'true');
+          posto.appendChild(fascia);
+          posto.classList.add('con-fascia');
+          segnaposto.parentNode.firstElementChild.appendChild(
+            testo('solo-lettore', ', ' + main.annoFine)
+          );
+        }
         posto.addEventListener('click', function () {
           apri(main, posto);
         });
