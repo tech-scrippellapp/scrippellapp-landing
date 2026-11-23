@@ -25,6 +25,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#FAF7F2">
 
+<link rel="preconnect" href="https://scrippellapp-api.scrippellapp.workers.dev" crossorigin>
 <link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/site.css">
@@ -42,7 +43,7 @@
     </p>
     <!-- Patrocinio del Comune (D-202), piccolo nell'intestazione (Fase 15, lavoro 2): nascosto finché il Worker non dice che è acceso -->
     <p class="patrocinio-riga patrocinio-testata" data-patrocinio hidden>
-      <img src="/assets/stemma-mondragone.png" alt="" width="22" height="32">
+      <img src="/assets/stemma-mondragone.png" alt="" loading="lazy" width="22" height="32">
       <span>Con il patrocinio del <strong>Comune di Mondragone</strong></span>
     </p>
     <!-- Senza bottega principale e senza patrocinio, sugli schermi larghi le voci stanno qui in fila -->
@@ -344,9 +345,9 @@
     </div>
   </section>
 
-  <section class="sezione attivita" id="attivita" aria-labelledby="botteghe-titolo">
+  <section class="sezione attivita" id="attivita">
     <div class="contenitore">
-      <div class="botteghe" hidden>
+      <div class="botteghe" role="region" aria-labelledby="botteghe-titolo" hidden>
         <h2 id="botteghe-titolo">Botteghe amiche</h2>
         <p class="introduzione">Le botteghe amiche sono gli sponsor che tengono Scrippellapp gratuita.</p>
         <!-- Posti per le botteghe (D-95, D-289). Lo script in fondo alla pagina li riempie con le card lette dal Worker: foto, logo, nome, tipo e comune;
@@ -388,7 +389,7 @@
             <path d="M0 0Q23.24 38.23 64 56L10.29 53.3Z" fill="#1E2A2A" fill-opacity="0.14"/>
             <path d="M0 0Q23.24 38.23 64 56Q42.29 44.41 15.62 47.12Q14.1 20.08 0 0Z" fill="#EBE3D4" stroke="#E9E2D7" stroke-width="1" stroke-linejoin="round"/>
           </svg>
-          <h2 id="attivita-titolo">Hai un'attività? Scrivici</h2>
+          <h2>Hai un'attività? Scrivici</h2>
           <p>Dal fioraio al parrucchiere, dal fotografo al negozio sotto casa: ogni attività può stare in Scrippellapp, accanto alle famiglie che preparano la festa. Chi la sostiene compare:</p>
           <ul class="vetrine">
             <li>nella scheda Botteghe, con foto, orari e i pulsanti Chiama, WhatsApp, Indicazioni e Visita, che apre il loro sito o la loro pagina social;</li>
@@ -435,7 +436,7 @@
       </div>
     </dl>
     <p class="patrocinio-riga piede-patrocinio" data-patrocinio hidden>
-      <img src="/assets/stemma-mondragone.png" alt="" width="39" height="56">
+      <img src="/assets/stemma-mondragone.png" alt="" loading="lazy" width="39" height="56">
       <span>Con il patrocinio del <strong>Comune di Mondragone</strong></span>
     </p>
     <div class="piede-legale">
@@ -627,6 +628,8 @@
     img.src = (largo && bottega.logoLargo) || bottega.logo;
     img.alt = '';
     img.decoding = 'async';
+    // le card stanno sotto la piega; il logo in testata no (L-23)
+    if (!largo) img.loading = 'lazy';
     if (classe) img.className = classe;
     return img;
   };
@@ -651,6 +654,7 @@
       foto.src = bottega.foto;
       foto.alt = '';
       foto.decoding = 'async';
+      foto.loading = 'lazy';
       foto.className = 'card-foto';
       media.appendChild(foto);
       var targa = document.createElement('span');
