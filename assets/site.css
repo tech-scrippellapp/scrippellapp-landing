@@ -39,6 +39,9 @@
   --tenue: #f3e7d3;
   --scrippella: #c9973f;
   --cannella: #8b5a2b;
+  --azione-scura: #74501a;
+  --finale-testo: #e6ddd0;
+  --scrippella-chiaro: #d8a84e;
 
   --font: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-titoli: 'Fraunces', Georgia, 'Times New Roman', serif;
@@ -212,14 +215,16 @@ a:hover {
     top: 0;
     z-index: 20;
     padding-block: 18px;
-    background: rgb(250 247 242 / 0.86);
+    /* 0.91: sopra la fascia scura il testo secondario resta a 4,5:1 (L-17) */
+    background: rgb(250 247 242 / 0.91);
     border-bottom: 1px solid rgb(233 226 215 / 0.8);
     -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
   }
 
-  main section[id] {
-    scroll-margin-top: 136px;
+  /* testata sticky alta 88-125 px (con sponsor e patrocinio) più il margine: il punto attivo non resta sotto (L-19) */
+  html {
+    scroll-padding-top: 136px;
   }
 }
 
@@ -447,7 +452,7 @@ a:hover {
   width: 48px;
   height: 48px;
   padding: 0;
-  border: 1px solid var(--bordo);
+  border: 1px solid var(--secondario);
   border-radius: 14px;
   background: var(--foglio);
   color: var(--testo);
@@ -1394,6 +1399,7 @@ a:hover {
 }
 
 .card-nome {
+  overflow-wrap: anywhere;
   font-weight: 700;
   line-height: 1.35;
 }
@@ -1441,7 +1447,8 @@ button.posto-presentato {
 }
 
 /* la pagina dietro non scorre; il gutter resta, così il contenuto non si sposta */
-html:has(.foglio-bottega[open]) {
+html:has(.foglio-bottega[open]),
+html:has(.menu:popover-open) {
   overflow: hidden;
   scrollbar-gutter: stable;
 }
@@ -1470,7 +1477,7 @@ html:has(.foglio-bottega[open]) {
   width: 48px;
   height: 48px;
   padding: 0;
-  border: 1px solid var(--bordo);
+  border: 1px solid var(--secondario);
   border-radius: 14px;
   background: var(--foglio);
   cursor: pointer;
@@ -1508,6 +1515,7 @@ html:has(.foglio-bottega[open]) {
 }
 
 .foglio-bottega .bottega-nome {
+  overflow-wrap: anywhere;
   font-size: clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem);
   line-height: 1.2;
 }
@@ -1687,7 +1695,7 @@ html:has(.foglio-bottega[open]) {
 }
 
 .pulsante:hover {
-  background: #74501a;
+  background: var(--azione-scura);
   box-shadow: 0 10px 20px -10px rgb(139 90 43 / 0.6);
 }
 
@@ -1717,7 +1725,7 @@ html:has(.foglio-bottega[open]) {
 .finale p {
   max-width: 44ch;
   margin-top: 20px;
-  color: #e6ddd0;
+  color: var(--finale-testo);
   font-size: clamp(1.125rem, 1.05rem + 0.3vw, 1.25rem);
 }
 
@@ -1731,7 +1739,7 @@ html:has(.foglio-bottega[open]) {
 }
 
 .pulsante-oro:hover {
-  background: #d8a84e;
+  background: var(--scrippella-chiaro);
 }
 
 /* ───── Patrocinio del Comune (D-202): nell'intestazione e nel piede ───── */
@@ -1832,6 +1840,12 @@ html:has(.foglio-bottega[open]) {
   margin: 2px 0 0;
 }
 
+/* area di tocco di 44 px anche sulle email (L-13) */
+.piede dd a {
+  display: inline-block;
+  padding-block: 10px;
+}
+
 .piede-legale {
   display: flex;
   flex-wrap: wrap;
@@ -1852,7 +1866,7 @@ html:has(.foglio-bottega[open]) {
 
 .piede-legale a {
   display: inline-block;
-  padding-block: 8px;
+  padding-block: 10px;
   color: var(--testo);
 }
 
