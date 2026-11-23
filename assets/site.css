@@ -142,7 +142,8 @@ a:hover {
   color: var(--carta);
   font-weight: 600;
   border-radius: 8px;
-  z-index: 10;
+  /* sopra la testata fissa (z-index 20) */
+  z-index: 30;
 }
 
 .salta:focus {
@@ -181,12 +182,10 @@ a:hover {
   gap: 12px 24px;
 }
 
-/* L'altezza per il foglio di "Con il sostegno di" solo quando c'è: senza, la testata resta bassa.
-   Sotto i 680 px la riga si adatta da sola */
-@media (min-width: 680px) {
-  .testata:not(.testata-pagina):has(.presentato:not([hidden])) .contenitore {
-    min-height: 88px;
-  }
+/* L'altezza della testata piena si riserva subito, anche senza sponsor: quando risponde il Worker la
+   pagina non salta (L-6). Sopra i 680 px basta il foglio di "Con il sostegno di"; sotto, la riga col patrocinio */
+.testata:not(.testata-pagina) .contenitore {
+  min-height: 88px;
 }
 
 .testata .presentato {
@@ -228,7 +227,8 @@ a:hover {
 @media (max-width: 679px) {
   .testata:not(.testata-pagina) .contenitore {
     grid-template-columns: minmax(0, 1fr) auto;
-    min-height: 0;
+    /* altezza piena con sponsor e patrocinio (60 + riga del patrocinio), riservata subito (L-6) */
+    min-height: 128px;
   }
 
   .testata .patrocinio-testata {
@@ -1250,6 +1250,16 @@ a:hover {
   filter: var(--ombra-foglio-su);
 }
 
+/* senza showModal la card non apre niente: non sembra un pulsante */
+.card-bottega.senza-foglio {
+  cursor: default;
+}
+
+.card-bottega.senza-foglio:hover {
+  filter: var(--ombra-foglio);
+  transform: none;
+}
+
 /* ruotate in senso orario, non tutte uguali; i posti liberi restano dritti */
 .posti .posto:nth-child(4n + 1) .card-bottega {
   rotate: 0.6deg;
@@ -1400,9 +1410,14 @@ button.posto-presentato {
   cursor: pointer;
 }
 
-/* ───── Il dettaglio di una bottega (D-289): un foglio sopra la pagina, col popover come il menu ───── */
+/* ───── Il dettaglio di una bottega (D-289): un foglio sopra la pagina, un <dialog> aperto con showModal() ───── */
 
-.foglio-bottega:popover-open {
+/* chiuso non occupa spazio nemmeno dove <dialog> è sconosciuto (Safari prima della 15.4) */
+.foglio-bottega:not([open]) {
+  display: none;
+}
+
+.foglio-bottega[open] {
   display: flex;
 }
 
@@ -1423,6 +1438,12 @@ button.posto-presentato {
 
 .foglio-bottega::backdrop {
   background: rgb(42 35 30 / 0.45);
+}
+
+/* la pagina dietro non scorre; il gutter resta, così il contenuto non si sposta */
+html:has(.foglio-bottega[open]) {
+  overflow: hidden;
+  scrollbar-gutter: stable;
 }
 
 /* Sul telefono il foglio sale dal basso e occupa tutta la larghezza */
@@ -1551,7 +1572,7 @@ button.posto-presentato {
     transform: translateY(24px);
   }
 
-  .foglio-bottega:popover-open {
+  .foglio-bottega[open] {
     opacity: 1;
     transform: none;
   }
@@ -1560,17 +1581,17 @@ button.posto-presentato {
     opacity: 0;
   }
 
-  .foglio-bottega:popover-open::backdrop {
+  .foglio-bottega[open]::backdrop {
     opacity: 1;
   }
 
   @starting-style {
-    .foglio-bottega:popover-open {
+    .foglio-bottega[open] {
       opacity: 0;
       transform: translateY(24px);
     }
 
-    .foglio-bottega:popover-open::backdrop {
+    .foglio-bottega[open]::backdrop {
       opacity: 0;
     }
   }
