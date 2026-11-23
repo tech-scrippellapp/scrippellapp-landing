@@ -1412,6 +1412,11 @@ button.posto-presentato {
 
 /* ───── Il dettaglio di una bottega (D-289): un foglio sopra la pagina, un <dialog> aperto con showModal() ───── */
 
+/* chiuso non occupa spazio nemmeno dove <dialog> è sconosciuto (Safari prima della 15.4) */
+.foglio-bottega:not([open]) {
+  display: none;
+}
+
 .foglio-bottega[open] {
   display: flex;
 }
