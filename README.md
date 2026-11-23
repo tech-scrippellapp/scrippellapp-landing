@@ -21,6 +21,8 @@ scrippellapp-landing/
 ├── assets/
 │   ├── site.css            stili condivisi da tutte le pagine
 │   ├── scrippellapp-logo.svg   logo delle pagine interne, da DOC Scrippellapp/MARCHIO/logo-completo
+│   ├── stemma-mondragone.png   stemma del Comune di Mondragone (D-202)
+│   ├── spolverata.svg      spolverata di zucchero e cannella sulla testata (D-306)
 │   └── fonts/              Plus Jakarta Sans e Fraunces (titoli), licenze OFL
 ├── favicon.ico, favicon.svg, favicon-32.png, apple-touch-icon.png,
 │   icon-192.png, icon-512.png, icon-maskable-512.png,
@@ -31,15 +33,11 @@ scrippellapp-landing/
 └── sitemap.xml
 ```
 
-Da aggiungere, come nel piano di sviluppo:
-
-- Fase 11: link alle pagine legali dall'app (`config/legal.ts` come Memura).
-
-Le pagine legali sono bozze del 12 ottobre 2026, scritte dal FDD (cap. 15) e dai testi di Memura: prima di pubblicarle le rivede chi segue la parte legale. Ogni pagina ha la data in alto: quando cambia un testo si aggiornano la data e `sitemap.xml`. Il piede è uguale in tutte le pagine; nella pagina corrente il suo link ha `aria-current="page"`.
+Le pagine legali sono state riviste (D-207) e il sito è pubblicato. Ogni pagina ha la data in alto: quando cambia un testo si aggiornano la data e `sitemap.xml`. Il piede è uguale in tutte le pagine; nella pagina corrente il suo link ha `aria-current="page"`.
 
 ## Regole
 
-- Colori e font solo dalle variabili in testa a `assets/site.css`. I valori sono quelli di `apps/mobile/src/theme` e di `DOC Scrippellapp/MARCHIO/LEGGIMI.md` (palette Carta e Oro).
+- Colori e font solo dalle variabili in testa a `assets/site.css`; fanno eccezione i colori scritti dentro gli SVG della home. I valori sono quelli di `apps/mobile/src/theme` e di `DOC Scrippellapp/MARCHIO/LEGGIMI.md` (palette Carta e Oro).
 - Il logo in `index.html` è quello di `DOC Scrippellapp/MARCHIO/logo-completo`, scritto dentro la pagina. All'apertura la spirale si stende dal centro come nello `ScrippellaLoader` dell'app (D-94), poi arrivano zucchero e cannella. Con "Riduci movimento" il logo compare subito intero. Se il marchio cambia, si ricopiano i tracciati da `MARCHIO`.
 - Solo italiano e solo tema chiaro, come l'app (D-09).
 - Niente numeri decisi da noi (scrippelle per giro, giorni dei giri, durata e livelli degli accordi con le botteghe): restano solo i tempi che la legge chiede di scrivere, come la conservazione dei dati (D-118).
@@ -95,7 +93,7 @@ dig scrippellapp.it +short       # i quattro indirizzi 185.199.108-111.153
 | `https://www.scrippellapp.it/.well-known/apple-app-site-association` e `/.well-known/assetlinks.json` | 200, senza redirect (`curl -sI`) |
 | `https://www.scrippellapp.it/invito/?c=K7M4QX` | la pagina di invito con il codice `K7M4QX` |
 
-Le impronte SHA-256 in `assetlinks.json` (keystore di debug, di caricamento e firma di Google Play) non sono segrete. C'è già quella della keystore di debug dell'app; le altre due le dà Matteo nella Fase 4 (prove P2 e P3).
+Le impronte SHA-256 in `assetlinks.json` non sono segrete. Ci sono quella di debug (serve a `stagingDebug`, firmato con la keystore di debug) e quelle di release; il file non dice quale sia quale.
 
 L'anteprima su WhatsApp si prova incollando il link in una chat. WhatsApp tiene in memoria le anteprime: dopo un cambio dell'immagine conviene provare con `?v=2` in fondo al link.
 
