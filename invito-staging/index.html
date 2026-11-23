@@ -90,7 +90,7 @@
 
 <script>
   // Legge il codice dal link (?c=…) come normalizeInviteCode dell'app: maiuscole e senza caratteri vuoti
-  // e trattini, 6 simboli senza 0, O, 1, I e L. Lo scrive nella pagina e nel referrer di Play.
+  // e trattini, 6 simboli senza 0, O, 1, I e L. Lo scrive nella pagina (la pagina di prova non ha il pulsante di Play).
   (function () {
     var c = (new URLSearchParams(location.search).get('c') || '').replace(/[\s-]/g, '').toUpperCase();
     if (!/^[23456789ABCDEFGHJKMNPQRSTUVWXYZ]{6}$/.test(c)) {
