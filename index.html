@@ -361,10 +361,10 @@
           <li class="posto"></li>
         </ul>
       </div>
-      <!-- Il dettaglio di una bottega (D-289): un foglio sopra la pagina, col popover del browser come il menu.
+      <!-- Il dettaglio di una bottega (D-289): un foglio sopra la pagina, un <dialog> aperto con showModal() (sfondo inerte, fuoco dentro).
            Lo riempie lo script quando si tocca una card o "Con il sostegno di"; si chiude con la X, con Esc e toccando fuori -->
-      <div id="bottega" class="foglio-bottega" popover role="dialog" aria-modal="true" aria-labelledby="bottega-nome">
-        <button type="button" class="chiudi-bottega" popovertarget="bottega" popovertargetaction="hide" aria-label="Chiudi">
+      <dialog id="bottega" class="foglio-bottega" aria-labelledby="bottega-nome">
+        <button type="button" class="chiudi-bottega" aria-label="Chiudi">
           <span></span><span></span>
         </button>
         <img class="bottega-foto" alt="" hidden>
@@ -381,7 +381,7 @@
           <a class="pulsante bottega-indicazioni" data-azione="indicazioni" target="_blank" rel="sponsored noopener">Indicazioni</a>
           <a class="pulsante bottega-link" data-azione="link" target="_blank" rel="sponsored noopener" hidden>Visita</a>
         </div>
-      </div>
+      </dialog>
       <div class="foglio-ombra">
         <div class="foglio">
           <svg class="lembo" viewBox="0 0 64 56" aria-hidden="true">
@@ -530,7 +530,7 @@
 // testa con "Con il sostegno di" e anche prima nella fila, tutte come card nei posti tratteggiati di "Botteghe amiche"; i posti
 // liberi restano tratteggiati. Le due parti si vedono solo se hanno una bottega: se non ce ne sono,
 // o il Worker non risponde, restano nascoste. Una card (e "Con il sostegno di") è un pulsante: apre il
-// dettaglio nel foglio #bottega, coi contatti come nell'app; il fuoco torna sulla card alla chiusura.
+// dettaglio nel foglio #bottega (<dialog> con showModal), coi contatti come nell'app; il fuoco torna sulla card alla chiusura.
 // Si contano, in forma aggregata come le viste, l'apertura del foglio e i tocchi sui pulsanti.
 // Con la stessa lettura il patrocinio del Comune (D-202): intestazione e piede compaiono se è acceso.
 (function () {
@@ -539,6 +539,8 @@
   var foglio = document.getElementById('bottega');
   var aperta = null;
   var origine = null;
+  // senza showModal (Safari prima della 15.4) le card non aprono niente: non sono pulsanti
+  var modale = !!(foglio && foglio.showModal);
 
   // una riga per azione, in JSON come le metriche dell'app: il Worker dà il permesso (CORS) al sito
   var conta = function (bottega, azione) {
@@ -568,7 +570,7 @@
   };
 
   var apri = function (bottega, da) {
-    if (!foglio || !foglio.showPopover) return;
+    if (!foglio || !foglio.showModal) return;
     aperta = bottega;
     origine = da;
     var foto = foglio.querySelector('.bottega-foto');
@@ -593,7 +595,7 @@
       el.classList.remove('intero');
     });
     if (accesi.length % 2 === 1) accesi[accesi.length - 1].classList.add('intero');
-    foglio.showPopover();
+    foglio.showModal();
     foglio.querySelector('.chiudi-bottega').focus();
     conta(bottega, 'scheda');
   };
@@ -603,9 +605,17 @@
       var pulsante = e.target.closest('[data-azione]');
       if (pulsante && aperta) conta(aperta, pulsante.getAttribute('data-azione'));
     });
+    foglio.querySelector('.chiudi-bottega').addEventListener('click', function () {
+      foglio.close();
+    });
+    // toccando lo sfondo (fuori dal riquadro) si chiude
+    foglio.addEventListener('click', function (e) {
+      if (e.target !== foglio) return;
+      var r = foglio.getBoundingClientRect();
+      if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) foglio.close();
+    });
     // chiuso con la X, con Esc o toccando fuori: il fuoco torna dove si era
-    foglio.addEventListener('toggle', function (e) {
-      if (e.newState !== 'closed') return;
+    foglio.addEventListener('close', function () {
       if (origine && origine.isConnected) origine.focus();
       aperta = null;
     });
@@ -628,9 +638,9 @@
   };
   // in alto la foto con il logo su una targhetta; senza foto il logo riempie l'area, come nell'app
   var card = function (bottega) {
-    var pulsante = document.createElement('button');
-    pulsante.type = 'button';
-    pulsante.className = 'card-bottega';
+    var pulsante = document.createElement(modale ? 'button' : 'div');
+    if (modale) pulsante.type = 'button';
+    pulsante.className = modale ? 'card-bottega' : 'card-bottega senza-foglio';
     // il foglio della scrippella (D-294): dentro il contenuto, sopra il lembo
     var foglio = document.createElement('span');
     foglio.className = 'card-foglio';
@@ -662,9 +672,11 @@
     lembo.className = 'card-lembo';
     lembo.setAttribute('aria-hidden', 'true');
     pulsante.appendChild(lembo);
-    pulsante.addEventListener('click', function () {
-      apri(bottega, pulsante);
-    });
+    if (modale) {
+      pulsante.addEventListener('click', function () {
+        apri(bottega, pulsante);
+      });
+    }
     return pulsante;
   };
 
@@ -684,10 +696,11 @@
       })[0];
       var segnaposto = document.querySelector('.posto-presentato');
       if (main && segnaposto) {
-        var posto = document.createElement('button');
-        posto.type = 'button';
+        var posto = document.createElement(modale ? 'button' : 'span');
+        if (modale) posto.type = 'button';
         posto.className = 'posto posto-presentato pieno';
-        posto.setAttribute('aria-label', main.nome + ': apri la scheda');
+        posto.setAttribute('aria-label', main.nome + (modale ? ': apri la scheda' : ''));
+        if (!modale) posto.setAttribute('role', 'img');
         posto.appendChild(logo(main, '', true));
         // la fascia con l'anno di fine del contratto (D-308): il lettore dello schermo la sente
         // con l'etichetta, "Con il sostegno di, 2027", perché il nome del pulsante copre il resto
@@ -700,9 +713,11 @@
             testo('solo-lettore', ', ' + main.annoFine)
           );
         }
-        posto.addEventListener('click', function () {
-          apri(main, posto);
-        });
+        if (modale) {
+          posto.addEventListener('click', function () {
+            apri(main, posto);
+          });
+        }
         segnaposto.parentNode.hidden = false;
         segnaposto.parentNode.replaceChild(posto, segnaposto);
       }
