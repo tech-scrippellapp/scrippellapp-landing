@@ -649,6 +649,9 @@
     foglio.className = 'card-foglio';
     var media = document.createElement('span');
     media.className = 'card-media';
+    // fondo scuro del logo (D-323): il riquadro diventa inchiostro; se manca il campo, chiaro
+    var scuro = bottega.fondoLogo === 'scuro';
+    if (scuro) media.classList.add('scuro');
     if (bottega.foto) {
       var foto = document.createElement('img');
       foto.src = bottega.foto;
@@ -658,7 +661,7 @@
       foto.className = 'card-foto';
       media.appendChild(foto);
       var targa = document.createElement('span');
-      targa.className = 'card-targa';
+      targa.className = scuro ? 'card-targa scuro' : 'card-targa';
       targa.appendChild(logo(bottega));
       media.appendChild(targa);
     } else {
@@ -703,6 +706,7 @@
         var posto = document.createElement(modale ? 'button' : 'span');
         if (modale) posto.type = 'button';
         posto.className = 'posto posto-presentato pieno';
+        if (main.fondoLogo === 'scuro') posto.classList.add('scuro');
         posto.setAttribute('aria-label', main.nome + (modale ? ': apri la scheda' : ''));
         if (!modale) posto.setAttribute('role', 'img');
         posto.appendChild(logo(main, '', true));
