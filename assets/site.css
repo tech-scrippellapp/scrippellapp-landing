@@ -30,6 +30,9 @@
   --lembo: #ebe3d4;
   /* il foglio delle card delle botteghe (D-294): carta oleata col riflesso, retro del lembo, ombre */
   --carta-oleata: linear-gradient(118deg, #fcf7ec 0%, #f7edd8 38%, #fcf6ea 55%, #f5e9d0 100%);
+  /* fondo scuro del logo (D-323): il riquadro è inchiostro (come --testo), il lembo ha il retro grigio scuro caldo */
+  --inchiostro-logo: var(--testo);
+  --lembo-scuro: #4a4038;
   --lembo-retro: linear-gradient(135deg, #f7efe0, #d9cbb0);
   --ombra-foglio: drop-shadow(0 0 0.6px rgb(42 35 30 / 0.28)) drop-shadow(0 6px 10px rgb(42 35 30 / 0.08));
   --ombra-foglio-su: drop-shadow(0 0 0.6px rgb(42 35 30 / 0.28)) drop-shadow(0 12px 16px rgb(139 90 43 / 0.2));
@@ -372,6 +375,16 @@ a:hover {
   height: 18px;
   background: var(--lembo);
   clip-path: path('M0 0Q7.3 11.8 20 17.4Q13.2 13.8 4.9 14.6Q4.4 6.2 0 0Z');
+}
+
+/* Fondo scuro (D-323): un foglio solo, tutto inchiostro; filo e lembo restano, il retro del lembo è
+   grigio scuro caldo */
+.posto.posto-presentato.pieno.scuro::before {
+  background: var(--inchiostro-logo);
+}
+
+.posto.posto-presentato.pieno.scuro::after {
+  background: var(--lembo-scuro);
 }
 
 /* La fascia dell'anno (D-308): color scrippella, zig zag ai due capi, ruotata di 16° in senso
@@ -1350,6 +1363,12 @@ a:hover {
   aspect-ratio: 3 / 2;
   /* il logo sul bianco: la carta oleata solo sotto i testi */
   background: var(--foglio);
+}
+
+/* Fondo scuro del logo (D-323): il riquadro è inchiostro */
+.card-media.scuro,
+.card-targa.scuro {
+  background: var(--inchiostro-logo);
 }
 
 /* l'immagine riempie l'area 3:2 qualunque sia la sua forma */
