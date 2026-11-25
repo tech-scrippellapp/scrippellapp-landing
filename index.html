@@ -378,9 +378,10 @@
         </div>
         <div class="bottega-azioni">
           <a class="pulsante bottega-chiama" data-azione="chiama" hidden>Chiama</a>
-          <a class="pulsante bottega-whatsapp" data-azione="whatsapp" target="_blank" rel="sponsored noopener" hidden>WhatsApp</a>
           <a class="pulsante bottega-indicazioni" data-azione="indicazioni" target="_blank" rel="sponsored noopener">Indicazioni</a>
-          <a class="pulsante bottega-link" data-azione="link" target="_blank" rel="sponsored noopener" hidden>Visita</a>
+          <a class="pulsante bottega-link" data-azione="link" target="_blank" rel="sponsored noopener" hidden>Sito Web</a>
+          <a class="pulsante bottega-social" data-azione="social" target="_blank" rel="sponsored noopener" hidden>Social</a>
+          <a class="pulsante bottega-whatsapp" data-azione="whatsapp" target="_blank" rel="sponsored noopener" hidden>WhatsApp</a>
         </div>
       </dialog>
       <div class="foglio-ombra">
@@ -392,7 +393,7 @@
           <h2>Hai un'attività? Scrivici</h2>
           <p>Dal fioraio al parrucchiere, dal fotografo al negozio sotto casa: ogni attività può stare in Scrippellapp, accanto alle famiglie che preparano la festa. Chi la sostiene compare:</p>
           <ul class="vetrine">
-            <li>nella scheda Botteghe, con foto, orari e i pulsanti Chiama, WhatsApp, Indicazioni e Visita, che apre il loro sito o la loro pagina social;</li>
+            <li>nella scheda Botteghe, con foto, orari e i pulsanti Chiama, Indicazioni, Sito Web, Social e WhatsApp;</li>
             <li>tra le "Botteghe amiche" in home;</li>
             <li>a fine giro, con "Questo giro è offerto da";</li>
             <li>all'apertura dell'app, con "Con il sostegno di";</li>
@@ -588,9 +589,10 @@
     // Google Maps col punto; senza, con indirizzo e comune
     var meta = bottega.punto ? bottega.punto.lat + ',' + bottega.punto.lng : dove(bottega);
     collega(foglio.querySelector('.bottega-indicazioni'), meta ? 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(meta) : null);
-    // "Visita", il link della bottega (D-304): solo una pagina https
+    // Sito Web e Social (D-304, D-328): solo pagine https
     collega(foglio.querySelector('.bottega-link'), /^https:\/\//.test(bottega.link || '') ? bottega.link : null);
-    // due per riga nell'ordine; quello che resta solo va in fondo a tutta larghezza (D-304)
+    collega(foglio.querySelector('.bottega-social'), /^https:\/\//.test(bottega.social || '') ? bottega.social : null);
+    // due per riga nell'ordine; quello che resta solo va in fondo a tutta larghezza (D-304, D-328)
     var accesi = foglio.querySelectorAll('.bottega-azioni .pulsante:not([hidden])');
     foglio.querySelectorAll('.bottega-azioni .pulsante').forEach(function (el) {
       el.classList.remove('intero');
