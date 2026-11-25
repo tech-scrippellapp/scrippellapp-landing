@@ -1565,8 +1565,8 @@ html:has(.menu:popover-open) {
   color: var(--secondario);
 }
 
-/* Due per riga, nell'ordine Chiama, WhatsApp, Indicazioni, Visita; quello che resta solo va in
-   fondo a tutta larghezza (.intero, dallo script), come nell'app (D-304) */
+/* Due per riga, nell'ordine Chiama, Indicazioni, Sito Web, Social, WhatsApp; quello che resta solo
+   va in fondo a tutta larghezza (.intero, dallo script), come nell'app (D-304, D-328) */
 .bottega-azioni {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
