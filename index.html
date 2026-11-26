@@ -369,6 +369,13 @@
           <span></span><span></span>
         </button>
         <img class="bottega-foto" alt="" hidden>
+        <!-- con la galleria (D-329) lo script sposta qui dentro la foto: toccandola si apre #galleria -->
+        <button type="button" class="bottega-foto-apri" hidden>
+          <span class="bottega-pastiglia" aria-hidden="true">
+            <svg viewBox="0 0 16 16" width="14" height="14"><rect x="4.5" y="1.5" width="10" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M1.5 4.5v8.5a1.5 1.5 0 0 0 1.5 1.5h8.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span class="bottega-pastiglia-numero"></span>
+          </span>
+        </button>
         <h2 id="bottega-nome" class="bottega-nome"></h2>
         <p class="bottega-tipo"></p>
         <p class="bottega-descrizione" hidden></p>
@@ -383,6 +390,17 @@
           <a class="pulsante bottega-social" data-azione="social" target="_blank" rel="sponsored noopener" hidden>Social</a>
           <a class="pulsante bottega-whatsapp" data-azione="whatsapp" target="_blank" rel="sponsored noopener" hidden>WhatsApp</a>
         </div>
+      </dialog>
+      <!-- La galleria di una bottega (D-329): sopra il dettaglio, a tutto schermo, una foto per volta con scroll-snap.
+           Le immagini le crea lo script all'apertura; X, Esc e indietro tornano al dettaglio -->
+      <dialog id="galleria" class="galleria">
+        <p class="galleria-contatore" aria-live="polite"></p>
+        <button type="button" class="chiudi-bottega" aria-label="Chiudi le foto">
+          <span></span><span></span>
+        </button>
+        <div class="galleria-fila" tabindex="0" role="group"></div>
+        <button type="button" class="galleria-freccia prima" aria-label="Foto precedente">‹</button>
+        <button type="button" class="galleria-freccia dopo" aria-label="Foto successiva">›</button>
       </dialog>
       <div class="foglio-ombra">
         <div class="foglio">
@@ -539,6 +557,7 @@
   if (!window.fetch) return;
   var WORKER = 'https://scrippellapp-api.scrippellapp.workers.dev';
   var foglio = document.getElementById('bottega');
+  var galleria = document.getElementById('galleria');
   var aperta = null;
   var origine = null;
   // senza showModal (Safari prima della 15.4) le card non aprono niente: non sono pulsanti
@@ -579,6 +598,17 @@
     foto.hidden = !bottega.foto;
     if (bottega.foto) foto.src = bottega.foto;
     else foto.removeAttribute('src');
+    // con la galleria la foto va dentro il pulsante con la pastiglia; senza resta com'era (D-329)
+    var apriFoto = foglio.querySelector('.bottega-foto-apri');
+    var totale = bottega.foto && bottega.galleria && bottega.galleria.length ? bottega.galleria.length + 1 : 0;
+    apriFoto.hidden = !totale;
+    if (totale) {
+      apriFoto.insertBefore(foto, apriFoto.firstChild);
+      apriFoto.setAttribute('aria-label', 'Apri le foto di ' + bottega.nome + ', ' + totale + ' foto');
+      foglio.querySelector('.bottega-pastiglia-numero').textContent = totale;
+    } else if (foto.parentNode === apriFoto) {
+      foglio.insertBefore(foto, apriFoto);
+    }
     foglio.querySelector('.bottega-nome').textContent = bottega.nome;
     mostra(foglio.querySelector('.bottega-tipo'), bottega.tipo);
     mostra(foglio.querySelector('.bottega-descrizione'), bottega.descrizione);
@@ -621,6 +651,73 @@
     foglio.addEventListener('close', function () {
       if (origine && origine.isConnected) origine.focus();
       aperta = null;
+    });
+  }
+
+  // La galleria (D-329): la foto principale e poi le altre, create solo all'apertura
+  if (foglio && galleria) {
+    var fila = galleria.querySelector('.galleria-fila');
+    var contatore = galleria.querySelector('.galleria-contatore');
+    var prima = galleria.querySelector('.galleria-freccia.prima');
+    var dopo = galleria.querySelector('.galleria-freccia.dopo');
+    var apriFoto = foglio.querySelector('.bottega-foto-apri');
+    var fermo = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var ora = 0;
+    var tutte = 0;
+    var segna = function () {
+      ora = fila.clientWidth ? Math.round(fila.scrollLeft / fila.clientWidth) : 0;
+      contatore.textContent = ora + 1 + ' di ' + tutte;
+      prima.disabled = ora === 0;
+      dopo.disabled = ora === tutte - 1;
+    };
+    var vai = function (n) {
+      if (n < 0 || n >= tutte) return;
+      fila.scrollTo({ left: n * fila.clientWidth, behavior: fermo.matches ? 'auto' : 'smooth' });
+    };
+    apriFoto.addEventListener('click', function () {
+      if (!aperta) return;
+      var percorsi = [aperta.foto].concat(aperta.galleria);
+      tutte = percorsi.length;
+      fila.textContent = '';
+      fila.setAttribute('aria-label', 'Foto di ' + aperta.nome);
+      percorsi.forEach(function (src, i) {
+        var posto = document.createElement('div');
+        posto.className = 'galleria-foto';
+        var img = document.createElement('img');
+        img.alt = 'Foto ' + (i + 1) + ' di ' + tutte + ' di ' + aperta.nome;
+        // la prima è già in cache dal dettaglio
+        if (i) {
+          img.loading = 'lazy';
+          img.decoding = 'async';
+        }
+        img.src = src;
+        posto.appendChild(img);
+        fila.appendChild(posto);
+      });
+      galleria.showModal();
+      fila.scrollLeft = 0;
+      segna();
+      galleria.querySelector('.chiudi-bottega').focus();
+      conta(aperta, 'galleria');
+    });
+    fila.addEventListener('scroll', segna);
+    window.addEventListener('resize', function () {
+      if (galleria.open) fila.scrollLeft = ora * fila.clientWidth;
+    });
+    prima.addEventListener('click', function () { vai(ora - 1); });
+    dopo.addEventListener('click', function () { vai(ora + 1); });
+    galleria.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      e.preventDefault();
+      vai(ora + (e.key === 'ArrowLeft' ? -1 : 1));
+    });
+    galleria.querySelector('.chiudi-bottega').addEventListener('click', function () {
+      galleria.close();
+    });
+    // si torna al dettaglio, col fuoco sulla foto; le immagini se ne vanno
+    galleria.addEventListener('close', function () {
+      fila.textContent = '';
+      if (foglio.open) apriFoto.focus();
     });
   }
 
